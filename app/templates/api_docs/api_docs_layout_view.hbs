@@ -1,0 +1,42 @@
+<h1>Mozart.Layout</h1>
+<p><strong>Extends:</strong> <a href="/apidocs/router">Mozart.Router</a><p>
+<p>Layout is responsible for rendering views to a viewport - an element in the DOM. Multiple layouts can be used at once, as long as each is registered with the application's <a href="/apidocs/dom_manager">DOM Manager</a>. Used this way, layouts on the same page can respond differently to routes - one use case for this would be when one Layout handles a sidebar, and another handles the main view.</p>
+<h2>Constructor/Destructor</h2>
+	<h3>init()</h3>
+	<p>Sets up the layout and registers all states in the <code>states</code> array.</p>
+	<h3>release()</h3>
+	<p>Releases all registered views in this layout, doing a complete teardown, before releasing itself.</p>
+<h2>Properties</h2>
+	<h3>states</h3>
+	<p>This is an array of <a href="/apidocs/route">Route</a> objects, one corresponding to each route that the layout will respond to.</p>
+	<h3>currentState</h3>
+	<p>If the layout has a current route, this will contain the route object that is currently rendered, or <code>null</code>
+<h2>Instance Methods</h2>
+	<h3>createView(viewClass, properties)</h3>
+	<p>Creates, registers and returns a new view from the supplied viewClass with the supplied properties. The view is registered for use in this viewclass.</p><p><strong>Note:</strong>This is the preferred method for creating views programmatically, as it ensures all framework wiring is correct. Generally, views should NOT be instantiated directly using their create() class method. For example, in a view method:</p>
+	<code>
+		newView = @layout.createView(App.NewView, <em>options...</em>) 
+	</code>
+	<h3>bindRoot()</h3>
+	<p>Bind the viewport DOM element as specified in the <code>rootElement</code> property to this layout.</p>
+	<h3>doRoute(state, params)</h3>
+	<p>Attempt to transition to the supplied route from the current route if any, calling exit() and enter() on the current and supplied states respectively. If either of the states cannot transition, do not perform the transition.</p>
+	<h3>queueRenderView(view)</h3>
+	<p>Add the supplied view to the render queue, and schedule a processRenderQueue if this is the first view to be added to the queue.</p>
+	<h3>processRenderQueue()</h3>
+	<p>Process and render all views in the render queue, queue all replaced or released view in the release queue, and release all views in the release queue.</p>
+	<h3>queueReleaseView()</h3>
+	<p>Queue the specified view for release on the next call of processRenderQueue()</p>
+	<h3>releaseViews()</h3>
+	<p>Release all views managed by this Layout.</p>
+	<h3>addControl(id, control)</h3>
+	<p>Register a control specified by the supplied id with this Layout.</p>
+	<h3>getControl(id)</h3>
+	<p>Get and return the control specified by the supplied id if it exists, or return <code>undefined</code>.</p>
+	<h3>removeControl(id)</h3>
+	<p>Unregister the control with the specified id on this Layout.</p>
+	<h3>releaseViewControls(view)</h3>
+	<p>Release all controls associated with the supplied view in this Layout.</p>
+<h2>Private Methods</h2> 
+	<h3>_transition(state)</h3>
+	<p>Transition to the specified state, queueing the current top level view for release.</p>

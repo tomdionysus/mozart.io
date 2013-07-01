@@ -1,0 +1,1311 @@
+/*============================================================*\
+	MUSE Framework
+\*============================================================*/
+/*  Variables & Mixins
+--------------------------------------------------------------*/
+/*============================================================*\
+	=VARIABLES
+\*============================================================*/
+/*  Define your Width
+--------------------------------------------------------------*/
+/*  Define your Type
+--------------------------------------------------------------*/
+/*  Define your Spacing Rhythm
+--------------------------------------------------------------*/
+/*  Define your Grid Columns
+--------------------------------------------------------------*/
+/*  Define your Colours
+--------------------------------------------------------------*/
+/*  Define your Images
+--------------------------------------------------------------*/
+/*============================================================*\
+	=MIXINS
+\*============================================================*/
+/*  Grid
+--------------------------------------------------------------*/
+/*  Box Adjustments
+--------------------------------------------------------------*/
+/*  Image Replacement
+--------------------------------------------------------------*/
+/*  Typography
+--------------------------------------------------------------*/
+/*  Transitions
+--------------------------------------------------------------*/
+/*  Generated Content
+--------------------------------------------------------------*/
+/*  Gradients
+--------------------------------------------------------------*/
+/*  Core
+--------------------------------------------------------------*/
+/* normalize.css v2.1.0 | MIT License | git.io/normalize */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block; }
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+audio,
+canvas,
+video {
+  display: inline-block; }
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+[hidden] {
+  display: none; }
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */ }
+
+/**
+ * Remove default margin.
+ */
+body {
+  margin: 0; }
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+a:focus {
+  outline: thin dotted; }
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+a:active,
+a:hover {
+  outline: 0; }
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+abbr[title] {
+  border-bottom: 1px dotted; }
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+b,
+strong {
+  font-weight: bold; }
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+dfn {
+  font-style: italic; }
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0; }
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+mark {
+  background: #ff0;
+  color: #000; }
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em; }
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+pre {
+  white-space: pre-wrap; }
+
+/**
+ * Set consistent quote types.
+ */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019"; }
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sup {
+  top: -0.5em; }
+
+sub {
+  bottom: -0.25em; }
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+img {
+  border: 0; }
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+figure {
+  margin: 0; }
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/**
+ * Define consistent border, margin, and padding.
+ */
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em; }
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */ }
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+button,
+input {
+  line-height: normal; }
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+button,
+select {
+  text-transform: none; }
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */ }
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+button[disabled],
+html input[disabled] {
+  cursor: default; }
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9.
+ * 2. Remove excess padding in IE 8/9.
+ */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box; }
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0; }
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */ }
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/*============================================================*\
+	=HELPER CLASSES
+\*============================================================*/
+/*  Clear Floats
+--------------------------------------------------------------*/
+.cf:before, .width-fixed:before, .row:before, .page:before, .col:before, .sidebar:before, .content:before, [class*="col-"]:before, .media:before, .nav:before, [class^="nav-"]:before, .islet:before,
+.island:before,
+.continent:before, [role="banner"]:before, [role="contentinfo"]:before,
+.cf:after,
+.width-fixed:after,
+.row:after,
+.page:after,
+.col:after,
+.sidebar:after,
+.content:after,
+[class*="col-"]:after,
+.media:after,
+.nav:after,
+[class^="nav-"]:after,
+.islet:after,
+.island:after,
+.continent:after,
+[role="banner"]:after,
+[role="contentinfo"]:after {
+  content: "";
+  display: table; }
+
+.cf:after, .width-fixed:after, .row:after, .page:after, .col:after, .sidebar:after, .content:after, [class*="col-"]:after, .media:after, .nav:after, [class^="nav-"]:after, .islet:after,
+.island:after,
+.continent:after, [role="banner"]:after, [role="contentinfo"]:after {
+  clear: both; }
+
+/*------------------------------------------------------------*\
+	=CONTENTS
+	
+	1)	Base Type
+	2)	Shared Styles
+	3)	Links
+	4)	Font Sizes
+	5)	Lists
+
+*/
+/*============================================================*\
+	=BASE TYPE
+\*============================================================*/
+html {
+  font-size: 24px; }
+
+body {
+  font: 16px/1.5 "Helvetica Neue", Arial, Sans-Serif;
+  -webkit-font-smoothing: antialiased;
+  /* Improves antialiasing in Chrome, particularly for icon fonts */ }
+
+/*============================================================*\
+	=SHARED STYLES
+\*============================================================*/
+/*  Margins
+--------------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 36px;
+  margin-bottom: 12px; }
+
+h1 + h2 {
+  margin-top: -24px; }
+
+ul, ol, dl,
+p {
+  margin-bottom: 24px; }
+
+p {
+  margin-top: 0; }
+
+/*	Font Families
+--------------------------------------------------------------*/
+input, textarea, select, button {
+  font-family: "Helvetica Neue", Arial, Sans-Serif; }
+
+/*	Font Styles
+--------------------------------------------------------------*/
+.text-hero {
+  letter-spacing: -2px;
+  letter-spacing: -0.08333rem; }
+
+h1, .text-xxlarge, h2, h3, .text-xlarge {
+  letter-spacing: -1px;
+  letter-spacing: -0.04167rem; }
+
+h4, strong, b {
+  font-weight: 700; }
+
+h1 {
+  font-weight: 500; }
+
+h2, h3, h5, h6 {
+  font-weight: 400; }
+
+/*============================================================*\
+	=LINKS
+\*============================================================*/
+a,
+a:active {
+  text-decoration: none; }
+
+a:hover,
+a:focus {
+  text-decoration: none; }
+
+/*============================================================*\
+	=FONT SIZES
+\*============================================================*/
+/*	Headings - <h1> to <h6> with supportive sizing classes
+--------------------------------------------------------------*/
+.text-hero {
+  font-size: 48px;
+  font-size: 2rem;
+  line-height: 1; }
+
+h1, .text-xxlarge {
+  font-size: 36px;
+  font-size: 1.5rem;
+  line-height: 1.2; }
+
+h2, .text-xlarge {
+  font-size: 30px;
+  font-size: 1.25rem;
+  line-height: 1.2; }
+
+h3, .text-large {
+  font-size: 24px;
+  font-size: 1rem;
+  line-height: 1.25; }
+
+h4, .text-medium {
+  font-size: 18px;
+  font-size: 0.75rem;
+  line-height: 1.3334; }
+
+h5, h6 {
+  font-size: 18px;
+  font-size: 0.75rem;
+  line-height: 1; }
+
+input, select, button {
+  font-size: 16.0008px;
+  font-size: 0.6667rem;
+  line-height: 1; }
+
+.text-small {
+  font-size: 14.0016px;
+  font-size: 0.5834rem;
+  line-height: 1.75; }
+
+.text-xsmall, .badge, .badge-primary, .badge-secondary, .badge-success, .badge-warning, .badge-important, .badge-info {
+  font-size: 12px;
+  font-size: 0.5rem;
+  line-height: 1.5; }
+
+.text-xxsmall {
+  font-size: 11.0016px;
+  font-size: 0.4584rem;
+  line-height: 1.65; }
+
+/*	Leading Paragraph - Increases the font size of first <p>
+--------------------------------------------------------------*/
+.text-lead {
+  font-size: 18px;
+  font-size: 0.75rem; }
+
+/*	Textarea sizing
+--------------------------------------------------------------*/
+textarea {
+  font-size: 16.0008px;
+  font-size: 0.6667rem;
+  line-height: 1.5; }
+
+/*============================================================*\
+	=LISTS
+\*============================================================*/
+ul, .list-disc {
+  list-style: disc; }
+
+ol, .list-num {
+  list-style: decimal; }
+
+dl, .list-none {
+  list-style: none; }
+
+ul, ol, dl {
+  padding-left: 48px; }
+
+ul ul, ol ol,
+ul ul ul, ol ol ol {
+  margin-bottom: 0;
+  padding-left: 24px; }
+
+/*============================================================*\
+	=CODE
+\*============================================================*/
+code, pre {
+  padding: 0 3px 2px;
+  font-size: 12px;
+  font-size: 0.5rem;
+  font-family: Monaco, "Courier New", monospace;
+  color: #9d3a6c;
+  border-radius: 3px; }
+
+code {
+  padding: 3px 6px;
+  white-space: nowrap;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8; }
+
+/*============================================================*\
+	=ICON FONTS
+\*============================================================*/
+.icon {
+  display: inline;
+  vertical-align: middle;
+  margin-right: 6px; }
+
+.icon-img {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px; }
+
+/*  Right Aligned Icon
+--------------------------------------------------------------*/
+.icon-center {
+  display: block;
+  margin: auto; }
+
+.icon-right {
+  float: right; }
+
+/*  Icon Font Size Classes
+--------------------------------------------------------------*/
+.icon-xxlarge {
+  font-size: 48px;
+  line-height: 1; }
+
+.icon-xlarge {
+  font-size: 36px;
+  line-height: 1.3333; }
+
+.icon-large {
+  font-size: 24px;
+  line-height: 1; }
+
+/*  Image Icons
+--------------------------------------------------------------*/
+.icon-horn {
+  width: 64px;
+  height: 64px;
+  background: url(img/sprite.png) no-repeat #ffc84c 16px 16px;
+  border-radius: 32px; }
+
+/*  Components
+--------------------------------------------------------------*/
+/*============================================================*\
+	=GRID
+\*============================================================*/
+/*  Border Box set on all elements, fixes the box model
+--------------------------------------------------------------*/
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/*  Widths
+--------------------------------------------------------------*/
+.width-full {
+  width: 100%; }
+
+.width-fixed {
+  width: 60%;
+  margin: auto; }
+
+/*  Rows
+--------------------------------------------------------------*/
+.row, .page {
+  margin-left: -24px; }
+
+/*  Columns
+--------------------------------------------------------------*/
+.col, .sidebar, .content, [class*="col-"] {
+  float: left;
+  padding-left: 24px; }
+
+.col-1-1, .content {
+  width: 100%; }
+
+.col-4-5 {
+  width: 80%; }
+
+.col-3-4, .page.has-sidebar > .content {
+  width: 75%; }
+
+.col-2-3 {
+  width: 66.6667%; }
+
+.col-1-2 {
+  width: 50%; }
+
+.col-2-5 {
+  width: 40%; }
+
+.col-1-3 {
+  width: 33.3334%; }
+
+.col-1-4, .sidebar {
+  width: 25%; }
+
+.col-1-5 {
+  width: 20%; }
+
+.col-1-6 {
+  width: 16.6667%; }
+
+.col-1-7 {
+  width: 14.2858%; }
+
+.col-1-8 {
+  width: 12.5%; }
+
+.col-1-10 {
+  width: 10%; }
+
+/*  Push
+--------------------------------------------------------------*/
+.push-1-1 {
+  margin-left: 100%; }
+
+.push-4-5 {
+  margin-left: 80%; }
+
+.push-3-4 {
+  margin-left: 75%; }
+
+.push-2-3 {
+  margin-left: 66.6667%; }
+
+.push-1-2 {
+  margin-left: 50%; }
+
+.push-2-5 {
+  margin-left: 40%; }
+
+.push-1-3 {
+  margin-left: 33.3334%; }
+
+.push-1-4 {
+  margin-left: 25%; }
+
+.push-1-5 {
+  margin-left: 20%; }
+
+.push-1-6 {
+  margin-left: 16.6667%; }
+
+.push-1-7 {
+  margin-left: 14.2858%; }
+
+.push-1-8 {
+  margin-left: 12.5%; }
+
+.push-1-10 {
+  margin-left: 10%; }
+
+/*  Pull
+--------------------------------------------------------------*/
+.pull-1-1 {
+  margin-right: 100%; }
+
+.pull-4-5 {
+  margin-right: 80%; }
+
+.pull-3-4 {
+  margin-right: 75%; }
+
+.pull-2-3 {
+  margin-right: 66.6667%; }
+
+.pull-1-2 {
+  margin-right: 50%; }
+
+.pull-2-5 {
+  margin-right: 40%; }
+
+.pull-1-3 {
+  margin-right: 33.3334%; }
+
+.pull-1-4 {
+  margin-right: 25%; }
+
+.pull-1-5 {
+  margin-right: 20%; }
+
+.pull-1-6 {
+  margin-right: 16.6667%; }
+
+.pull-1-7 {
+  margin-right: 14.2858%; }
+
+.pull-1-8 {
+  margin-right: 12.5%; }
+
+.pull-1-10 {
+  margin-right: 10%; }
+
+/*============================================================*\
+	=BOX
+\*============================================================*/
+.box, .box-download {
+  padding: 24px; }
+
+/*============================================================*\
+	=MEDIA
+\*============================================================*/
+.media {
+  display: block;
+  margin-bottom: 24px; }
+
+.media-feature {
+  float: left;
+  margin-right: 24px; }
+
+.media-feature-right {
+  float: right;
+  margin-left: 24px; }
+
+.media-body {
+  overflow: hidden; }
+  .media-body > :first-child {
+    margin-top: 0; }
+  .media-body > :last-child {
+    margin-bottom: 0; }
+
+/*============================================================*\
+	=NAV
+\*============================================================*/
+/*	Nav Base
+--------------------------------------------------------------*/
+.nav, [class^="nav-"] {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+  .nav > li, [class^="nav-"] > li {
+    float: left;
+    position: relative; }
+    .nav > li > a, [class^="nav-"] > li > a {
+      display: inline-block; }
+    .nav > li > .dropdown, [class^="nav-"] > li > .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      margin: 0;
+      padding: 0;
+      list-style: none; }
+    .nav > li:hover > .dropdown, [class^="nav-"] > li:hover > .dropdown {
+      display: block; }
+
+/*	Nav Stacked
+--------------------------------------------------------------*/
+.nav-stacked > li {
+  float: none; }
+
+/*	Nav Tabs
+--------------------------------------------------------------*/
+.nav-tabs > li {
+  float: none; }
+
+/*	Nav Pills
+--------------------------------------------------------------*/
+.nav-pills > li {
+  float: none; }
+
+/*============================================================*\
+	=BUTTONS
+\*============================================================*/
+/*  Base
+--------------------------------------------------------------*/
+input[type="submit"], button {
+  background: none;
+  border: none; }
+
+.button, .button-primary, .button-secondary, .button-success, .button-warning, .button-important, .button-info {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 12px 24px;
+  cursor: pointer;
+  border-radius: 6px;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease; }
+
+/*  Disabled State
+--------------------------------------------------------------*/
+.button[disabled], [disabled].button-primary, [disabled].button-secondary, [disabled].button-success, [disabled].button-warning, [disabled].button-important, [disabled].button-info,
+.button.is-disabled,
+.is-disabled.button-primary,
+.is-disabled.button-secondary,
+.is-disabled.button-success,
+.is-disabled.button-warning,
+.is-disabled.button-important,
+.is-disabled.button-info {
+  cursor: default;
+  box-shadow: none;
+  text-shadow: none; }
+
+/*  Buttons with Icons
+--------------------------------------------------------------*/
+/*  Primary Buttons
+--------------------------------------------------------------*/
+.button-primary {
+  font-weight: 700;
+  color: #77334c;
+  background-color: #ffc84c;
+  box-shadow: 1px 1px 1px #77334c; }
+
+.button-primary:hover {
+  background: #ffb000; }
+
+.button-secondary {
+  font-weight: 700;
+  color: #77334c;
+  background-color: white;
+  box-shadow: 1px 1px 1px #77334c; }
+
+.button-secondary:hover {
+  background: #d9d9d9; }
+
+/*  Button States
+--------------------------------------------------------------*/
+.button-success {
+  color: white;
+  background-color: green; }
+
+.button-warning {
+  color: white;
+  background-color: yellow; }
+
+.button-important {
+  color: white;
+  background-color: red; }
+
+.button-info {
+  color: white;
+  background-color: blue; }
+
+/*============================================================*\
+	=BADGES
+\*============================================================*/
+/*  Base
+--------------------------------------------------------------*/
+.badge, .badge-primary, .badge-secondary, .badge-success, .badge-warning, .badge-important, .badge-info {
+  display: inline-block;
+  padding: 6px 12px;
+  line-height: 1;
+  font-weight: 700;
+  white-space: nowrap;
+  vertical-align: baseline; }
+
+/*  Primary Badges (Base Theme CSS)
+--------------------------------------------------------------*/
+.badge-primary {
+  color: white;
+  background-color: black; }
+
+.badge-secondary {
+  color: black;
+  background-color: white; }
+
+/*  Badge States (Base Theme CSS)
+--------------------------------------------------------------*/
+.badge-success {
+  color: white;
+  background-color: green; }
+
+.badge-warning {
+  color: white;
+  background-color: yellow; }
+
+.badge-important {
+  color: white;
+  background-color: red; }
+
+.badge-info {
+  color: white;
+  background-color: blue; }
+
+/*============================================================*\
+	=SPACING
+\*============================================================*/
+/*  Spacing Classes
+--------------------------------------------------------------*/
+.islet {
+  padding: 12px; }
+
+.island {
+  padding: 24px; }
+
+.continent {
+  padding: 48px; }
+
+.islet,
+.island,
+.continent {
+  display: block; }
+  .islet > :last-child,
+  .island > :last-child,
+  .continent > :last-child {
+    margin-bottom: 0; }
+
+/*  Margin Adjustment Classes
+--------------------------------------------------------------*/
+.m-top-none {
+  margin-top: 0; }
+
+.m-right-none {
+  margin-right: 0; }
+
+.m-bottom-none {
+  margin-bottom: 0; }
+
+.m-left-none {
+  margin-left: 0; }
+
+.m-top-islet {
+  margin-top: 12px; }
+
+.m-right-islet {
+  margin-right: 12px; }
+
+.m-bottom-islet {
+  margin-bottom: 12px; }
+
+.m-left-islet {
+  margin-left: 12px; }
+
+.m-top-island {
+  margin-top: 24px; }
+
+.m-right-island {
+  margin-right: 24px; }
+
+.m-bottom-island {
+  margin-bottom: 24px; }
+
+.m-left-island {
+  margin-left: 24px; }
+
+.m-top-continent {
+  margin-top: 48px; }
+
+.m-right-continent {
+  margin-right: 48px; }
+
+.m-bottom-continent {
+  margin-bottom: 48px; }
+
+.m-left-continent {
+  margin-left: 48px; }
+
+/*  Padding Adjustment Classes
+--------------------------------------------------------------*/
+.p-top-none {
+  padding-top: 0; }
+
+.p-right-none {
+  padding-right: 0; }
+
+.p-bottom-none {
+  padding-bottom: 0; }
+
+.p-left-none {
+  padding-left: 0; }
+
+.p-top-islet {
+  padding-top: 12px; }
+
+.p-right-islet {
+  padding-right: 12px; }
+
+.p-bottom-islet {
+  padding-bottom: 12px; }
+
+.p-left-islet {
+  padding-left: 12px; }
+
+.p-top-island {
+  padding-top: 24px; }
+
+.p-right-island {
+  padding-right: 24px; }
+
+.p-bottom-island {
+  padding-bottom: 24px; }
+
+.p-left-island {
+  padding-left: 24px; }
+
+.p-top-continent {
+  padding-top: 48px; }
+
+.p-right-continent {
+  padding-right: 48px; }
+
+.p-bottom-continent {
+  padding-bottom: 48px; }
+
+.p-left-continent {
+  padding-left: 48px; }
+
+/*  Theme - All colours, borders etc.
+--------------------------------------------------------------*/
+/*============================================================*\
+	=THEME
+\*============================================================*/
+/*  Base
+--------------------------------------------------------------*/
+body {
+  color: #777777;
+  background: white; }
+
+/*  Text Selection
+--------------------------------------------------------------*/
+::selection {
+  color: black;
+  text-shadow: none;
+  background-color: #fff198; }
+
+/*  Links
+--------------------------------------------------------------*/
+a {
+  color: #9b4263;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease; }
+  a:hover {
+    color: black; }
+
+/*  Heading Color
+--------------------------------------------------------------*/
+h1, h2, h3, h4, h5, h6 {
+  color: #454545; }
+
+/*  Layout
+--------------------------------------------------------------*/
+[role="contentinfo"] {
+  margin-top: 48px;
+  background-color: #f0f0f0; }
+
+.sidebar {
+  padding-right: 24px; }
+  .sidebar > :first-child {
+    margin-top: 0; }
+
+.content :first-child {
+  margin-top: 0; }
+
+/*  Branding
+--------------------------------------------------------------*/
+.branding {
+  margin-bottom: 48px;
+  background-color: #9d3a6c;
+  background: -webkit-radial-gradient(center, ellipse cover, #9a5451 0%, #9d3a6c 100%);
+  background: -moz-radial-gradient(center, ellipse cover, #9a5451 0%, #9d3a6c 100%);
+  background: -ms-radial-gradient(center, ellipse cover, #9a5451 0%, #9d3a6c 100%);
+  border-radius: 0 0 500px 2000px/0 0 15px 20px; }
+
+/*  Logo
+--------------------------------------------------------------*/
+.logo {
+  float: left;
+  width: 176px;
+  height: 48px;
+  margin: 36px 0 24px;
+  background: url(img/sprite.png) no-repeat 0 -56px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden; }
+  .logo > a {
+    display: block;
+    height: 100%; }
+
+/*  Hero
+--------------------------------------------------------------*/
+.hero {
+  margin-bottom: 144px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1); }
+
+.hero-img > img {
+  position: absolute;
+  max-width: 528px;
+  margin-left: -24px; }
+
+.hero h1 {
+  color: white; }
+
+.box-download {
+  float: left;
+  margin-bottom: 48px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 5px; }
+  .box-download > .version-number {
+    margin: 12px 0 0;
+    color: rgba(255, 255, 255, 0.5); }
+
+/*  Navigation
+--------------------------------------------------------------*/
+.branding [role="navigation"] {
+  float: right;
+  margin-top: 48px; }
+
+.branding .nav > li {
+  margin: -12px 0 0 36px;
+  padding: 12px 0; }
+  .branding .nav > li > a {
+    letter-spacing: -1px;
+    letter-spacing: -0.04167rem;
+    font-weight: 700;
+    color: white; }
+    .branding .nav > li > a:hover {
+      color: #ffc84c; }
+.branding .nav .dropdown {
+  width: 200px;
+  font-size: 12px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  z-index: 1; }
+  .branding .nav .dropdown > li {
+    border-top: 1px solid #dddddd; }
+    .branding .nav .dropdown > li:hover {
+      background: #eee;
+      -webkit-transition: all 0.4s ease;
+      -moz-transition: all 0.4s ease;
+      transition: all 0.4s ease; }
+    .branding .nav .dropdown > li:first-child {
+      border-top: none; }
+  .branding .nav .dropdown a {
+    display: block;
+    padding: 6px 12px; }
+
+.sidebar .nav-stacked {
+  margin-left: -12px; }
+
+.nav-stacked > li {
+  word-wrap: break-word; }
+  .nav-stacked > li > a {
+    display: block;
+    padding: 3px 12px; }
+.nav-stacked .nav-header > h4 {
+  padding-left: 12px; }
+.nav-stacked > li:hover > a,
+.nav-stacked > .is-active > a {
+  background-color: #eee; }
+
+.nav-header:first-child h4 {
+  margin-top: 0; }
+
+/*  Media Block (overrides)
+--------------------------------------------------------------*/
+.media-feature > .icon-img {
+  margin-right: 0; }
+
+/*  Typograhy
+--------------------------------------------------------------*/
+[role="contentinfo"] h4 {
+  color: #9d3a6c; }
+
+.copyright {
+  margin-top: 48px; }
+
+/*============================================================*\
+	=RESPONSIVE
+\*============================================================*/
+/*  Responsive Widths
+--------------------------------------------------------------*/
+@media all and (max-width: 1555px) and (min-width: 1355px) {
+  .width-fixed {
+    width: 70%; } }
+@media all and (max-width: 1355px) and (min-width: 1165px) {
+  .width-fixed {
+    width: 80%; } }
+@media all and (max-width: 1165px) {
+  .width-fixed {
+    width: 90%; } }
+@media all and (max-width: 920px) {
+  .width-fixed {
+    width: 80%; } }
+/*  Responsive Typography
+--------------------------------------------------------------*/
+@media all and (max-width: 1440px) {
+  html {
+    font-size: 21.6px; }
+
+  body {
+    font-size: 14.4px; } }
+@media all and (max-width: 1024px) {
+  html {
+    font-size: 18px; }
+
+  body {
+    font-size: 12px; } }
+/*  Responsive Content
+--------------------------------------------------------------*/
+@media all and (max-width: 1165px) and (min-width: 920px) {
+  .hero-img > img {
+    max-width: 400px;
+    margin-top: 24px; }
+
+  .hero .col-1-2 {
+    width: 60%;
+    margin-left: 40%; } }
+@media all and (max-width: 920px) {
+  .content [class*="col-"] {
+    width: 100%; }
+
+  .branding {
+    margin-bottom: 48px; }
+
+  .hero-img {
+    display: none; }
+
+  .hero .col-1-2 {
+    width: 100%;
+    margin-left: 0;
+    text-align: center; }
+
+  .hero .box-download {
+    width: 100%; }
+
+  .branding .nav-collapse > li {
+    float: none;
+    margin: 0; } }
+@media all and (max-width: 768px) {
+  [role="contentinfo"] [class*="col-"] {
+    width: 50%;
+    text-align: center; } }

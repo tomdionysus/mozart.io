@@ -1,0 +1,16 @@
+# NPM
+node_modules
+npm_debug.log
+
+# Temp & Built Application 
+build
+public
+
+# Generated Docs
+docs
+
+# SASS
+.sass-cache/
+
+# Zipped Mozart Empty
+app/assets/mozart-empty.tar.bz2

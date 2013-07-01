@@ -1,0 +1,11 @@
+{{#if label}}
+  <label class="control-label" for="{{controlId}}">{{label}}</label>
+{{/if}}
+<div class="controls">
+  <input id="{{id}}-cbx" type="checkbox" placeholder="{{placeholder}}" class="{{controlClassNames}}"/>
+  {{#if help}}
+    <span class="help-inline">{{help}}</span>
+  {{/if}}
+</div>
+
+

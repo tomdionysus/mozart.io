@@ -1,0 +1,45 @@
+<h1>Mozart.DOMManager</h1>
+<p><strong>Extends:</strong> <a href="/apidocs/mzt_object">Mozart.MztObject</a><p>
+<p>The DOMManager is responsible for DOM event routing to and from all Views and Layouts in the application. An application will typically contain a single instance of DOMManager, with an array of <a href="/apidocs/layout">Mozart.Layout</a> in its <code>layouts</code> property, one for each viewport.</p>
+<h2>Properties</h2>
+	<h3>rootElement</h3>
+	<p>The jQuery selector for the root element, normally <code>body</code>.</p>
+	<h3>layouts</h3>
+	<p>An array of <a href="/apidocs/layout">Mozart.Layout</a> objects, one for each viewport.</p>
+	<p><strong>Note:</strong> All layouts in the application must be registered with the DOM Manager for DOM event binding and View actions to work properly.</p>
+<h2>Constructor/Destructor</h2>
+	<h3>init()</h3>
+	<p>Binds all internal handlers for all supported events to the rootElement.</p>
+	<h3>release()</h3>
+	<p>Unbinds all events and removes all element event handlers.</p>
+<h2>Instance Methods</h2>
+	<h3>checkClickInside(event)</h3>
+	<p>Called internally with a click event that has bubbled to the rootElement, checks all views in all layouts and calls <strong>clickInside()</strong> on each view that requires it.</p>
+	<h3>checkClickOutside(event)</h3>
+	<p>Called internally with a click event that has bubbled to the rootElement, checks all views in all layouts and calls <strong>clickOutside()</strong> on each view that requires it.</p>
+	<h3>onViewEvent(event)</h3>
+	<p>Called internally with any supported event that has bubbled to the rootElement, checks all views in all layouts and calls the relevant handler method on each view that requires it.</p>
+	<h3>onControlEvent(event)</h3>
+	<p>Called internally on any event from an element with a <strong>data-mozart-action</strong> attribute, looks up the appropriate control and calls the handler defined. This is part of the internal implementation of the <code>&#123;{action}&#125;</code> Handlebars helper in Mozart.</p>
+<h2>Private Methods</h2>
+	<h3>_checkRootEvent(event)</h3>
+	<p>Called internally on any event that has bubbled to the rootElement, triggers the appropriate Mozart event on this instance.</p>
+<h2>Instance Events</h2>
+	<h3>applicationEvent</h3>
+	<p>Parameters: event</p>
+	<p>Triggered when any DOM event happens on or on any child element within the application <code>rootElement</code>. The parameter is the DOM event.</p>
+
+	<h3>viewEvent</h3>
+	<p>Parameters: event, view</p>
+	<p>Triggered when any DOM event happens on any element that represents a view. The <code>event</code> parameter is the DOM event, and the event will be triggered before the relevant DOM method handler is called on the view.</p>
+
+	<h3>controlEvent</h3>
+	<p>Parameters: event, control</p>
+	<p>Triggered when any DOM event happens on any element with an <code>&#123;{action}&#125;</code>. The event will be triggered before the control method. The <code>event</code> parameter is the DOM event, and <code>control</code> is a map with the following attributes:</p>
+	<ul>
+		<li>view: <em>The View on which the control exists</em></li>
+		<li>options: <em>A map of the key/value pairs in the action helper</em></li>
+	</ul>
+	<h3>click, focus, blur, keyUp, keyDown, keyPress, focusIn, focusOut, change, mouseOver, mouseOut</h3>
+	<p>Parameters: event</p>
+	<p>These events are triggered when an unhandled DOM event bubbles all the way to the <code>rootElement</code>. The parameter is the DOM event.</p>

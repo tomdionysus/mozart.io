@@ -1,0 +1,23 @@
+<h1>Guide - Application Structure</h1>
+<p>The folder structure of a typical Mozart application looks like this:</p>
+<ul class="list">
+	<li>app - <em>Contains the application source files.</em>
+		<ul class="list">
+			<li>assets - <em>Contains the application static files. Copied to app/public on build.</em></li> 
+			<li>config - <em>Contains the application configuration files.</em></li> 
+			<li>controllers - <em>Contains <a href="/apidocs/controller">Mozart.Controller</a> class files.</em></li> 
+			<li>lang - <em>Contains messageFormat JSON files for each locale.</em></li> 
+			<li>models - <em>Contains <a href="/apidocs/model">Mozart.Model</a> class files.</em></li> 
+			<li>sass - <em>Contains SCSS source files.</em></li> 
+			<li>specs - <em>Contains all application specs as Jasmine spec files.</em>
+			<li>templates - <em>Contains all application templates as Handlebars .hbs files.</em></li> 
+			<li>views - <em>Contains <a href="/apidocs/view">Mozart.View</a> class files.</em></li>  
+		</ul>
+	</li>
+	<li>config
+		<ul class="list">
+			<li>tasks - <em>Contains system build Grunt tasks and the test Express server.</em></li>  
+		</ul>
+	</li></li>
+	<li>public - <em>Contains the compiled build of the application after a build.</em></li>  
+</ul>

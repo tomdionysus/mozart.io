@@ -1,0 +1,16 @@
+<h1>Creating Controls</h1>
+<p></p>
+<h3>Conventions</h3>
+<p>There are a number of conventions you should observe when writing a control for Mozart:</p>
+<ul class="list">
+	<li><strong>Implement a <em>value</em> Property</strong>
+		<p>If your control expects and/or provides a value, e.g. the <em>App.TextBox</em> control, you should implement it in a property called 'value' on the view control. You should <code>bind</code> to the 'change:value' event on the control to look for changes, and you should <code>set</code> 'value' when your control updates the value. This allows your controls to implement property binding in a natural way for a Mozart app.</p>
+	</li>
+	<li><strong>Implement a <em>collection</em> Property</strong>
+		<p>If your control expects and/or provides a collection, e.g. the <code>&#123;{collection}&#125;</code> handlebars helper, you should implement it in a property called 'collection' on the view control. Like value, you should <code>bind</code> to the 'change:collection' event on the control to look for changes, and you should <code>set</code> 'collection' when your control updates the value. You should expect either an array of objects, or a <a href="/apidocs/model">Mozart.Model</a>. This will allow your controls to implement collection binding in a natural way for a Mozart app.</p>
+	</li>
+	<li><strong>Implement a <em>release()</em> Method</strong>
+		<p>You should be careful to implement a <code>release()</code> method to tear down any resources and free any external bindings. Your method should also call <code>super</code> on its last line in any case.</p>
+	</li>
+</ul>
+<p><strong>Note:</strong> Feel free to throw this advice to the wind, but using the conventions consistently will allow engineers using your controls and components to code more easily.</p>

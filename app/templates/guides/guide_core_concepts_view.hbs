@@ -1,0 +1,42 @@
+<h1>Core Concepts</h1>
+
+<p>The concepts which led to the creation of Mozart were developed over the course of a year trying to write a large, complex clientside application. A number of popular clientside MVC frameworks were tried, including Backbone, Ember, AngularJS, as well as the merits of coding the application in pure jQuery.</p>
+
+<h2>Class based architecture</h2>
+
+<p>Many original User Interface <a href="http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" target="_blank">MVC frameworks</a>, before the advent of browser-based clientside technologies, were written in C++ and other OO languages using an object oriented style. This coding paradign lends itself well to the concept of reusable views and templates, inheritance allows efficient specialised components to be produced from more general purpose ones, and instantiation is a natural model for creating and destroying views. In the Gang Of Four seminal work '<a href="http://en.wikipedia.org/wiki/Design_Patterns" target="_blank">Design Patterns</a>', many of the documented patterns for UI are demonstrated in - and in some cases rely upon - object oriented language.</p>
+
+<p>Javascript is the primary language behind most clientside technologies, and although capable of object like behaviour - being primarily a mix of pure procedural and functional paradigms - it does not encourage the design or use of OO type behaviour in the way that is useful from this point of view. Mozart prefers Coffeescript as its language of choice, allowing a more natural way to produce OO behaviour in the browser and allow us to see the benefits of design patterns which have been battle proven for decades.</p>
+
+<h2>Events and Bindings</h2>
+
+<p>A primary driver for development was the realisation that in general a significant amount of boilerplate code is involved in reading and writing information to and from the DOM and between the various components of a clientside application. For instance, when the input from a textbox is requred, the event must be processed to initiate the read, the element must be found or its reference retreived, the function or property on the element must be called or read to get the value, and then the value must be written somewhere else, business logic must be called, and so on.</p>
+
+<p>Mozart approaches these concepts very differently. Each and every component in a Mozart application is descended from MztObject - the Mozart prototype Object. MztObject supports a publish-subscribe architecture for events, and as such any component can publish and subscribe to events on other MztObjects. This leads to a unified event system that is common across components, allowing easy re-use and allowing truly event-driven code. Events can be chained across objects to produce control flows, or multiple components can be notified of changes simply by observing the source.</p>
+
+<p>When moving data around, MztObject supports the concept of declarative bindings. Any property on any MztObject can be bound to another property on another MztObject using a simple declarative syntax. Both one and two way bindings are supported. This makes it easy to produce UI primitives from views - which, of course, descend from MztObject - and bind their data through to Controllers in an automatic fashion. The binding system also ties to the event system - every MztObject publishes an event 'change:<name>' where name is a property on the object. This event fires when the value of that property changes, allowing event driven code to execute only when required.</p>
+
+<p>Fast, lightweight and simple Events and Bindings are the primary architecture concept of the Mozart framework, and nearly all other features depend to some degree on these core features. The internal implementation in MztObject is also lightweight, fast and requires no runloop, polling or external statekeeping. </p>
+
+<h2>Views and Templating</h2>
+
+<p>The concept of a View is a combination of rendering code and template used to display information and interact with the user. In original MVC architure a View would have descended from a primitive class which would have been responsible for graphically drawing that component, and marshalling all information into and out of the component. In Mozart, although Views are class-based in much the same way, the Layout classes of the framework do most of the heavy lifting of actual rendering. The reason that Mozart supports the View paradigm in this way is to gain the benefits of component-based design, much as original desktop UI architecture has used since the first GUIs.</p>
+
+<p>A view is the simplest primitive of a Mozart application's user interface. An instance of a view maps directly to a single HTML element in the DOM, and usually render a handlebars template to that element. Views, like everything else, are MztObjects, and can be bound to and from, publish and subscribe to events, and so on. A view is created by pairing a Coffeescipt class that extends Mozart.View with a handlebars template file (.hbs)- Mozart uses jQuery internally and exposes the jQuery selector of the element on the View instance itself, meaning integration with jQuery plugins and jQuery-aware graphical frameworks is easy. Views have a declarative syntax that allows customization of the element, and can be embedded in other views or used like partials in other view templates.</p>
+
+<p>Code in views is generally concerned with presentation logic within the view. Views usually bind onto properies of a controller or set of controllers, the binding is specified either in the View class prototype itself, or declarativey as part of the template. When done as part of a template, it's easy to consider views as reusable components with inputs and outputs that can be wired up to different sources and destinations depending on the required functionality. Properties on Views can also can be bound directly into certain elements on the DOM using the Mozart Handlebars helpers. When used with binding chaining, this means it is possible to store state on a controller singleton (see below), and have the view update automatically when that data changes, with no extra code to re-render the template or modify the DOM.</p>
+
+<p>Note: Certain system and custom Views do not have handlebars templates, but dynamically render their own content (normally using jQuery). This in some special cases can be faster and/or more simple than using the Mozart Handlebars helpers and HTML. </p>
+
+<h2>Controllers</h2>
+
+<p>Controllers in Mozart are unlike their counterparts in other clientside MVC frameworks, and share much more in common with the original Controller concept in desktop UI MVC frameworks. Controllers are singletons, and act as state holders for the application, in addition to being containers to group functionalty on that data. Of course, Controllers are also MztObjects, and communicate their events and data through the publish-subscribe event system and bindings like any other part of the system. Controllers generally marshall data to and from other controllers, Websockets, RESTful APIs, LocalStorage, and any other external libraries. Views generally bind to properties on controllers, using them as persistence stores, and call functions or raise events on them to run clientside business logic.</p>
+
+<h2>Models</h2>
+
+<p>Models in original MVC design are statebags and groups of related functionality designed to model the data structures with which the user needs to work. They can be thought of as records in a database, or items in a document. Mozart shares this interpetation with most common clientside MVC frameworks, with the added benefit of optional truly relational functionality and the event and binding features described above.</p>
+
+<p>Mozart supports a single data Model class prototype that can be used to generate models with specified fields and properties for the application. Models can then contain an arbitary number of data instances limited only by local JS memory. Model classes support common relation types including hasOne, belongsTo, hasMany, hasManyThrough and polymorphic relations, using defined or automatically generated foreign keys and fast indexing. Models and relations are also all MztObjects, and support events and binding in the way you'd expect - also, Models and relations are compatible with the Mozart Handlebars 'collection' helper, making generating dynamic lists that automatically update in an application easy.</p>
+
+
+

@@ -1,0 +1,27 @@
+<h1>Mozart.Router</h1>
+<p><strong>Extends:</strong> <a href="/apidocs/mzt_object">Mozart.MztObject</a><p>
+<p>Router is responsible for managing hash routes in the application.</p>
+<h2>Constructor/Destructor</h2>
+	<h3>init()</h3>
+	<p>Sets up the empty routes map.</p>
+	<h3>release()</h3>
+	<p>Calls <code>stop()</code> and releases itself.</p>
+<h2>Properties</h2>
+	<h3>useHashRouting</h3>
+	<p>Set to true to use hash based routing (default false).<p>
+<h2>Instance Methods</h2>
+	<h3>start()</h3>
+	<p>Binds <code>doHashChange()</code> to the <code>window <em>hashchange</em></code> event, listening for URL hash route changes.</p>
+	<h3>stop()</h3>
+	<p>Unbinds from <code>doHashChange()</code> to the <code>window <em>hashchange</em></code> event, stop responding to URL hash route changes.</p>
+	<h3>register(route, callback, data)</h3>
+	<p>Register a <a href="/apidocs/route">Mozart.Route</a> with the supplied callback. The signature of the callback is <code>callback(data,params)</code> where <code>data</code> is the data parameter and obj is a map of parameters in the route from the URL.</p>
+	<h3>navigateRoute(uriPath)</h3>
+	<p>Navigate to the supplied route.</p>
+	<h3>onHashChange()</h3>
+	<p>When called will process the hash in <code>window.location.hash</code> and trigger the callbacks on any routes that match the hash.</p>
+	<h3>onNavigationEvent(event)</h3>
+	<p>When called will process the pathname in the target element - which is assumed to be an <code>a</code> - and navigate to that path of the host, port and protocol is identical to the current page. If the uri is not on this site, it will bubble the event to complete processing as usual.</p>
+<h2>Private Methods</h2> 
+	<h3>_escForRegEx(str)</h3>
+	<p>Escape and return a string for use as a static pattern in a regular expression.</p>

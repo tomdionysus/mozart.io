@@ -1,0 +1,12 @@
+{{#if label}}<label class="control-label" for="{{controlId}}">{{label}}</label>{{/if}}
+<select id="{{controlId}}" class="{{controlClassNames}}">
+  {{#if prompt}}<option value="" disabled="disabled">{{prompt}}</option>{{/if}}
+  {{#if nullAllowed}}<option>{{nullText}}</option>{{/if}}
+  {{#valueEach "collection"}}
+    <option value="{{id}}">{{name}}</option>
+  {{/valueEach}}
+</select>
+{{#if help}}<span class="help-inline">{{help}}</span>{{/if}}
+
+
+

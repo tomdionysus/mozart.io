@@ -1,0 +1,28 @@
+<h1>Demo - Tetris</h1>
+
+<div class="span8">
+	<div class="span3">
+		<p><strong>Mose/Touch:</strong> Above Block = Rotate, Left, Right, Below Block = Drop Faster</p>
+		<p><strong>Keys:</strong> Up = Rotate, Left, Right, Down = Drop Faster</p>
+		<p>Score: {{bind "App.tetrisController.score"}}</p>
+		<p>Level: {{bind "App.tetrisController.level"}}</p>
+
+		<label>Board Width</label> {{view "App.SelectControl" collectionObserveBinding="App.tetrisController.sizes" valueBinding="App.tetrisController.boardWidth" classHtml="span1"}}</form>
+		Board Height {{view "App.SelectControl" collectionObserveBinding="App.tetrisController.sizes" valueBinding="App.tetrisController.boardHeight" classHtml="span1"}}
+		Block Width {{view "App.SelectControl" collectionObserveBinding="App.tetrisController.sizes" valueBinding="App.tetrisController.blockWidth" classHtml="span1"}}
+		Block Height {{view "App.SelectControl" collectionObserveBinding="App.tetrisController.sizes" valueBinding="App.tetrisController.blockHeight" classHtml="span1"}}
+		<a class="btn btn-info btn-mini" {{action "restart"}}>Restart Game</a>
+	</div>
+	<div class="span4 pull-right">
+		{{view "App.TetrisBoardView" 
+			name='tetrisboard'
+			scoreNotifyBinding="App.tetrisController.score" 
+			levelBinding="App.tetrisController.level" 
+			
+			boardWidthBinding="App.tetrisController.boardWidth" 
+			boardHeightBinding="App.tetrisController.boardHeight" 
+			blockHeightBinding="App.tetrisController.blockWidth" 
+			blockWidthBinding="App.tetrisController.blockHeight" 
+		}}
+	</div>
+</div>

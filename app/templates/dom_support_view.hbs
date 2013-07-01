@@ -1,0 +1,56 @@
+<h1>DOM Support</h1>
+
+<h3>Introduction</h3>
+<p>Mozart provides abstraction for various DOM manipulation tasks.</p>
+
+<h3>Cookies</h3>
+<p>The Mozart.Cookies class provides a convenient API for the manipulation of cookies.</p>
+
+<h4>Setting a cookie</h4>
+<p>Create a new cookie with the given name, or overwrite an existing cookie.</p>
+<pre>Mozart.Cookies.setCookie <em>name</em>, <em>value</em>, <em>options</em></pre>
+<dl class="dl-horizontal cf">
+	<dt>name</dt>
+	<dd><code>String</code> The name of the cookie; a unique key against which the value will be stored.</dd>
+    <dt>value</dt>
+    <dd><code>*</code> The cookie's value.</dd>
+    <dt>options</dt>
+    <dd><code>Object</code> An object containing any of the following keys.
+        <dl class="dl-horizontal cf">
+			<dt>domain</dt>
+			<dd><code>String</code> The domain to which the cookie should be sent. The default is the domain of the current page.</dd>
+            <dt>path</dt>
+            <dd><code>String</code> The path on the server to which the cookie should be sent. The default is the root path '/'.</dd>
+            <dt>max-age</dt>
+            <dd><code>Number</code> The number of seconds after which the cookie should be deleted.</dd>
+            <dt>expires</dt>
+            <dd><code>Date</code> A Date holding the value of the cookie's expiry date.</dd>
+            <dt>secure</dt>
+            <dd><code>Boolean</code> A flag to indicate the cookie should be used only via HTTPS.</dd>
+		</dl>
+	</dd>
+</dl>
+
+<h4>Getting a cookie</h4>
+<p>Get a previously stored cookie.</p>
+<pre>Mozart.Cookies.getCookie(<em>name</em>);</pre>
+<dl class="dl-horizontal cf">
+    <dt>name</dt>
+    <dd><code>String</code> The name of the cookie; a unique key against which the value will be stored.</dd>
+</dl>
+
+<h4>Check for a cookie</h4>
+<p>Check for the existence of a cookie.</p>
+<pre>Mozart.Cookies.hasCookie(<em>name</em>);</pre>
+<dl class="dl-horizontal cf">
+    <dt>name</dt>
+    <dd><code>String</code> The name of the cookie; a unique key against which the value will be stored.</dd>
+</dl>
+
+<h4>Remove a cookie</h4>
+<p>Check for the existence of a cookie.</p>
+<pre>Mozart.Cookies.removeCookie(<em>name</em>);</pre>
+<dl class="dl-horizontal cf">
+    <dt>name</dt>
+    <dd><code>String</code> The name of the cookie; a unique key against which the value will be stored.</dd>
+</dl>

@@ -1,0 +1,36 @@
+<h1>Understanding Views</h1>
+<h3>Concepts</h3>
+<p>Views are the primary unit of display in a Mozart Application.  View can be nested within other views, and are reusable.</p>
+<p>A View consists of:</p>
+<ul>
+	<li>A CoffeeScript class, e.g. <strong>App.MainView</strong> in <strong>/app/views/main_view.coffee</strong></li>
+	<li>A Handlebars Template, e.g. <strong>/app/templates/main_view.hbs</strong></li>
+</ul>
+<p>Views are instantiated either in a Route as part of a <a href="/api_docs/layout">Layout</a> as the primary view for that route, or in another view template, using the <code>&#123;{view}&#125;</code> handlebars helper.</p>
+<p>Controls are just Views, in that a view designated as a Control is designed to be widely reusable. Views come in a number of different types:</p>
+<ul>
+	<li><strong>Called Views</strong><pre>&#123;{#view tag="button"}&#125; &lt;div id='view-1237' <strong>class='btn'</strong>&gt; <em>...view template...</em> &lt;/div&gt;</pre></li>
+</ul>
+
+<h3>Built-in Properties</h3>
+<ul>
+	<li><strong>tag</strong>
+		<p>The type of the element created by the view, which defaults to <code>div</code>. For example, a view <pre>&#123;{#view tag="button"}&#125; <em>...view template...</em> &#123;{/view}&#125;</pre> will produce a view with an element similar to: <pre>&lt;button id='view-1237'&gt; <em>...view template...</em> &lt;/div&gt;</pre></p>
+	</li>
+	<li><strong>display</strong>
+		<p>When display is explicitly <code>false</code>, the view will render only a <code>&lt;script&gt;</code> tag with the view identifier, but not its content. This also means that any subviews will not be instantiated. <code>display</code> is internally bound to <code>redraw()</code>, so that changing it will cause the view content to appear or disappear when <code>display</code> is changed.</p>
+	</li>
+	<li><strong><em>name</em>Html</strong>
+		<p>All view properties with the *<strong>Html</strong> suffix have their contents copied to the relevant attribute on the view element. For example, a view <pre>&#123;{#view classHtml="btn"}&#125; <em>...view template...</em> &#123;{/view}&#125;</pre> will produce a view with an element similar to: <pre>&lt;div id='view-1237' <strong>class='btn'</strong>&gt; <em>...view template...</em> &lt;/div&gt;</pre></p>
+	</li>
+	<li><strong>templateName</strong>
+		<p>Contains the Handlebars key for the view template - in a Mozart application this is the original path to the template file, minus the .hbs extension.<pre>class App.GuideUnderstandingViewsView extends Mozart.View
+  templateName: 'app/templates/guides/guide_understanding_views_view'</pre></code></p>
+	</li>
+	<li><strong>templateFunction</strong>
+		<p>Contains the function used to render the contents of the view's element. This is automatically set in <code>init()</code> when <code>skipTemplate</code> is not true and <code>templateName</code> is not null to the compiled Handlebars function for the template from the relevant .hbs file. Some specialist applications, e.g. games, may need to set this directly.</p>
+	</li>
+	<li><strong>skipTemplate</strong>
+		<p>When skipTemplate is <code>true</code>, the view will render its element with no content. It will also not throw an error if <code>templateName</code> or <code>templateFunction</code> are not defined. This is used when a view does not require a template, or performs its own element rendering, as with some of the game demos.</p>
+	</li>
+</ul>

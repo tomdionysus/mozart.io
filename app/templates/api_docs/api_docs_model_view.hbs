@@ -1,0 +1,124 @@
+<h1>Mozart.Model</h1>
+<p><strong>Extends:</strong> <a href="/apidocs/mzt_object">Mozart.MztObject</a><p>
+<p>Model handles all data functionality in Mozart. It functions like a relational database, providing CRUD and query methods.</p>
+<p><strong>Note:</strong> In normal use, an application should not extend Model. Models as used within an application are singleton instances of Model. Records in a model are instances of the <a href="/apidocs/instance">Mozart.Instance</a> class.</p>
+<h2>Properties</h2>
+<h3>modelName</h3>
+<p>The name of the model.</p>
+<h2>Constructor/Destructor</h2>
+<h3>create(options)</h3>
+<p>Create a new Model with the supplied options.</p>
+<h2>Instance Methods</h2>
+<h3>reset()</h3>
+<p>Reset the Model by releasing all stored <a href="/apidocs/instance">Mozart.Instance</a> records. This is broadly similar to a SQL TRUNCATE call.</p>
+<p><strong>Note:</strong> reset will not remove records from persisted stores (AJAX, localStorage) - it only clears the local js store.</p>
+<h3>attributes(attrs)</h3>
+<p>Create an attribute for each entry in the supplied attrs map. The map format is <code>{ attributeName: type }</code>. The method can be called multiple times, and will not clear or overwrite attributes which already exist.</p>
+<h3>hasAttribute(name)</h3>
+<p>Return true if the attribute with the given name exists.</p>
+<h3>hasRelation(relationName)</h3>
+<p>Return true if the relation with the given name exists.</p>
+<h3>foreignKeys(foreignKeys)</h3>
+<p>Create a foreign key for each entry in the supplied attrs map. The map format is <code>{ fkName: modelClass }</code> where <code>fkName</code> is the foreign key attribute name, and <code>modelClass</code> is the referenced Model. By default, foreignKeys will also create a 'map' index on each foreign key attribute. The method can be called multiple times and will not clear or overwrite foreign keys which already exist.</p>
+<h3>polyForeignKeys(attrs)</h3>
+<p>Create a polymorphic foreign key for each entry in the supplied attrs map. The map format is <code>{ fkName: fkTypeFieldName }</code>, where fkName is the foreign key attribute name and fkTypeFieldName is the attribute that contains the foreign Model class name. By default, foreignKeys will also create a 'map' index on each foreign key attribute. The method can be called multiple times and will not clear or overwrite foreign keys which already exist.</p>
+<h3>belongsTo(model [, attribute][, fkname])</h3>
+<p>Create a belongsTo relation to the specified model. If attribute is supplied, this is the name of the method created on model instances that allows the relation to be written and read, by default the attribute will be the name of the supplied model converted to snake case. If fkname is supplied, it is the attribute for the foreign key which will be created, by default fkname will be the name of the supplied model converted to snake case and suffixed with <code>_id</code>.</p>
+<p><strong>Note:</strong> The foreign key attribute is created on <em>this</em> model.</p>
+<h3>belongsToPoly(models, attribute, fkname, fktypename) </h3>
+<p>Create a polymorphic belongsTo relation to the models specfied in the array <code>models</code>. The <code>attribute</code> parameter is the name of the method created on model instances that allows the relation to be written and read. <code>fkname</code> is the attribute name for the foreign key and <code>fktypename</code> is the attribute name for the foreign type which will be created.</p>
+<p><strong>Note:</strong> The foreign key and type attributes are created on <em>this</em> model. For each instance which is associated, the foreign type attribute will contain as its value the <code>modelName</code> of the associated Model.</p>
+<h3>hasMany(model [, attribute][, fkname])</h3>
+<p>Create a hasMany relation to the specified model. If attribute is supplied, this is the name of the method created on model instances that gets a OneToManyCollection instance to work with the relation, by default the attribute will be the name of the supplied model converted to snake case. If fkname is supplied, it is the attribute for the foreign key which will be created on the <em>supplied</em> model, by default fkname will be the name of the supplied model converted to snake case and suffixed with <code>_id</code>.</p>
+<p><strong>Note:</strong> The foreign key attribute is created on the <em>supplied</em> model.</p>
+<h3>hasManyPoly(model, attribute, thatFkAttr, thatTypeAttr])</h3>
+<p>Create a polymorphic hasMany relation to the specified model. The <code>attribute</code> parameter is the name of the method created on model instances that gets a OneToManyPolyCollection instance to work with the relation<code>thatFkAttr</code> is the attribute name for the foreign key and <code>thatTypeAttr</code> is the attribute name for the foreign type which will be created.</p>
+<h3>hasManyThrough(model, attribute, linkModel [, thisFkAttr][, thatFkAttr])</h3>
+<p>Create a hasManyThrough relation to the specified <code>model</code> using the supplied <code>linkModel</code>. The <code>attribute</code> parameter is the name of the method created on model instances that gets a ManyToManyCollection class to work with the relation. If <code>thisFkAttr</code> is supplied, it is the attribute for the foreign key which will be created on the <em>linkModel</em>, by default thisFkAttr will be the name of the <em>other</em> model converted to snake case and suffixed with <code>_id</code>. If <code>thatFkAttr</code> is supplied, it is the attribute for the foreign key which will be created on the <em>linkModel</em>, by default thatFkAttr will be the name of <em>this</em> model converted to snake case and suffixed with <code>_id</code>.</p>
+<h3>hasManyThroughPoly(model, attribute, linkModel [, thisFkAttr][, thatFkAttr][, thatTypeAttr])</h3>
+<p>Create a polymorphic hasManyThrough relation to the specified <code>model</code> using the supplied <code>linkModel</code>. The <code>attribute</code> parameter is the name of the method created on model instances that gets a ManyToManyCollection class to work with the relation. If <code>thisFkAttr</code> is supplied, it is the attribute for the foreign key which will be created on the <em>linkModel</em>, by default thisFkAttr will be the name of the <em>other</em> model converted to snake case and suffixed with <code>_id</code>. If <code>thatFkAttr</code> is supplied, it is the attribute for the foreign key which will be created on the <em>linkModel</em>, by default thatFkAttr will be the name of the <em>this</em> model converted to snake case and suffixed with <code>_id</code>. If <code>thatTypeAttr</code> is supplied, it is the attribute for the foreign type which will be created on the <em>linkModel</em>, by default thatTypeAttr will be the modelName of the <em>that</em> model converted to snake case and suffixed with <code>_type</code>.</p>
+<h3>hasManyThroughPolyReverse(model, attribute, [, thisFkAttr][, thatFkAttr][, thatTypeAttr])</h3>
+<p>Create the reverse polymorphic hasManyThrough relation to the specified <code>model</code> using the supplied <code>linkModel</code>, given an existing <code>hasManyThroughPoly</code>. This produces the relation specified by <code>attribute</code> on the other model, the opposite side of the relationship.</p>
+<p><strong>Note:</strong> A <code>hasManyThroughPoly</code> must already exist on the two models.</p>
+<h3>all()</h3>
+<p>Return an array of all stored <a href="/apidocs/instance">Mozart.Instance</a> records.</p>
+<h3>allAsMap()</h3>
+<p>Return a map of all stored <a href="/apidocs/instance">Mozart.Instance</a> record ids to their associated instances.</p>
+<h3>count()</h3>
+<p>Return the total number of stored instances.</p>
+<h3>findById(id)</h3>
+<p>Return the <a href="/apidocs/instance">Mozart.Instance</a> with the supplied id, or null if it does not exist.</p>
+<h3>findAll(ids)</h3>
+<p>Return all <a href="/apidocs/instance">Mozart.Instance</a> records with an id in the supplied ids array. Ids with no corresponding Instance will not be returned, and if no records are found findAll will return an empty array.</p>
+<h3>select(callback)</h3>
+<p>Return an array of <a href="/apidocs/instance">Mozart.Instance</a>  records filtered by the supplied callback. The callback should take a single parameter <code>instance</code> and return <code>true</code> to include in the query, and <code>false</code> to exclude.</p>
+<h3>selectIds(callback)</h3>
+<p>Identical to <code>select</code>, except returns an array of ids instead of instances.</p>
+<h3>selectAsMap(callback)</h3>
+<p>Identical to <code>select</code>, except returns a map of ids to instances.</p>
+<h3>findByAttribute(attribute, value)</h3>
+<p>Return an array of all Instances where attribute is equal to value. If an index exists on the supplied attribute, it will be used preferentially.</p>
+<h3>findByAttributes(query)</h3>
+<p>Return an array of all Instances where attributes are equal to values as stated the supplied map query, in the format <code>{ attributeName: value }</code>. If indexes exist on any the attribute, they will be used preferentially, otherwise all records will be iterated.</p>
+<h3>exists(id)</h3>
+<p>Return true if the <a href="/apidocs/instance">Mozart.Instance</a> with the specified id exists in the store.</p>
+<h3>initInstance(data)</h3>
+<p>Return a new unstored <a href="/apidocs/instance">Mozart.Instance</a> for this model, assigning attributes to the values supplied in the map <code>data</code>.</p>
+<h3>createFromValues(values)</h3>
+<p>Create a new stored instance for this model, by calling <code>initInstance</code> with the supplied values, and calling <code>save()</code> on it.</p>
+<h3>loadInstance(instance, options)</h3>
+<p>Trigger the 'load' event with the supplied instance, getting from a persistent store if one is configured for this model.</p>
+<h3>createInstance(instance, options)</h3>
+<p>Add the instance to the store and trigger the 'create' event with the supplied instance, creating in a persistent store if one is configured for this model, and trigger the 'change' event on the Model.</p>
+<p><strong>Note: </strong> The <code>options</code> parameter can be used to disable one or more triggers by supplying a map with the following set to <code>true</code>:</p>
+<ul>
+	<li><strong>disableModelCreateEvent</strong> - disable the Model 'create' event (create on any persistent stores).</li>
+	<li><strong>disableModelChangeEvent</strong> - disable the Model 'change' event.</li>
+</ul>
+<h3>updateInstance(instance, options)</h3>
+<p>Trigger the 'update' event with the supplied instance, updating in a persistent store if one is configured for this model, and trigger the 'change' event on the Model.</p>
+<p><strong>Note: </strong> The <code>options</code> parameter can be used to disable one or more triggers by supplying a map with the following set to <code>true</code>:</p>
+<ul>
+	<li><strong>disableModelUpdateEvent</strong> - disable the Model 'update' event (update on any persistent stores).</li>
+	<li><strong>disableModelChangeEvent</strong> - disable the Model 'change' event.</li>
+</ul>
+<h3>destroyInstance(instance, options)</h3>
+<p>Trigger the 'destroy' event with the supplied instance and remove it from the store, destroying in a persistent store if one is configured for this model, and trigger the 'change' event on the Model.</p>
+<p><strong>Note: </strong> The <code>options</code> parameter can be used to disable one or more triggers by supplying a map with the following set to <code>true</code>:</p>
+<ul>
+	<li><strong>disableModelDestroyEvent</strong> - disable the Model 'update' event (destroy/delete on any persistent stores).</li>
+	<li><strong>disableModelChangeEvent</strong> - disable the Model 'change' event.</li>
+</ul>
+<h3>toSnakeCase(str)</h3>
+<p>Return a snake case version of the supplied string, e.g.:</p>
+<ul class="list">
+	<li>oneTwoThree -> one_two_three</li>
+	<li>OneTwoThree -> one_two_three</li>
+	<li>OnetwoThree -> onetwo_three</li>
+	<li>One Two Three -> one_two_three</li>
+	<li>one two three -> one_two_three</li>
+</ul>
+<h3>index(attr [, type][, options])</h3>
+<p>Create an index a given attribute of the specified type with the specified options. The default index type is a map index, see <a href="/apidocs/data_index">Mozart.DataIndex</a> for more details.</p>
+<h3>hasIndex(attrname)</h3>
+<p>Return true if an index exists for the attribute with the supplied name.</p>
+<h3>getIndexFor(attrName, value)</h3>
+<p>Return the index for the given attribute and value.</p>
+<h3>updateIndex(attrName, instance, oldValue, newValue)</h3>
+<p>Update the index for the given attribute for the given instance, using the old and new values of the attribute.</p>
+<h3>addToIndexes(instance)</h3>
+<p>Add the specified instance to all indexes.</p>
+<h3>removeFromIndexes(instance)</h3>
+<p>Remove the given instance from the all indexes.</p>
+<h3>rebuildIndex(attrName, type, options)</h3>
+<p>Rebuild the index for the specified attribute with the given type and options.</p>
+<h3>dropIndex(attrName)</h3>
+<p>Drop the index for the specified attribute.</p>
+<h3>rebuildAllIndexes()</h3>
+<p>Rebuild all indexes on this model.</p>
+<h2>Private Methods</h2>
+<h3>_generateId()</h3>
+<p>Return an id for a new instance from the internal sequence.</p>
+<p><strong>Note:</strong> Ids are unique across all models, not just the current model.</p>
+<h3>_getInstance()</h3>
+<p>Return a new <a href="/apidocs/instance">Mozart.Instance</a> for this Model.</p>

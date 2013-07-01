@@ -1,0 +1,71 @@
+<h1>i18n - Internationalization</h1>
+
+<h3>Introduction</h3>
+<p>Mozart supports internationalization using the <strong>messageFormat</strong> library. </p>
+
+<h3>Syntax</h3>
+<h4>MessageFormat Templates</h4>
+<p>Add messageFormat templates in JSON format under <strong>/app/lang/<em>locale</em></strong> folders in your app.</p>
+
+<p><strong>/app/lang/en/example.json</strong></p>
+<pre>
+{
+"showingProducts": "Showing {NUM, plural, one {Product} other {Products}}.",
+"viewResults": "{NUM, plural, zero {No more results} one {1 more result} other {# more results}}",
+"questionMark": "?",
+"hideMessages": "Hide {NUM, plural, one {this message} other {these messages}}.",
+"charactersRemaining": "{NUM, plural, one {1 character} other {# characters}} remaining.",
+"cartProducts": "You have {NUM, plural, one {<strong>1</strong> product} other {<strong>#</strong> products}} in your cart.",
+"reviewLimit": "You are only allowed to post {NUM_REVIEWS, plural, one {1 product review} other {# product reviews}} every {NUM_LIMIT_DURATION, plural, one {1 day} other {# days}}.",
+"wishlistProducts": "Your wishlist contains {NUM_PRODUCTS, plural, one {1 product} other {# products in {NUM_CATEGORIES, plural, one {1 category} other {# categories}}}}.",
+"otherCarts": "You {NUM, plural, offset:1 zero {have added this to your cart} one {and one other person have added this to their cart} other {and # others have added this to their carts}}.",
+
+"aeroPress6": "Mix the water and coffee with the stirrer for about {NUM, plural, one {1 second} other {# seconds}}."
+}
+</pre>
+<p>For more information on messageFormat, please see the documentation at <a href="http://userguide.icu-project.org/formatparse/messages">ICU MessageFormat</a>.</p>
+
+<h4>Template Compilation</h4>
+<p>Add the following to the <em>templates</em> section of your <strong>/config.coffee</strong> file for each locale:</p>
+<pre>
+templates:
+defaultExtension: 'hbs'
+joinTo: 
+'javascripts/templates.js': /^app\/templates/
+'mobile/javascripts/templates.js': /^app\/mobile\/templates/
+
+'javascripts/i18n/<strong>en</strong>.js': /^app\/lang\/<strong>en</strong>\/.*\.json/
+'javascripts/i18n/<strong>fr</strong>.js': /^app\/lang\/<strong>fr</strong>\/.*\.json/
+
+</pre>
+
+<h4>Static Output</h4>
+<p>The &#123;{i18n}&#125; helper produces static HTML from the messageformat templates.</p>
+<p>
+  <code>&#123;{i18n "example.wishlistProducts" NUM_PRODUCTS=2 NUM_CATEGORIES=3}&#125;  
+  </code>
+</p>
+<p><strong>Output:</strong> {{i18n "example.wishlistProducts" NUM_PRODUCTS=2 NUM_CATEGORIES=3}}</p>
+
+<h4>Bindable</h4>
+<p>The &#123;{bindI18n}&#125; helper produces a bound tag (default span) with the associated bound properties.</p>
+<p>
+  <code>&#123;{bindI18n "example.wishlistProducts" NUM_PRODUCTSObserveBinding="products" NUM_CATEGORIESObserveBinding="categories"}&#125;
+  </code>
+</p>
+
+Products: {{view "App.TextControl" valueBinding="products" placeholder="NUM_PRODUCTS" classHtml="field-small"}}
+Categories: {{view "App.TextControl" valueBinding="categories" placeholder="NUM_CATEGORIES" classHtml="field-small"}}
+
+<p><strong>Output:</strong> {{bindI18n "example.wishlistProducts" NUM_PRODUCTSObserveBinding="products" NUM_CATEGORIESObserveBinding="categories"}}</p>
+
+<h3>Examples</h3>
+Seconds: {{view "App.TextControl" valueBinding="seconds" placeholder="NUM_SECONDS" classHtml="field-small"}}
+<p><strong>Output:</strong> {{bindI18n "example.aeroPress6" NUMObserveBinding="seconds"}}</p>
+
+<h3>Credits</h3>
+<p>Mozart i18n uses Alex Sexton's <a href="https://github.com/SlexAxton/messageformat.js">messageformat.js</a> library. It is a JavaScript implementation of <a href="http://userguide.icu-project.org/formatparse/messages">ICU MessageFormat</a>.</p>
+
+
+
+

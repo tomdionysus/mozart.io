@@ -1,0 +1,87 @@
+<h1>The Top Controller Pattern</h1>
+<h3>Concepts</h3>
+<p>Controllers in Mozart are quite different from other MVC frameworks. A Mozart Controller contains no base functionality and is not involved in view rendering or routing. Instead, A Controller usually exists as a singleton that stores the state of the application, and contains the functionality used to manipulate that state.</p>
+<p>In the Top Controller pattern, Controllers should be used for:</p>
+<ul>
+	<li>Storing state that persists between pages</li>
+	<lI>Storing constants and constant lists</li>
+	<li>Methods that marshall Model data, e.g. AJAX <code>loadAll()</code> or LocalStorage <code>loadAllLocalStorage()</code>, <code>save()</code> on Model instances, creating new Model instances</li>
+	<li>Methods that are clearly business/application logic</li>
+	<li>Wrapping custom tasks, e.g. custom AJAX/Websockets</li>
+</ul>
+
+<p>Controllers should <strong>NOT</strong> be used for:</p>
+<ul>
+	<li>State that does not persist between views, or transient view data</li>
+	<li>Any kind of view/rendering presentation logic</li>
+	<li>Routing Logic</li>
+</ul>
+
+<p>Because the controller singleton is created in <code>app/config/app.coffee</code> and registered with the global application namespace, it is always available to any view.</p>
+
+<h3>Instantiation</h3>
+<p>Controllers are created as singletons in the <code>app/config/app.coffee</code> file:</p>
+
+<pre>Mozart.root = window
+
+App.storeController = App.StoreController.create()
+App.addressController = App.AddressController.create()
+App.tetrisController = App.TetrisController.create()
+
+App.Application = Mozart.MztObject.create()
+
+<em>...layouts, routes, etc...</em></pre>
+
+<h3>Usage</h3>
+
+<p>Here, the <code>App.storeController</code> is being used to store a static array of fields to sort by in <code>sortByFields</code>, and also the specific field to sort by and whether to reverse the sort order in <code>sortByFields</code>and <code>sortByFields</code>. This is persistent state across views because the sort order and direction should persist when the user navigates away from the page and then back to it.</p> 
+
+<p><em>app/controllers/store_controller.coffee</em></p>
+<pre>class App.StoreController extends Mozart.Controller
+  ...
+  sortBy: 'name'
+  ...
+  sortByFields: [
+    {id:'name',name:'Name'},
+    {id:'country',name:'Country'},
+    {id:'currency',name:'Currency'},
+  ]
+</pre></code>
+
+<p><em>Template</em></p>
+<pre>&lt;h4&gt;Sortable Collection&lt;/h4&gt;
+&#123;{view "App.SelectControl"
+	collectionObserveBinding="App.storeController.sortByFields" 
+	valueBinding="App.storeController.sortBy" 
+	label="Sort By"
+}&#125;
+&#123;{view "App.CheckboxControl" 
+	valueBinding="App.storeController.sortReverse" 
+	label="Reverse"
+}&#125;
+
+&#123;{collection "App.CalledStoreItemView" 
+	collectionBinding="App.storeController.stores" 
+	sortAttributeBinding="App.storeController.sortBy" 
+	sortDescendingBinding="App.storeController.sortReverse"
+}&#125;
+</pre></code>
+
+<h3>Output</h3>
+<h4>Sortable Collection</h4>
+{{view "App.SelectControl"
+	collectionObserveBinding="App.storeController.sortByFields" 
+	valueBinding="App.storeController.sortBy" 
+	label="Sort By"
+}}
+{{view "App.CheckboxControl" 
+	valueBinding="App.storeController.sortReverse" 
+	label="Reverse"
+}}
+
+{{collection "App.CalledStoreItemView" 
+	collectionBinding="App.storeController.stores" 
+	sortAttributeBinding="App.storeController.sortBy" 
+	sortDescendingBinding="App.storeController.sortReverse"
+}}
+

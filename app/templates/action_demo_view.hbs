@@ -1,0 +1,46 @@
+<h1>Actions</h1>
+
+<h3>Introduction</h3>
+<p>Actions are used to capture user DOM events within HTML elements. Actions can be added to any element, although the <strong>a</strong> and <strong>button</strong> tags would be common. The parameter is the method on the current view to call - although the optional <strong>target</strong> parameter allows action to call a method on another object.
+</p>
+
+<h3>Syntax</h3>
+<pre>&#123;&#123;action "<em>MethodName</em>" [events="<em>eventone,eventtwo...</em>"] [target="<em>PathToTarget</em>"] [,<em>key=value...</em>]&#125;&#125;
+</pre>
+
+<h3>Examples</h3>
+
+<h4>Button with action on View</h4>
+<pre>&lt;button class="btn btn-primary" &#123;{action "save"}&#125;&gt;Click Me&lt;/button&gt;
+</pre></code>
+<button class="btn btn-primary" {{action "save"}}>Click Me</button>
+
+<h4>Button with action on View and specified event</h4>
+<pre>&lt;button class="btn btn-primary" &#123;{action "savemouseover" events="mouseover,mouseout"}&#125;&gt;Mouseover Me&lt;/button&gt;
+&#123;{#view displayBinding="mouseovervisible"}&#125;
+  Mouse Over!
+&#123;{/view}&#125;
+</pre></code>
+<button class="btn btn-primary" {{action "savemouseover" events="mouseover,mouseout"}}>Mouseover Me</button>
+{{#view displayBinding="mouseovervisible"}}
+  Mouse Over!
+{{/view}}
+
+<h4>Button with action on Controller</h4>
+<pre>&lt;button class="btn btn-primary" &#123;{action "save" target="App.storeController"}&#125;&gt;Click Me&lt;/button&gt;
+</pre></code>
+<button class="btn btn-primary" {{action "save" target="App.storeController"}}>Click Me</button>
+
+<h4>Button with action and parameters</h4>
+<pre>&lt;button class="btn btn-primary" &#123;{action "displayText" text="Action with Parameters"}&#125;&gt;Click Me&lt;/button&gt;
+</pre></code>
+<button class="btn btn-primary" {{action "displayText" text="Action with Parameters"}}>Click Me</button>
+
+<h4>Button with action and lookup parameters</h4>
+<pre>&lt;button class="btn btn-primary" &#123;{action "displayText" textLookup="App.addressController.addressText"}&#125;&gt;Click Me&lt;/button&gt;
+</pre></code>
+<button class="btn btn-primary" {{action "displayText" textLookup="App.addressController.addressText"}}>Click Me</button>
+
+
+
+

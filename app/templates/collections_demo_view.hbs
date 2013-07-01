@@ -1,0 +1,56 @@
+<h1>Collections</h1>
+<h3>Introduction</h3>
+
+<p>Collections are used to iterate a model, relation or other collection, and render a view for each item. Collections are always contained in a configurable tag, default <code>ul</code><p>
+<h4>Syntax</h4>
+<pre>&#123;&#123;collection ["<em>ViewClassName</em>"] collectionObserveBinding="<em>PathToCollection</em>" [,<em>key=value...</em>]&#125;&#125;
+</pre>
+<p>or</p>
+<pre>&#123;&#123;#collection ["<em>ViewClassName</em>"] collectionObserveBinding="<em>PathToCollection</em>" [,<em>key=value...</em>]&#125;&#125;
+  ...
+&#123;&#123;/collection&#125;&#125;
+</pre>
+<h3>Examples</h3>
+
+{{#view displayBinding="App.storeController.editVisible"}}
+  {{view "App.TextControl" valueBinding="App.storeController.editingStore.name" label="Store Name"}}
+  {{view "App.TextControl" valueBinding="App.storeController.editingStore.country" label="Country"}}
+  {{view "App.TextControl" valueBinding="App.storeController.editingStore.currency" label="Currency"}}
+  <button class="button button-primary" {{action "saveStore" target="App.storeController"}}>{{bind "App.storeController.addSaveButtonText"}}</button>
+  <button class="btn btn-secondary" {{action "cancelStore" target="App.storeController"}}>Cancel</button>
+{{/view}}
+<button class="btn btn-secondary" {{action "newStore" target="App.storeController"}}>New</button>
+<button class="btn btn-secondary" {{action "resetDemo" target="App.storeController"}}>Reset Example Collections</button>
+
+<h4>Collection with inline template and generic class</h4>
+{{#collection collectionBinding="App.storeController.stores"}}
+  {{content.name}} - {{content.country}} - {{content.currency}}
+{{/collection}}
+<em><strong>Note: </strong>Not Bound, will not sync</em>
+
+<h4>Collection with item view class</h4>
+{{#collection "App.StoreItemView" collectionObserveBinding="App.storeController.stores"}}
+  <button class="btn btn-secondary" {{action "displayStore" store=content}}>Info</button> 
+  <button class="btn btn-secondary" {{action "editStore" store=content target="App.storeController"}}>Edit</button> 
+  <button class="btn btn-secondary" {{action "removeStore" store=content target="App.storeController"}}>Delete</button>
+  {{content.name}} - {{content.country}} - {{content.currency}} 
+{{/collection}}
+
+<h4>Sortable Collection</h4>
+{{view "App.SelectControl" collectionObserveBinding="App.storeController.sortByFields" valueBinding="App.storeController.sortBy" label="Sort By"}}
+{{view "App.CheckboxControl" valueBinding="App.storeController.sortReverse" label="Reverse"}}
+
+{{collection "App.CalledStoreItemView" collectionBinding="App.storeController.stores" sortAttributeBinding="App.storeController.sortBy" sortDescendingBinding="App.storeController.sortReverse"}}
+
+<h4>Filterable Collection</h4>
+{{view "App.TextControl" valueNotifyBinding="App.storeController.filterByText" label="Filter"}}
+
+{{collection "App.CalledStoreItemView" collectionBinding="App.storeController.stores" filterAttribute="name" filterTextObserveBinding="App.storeController.filterByText"}}
+
+<h4>Pageable Collection</h4>
+
+{{view "App.PageSelectControl" for="pagedCollection"}}
+
+{{#collection name="pagedCollection" collectionBinding="App.storeController.largeItemArray" pageSize=10}}
+  ({{content.id}}) - {{content.name}}
+{{/collection}}

@@ -1,0 +1,43 @@
+<h1>Models</h1>
+
+<h3>Introduction</h3>
+<p>Mozart supports fully-relational models. All model instances (records/entities) are Mozart objects and can be data bound to other objects, or to DOM elements. Relations are implemented as collecton classes and are queryable, while built in indexing makes for fast data access.</p>
+<h4>Relation Types</h4>
+  <ul class="list">
+    <li><strong>belongsTo</strong> (many-to-one, foreign key on this model)</li>
+    <li><strong>hasOne</strong> (one-to-one, foreign key on other model)</li>
+    <li><strong>hasMany</strong> (one-to-many, foreign key on other model)</li>
+    <li><strong>hasManyThrough</strong> (many-to-many, foreign keys on link model)</li>
+    <li><strong>belongsToPoly</strong> (polymorphic many-to-one, foreign key and type on this model)</li>
+    <li><strong>hasManyPoly</strong> (polymorphic one-to-many, foreign key and type on other model)</li>
+    <li><strong>hasManyThroughPoly</strong> (polymorphic many-to-many, foreign keys and types on link model)</li>
+    <li><strong>hasManyThroughPolyReverse</strong> (used to traverse a hasManyThroughPoly from the other model)</li>
+  </ul>
+
+<h4>Syntax</h4>
+<p>Full syntax of the models and relations can be found in <strong>README.md</strong>, or see the GitHub repository<p>
+
+<h3>Examples</h3>
+<pre>
+App.Store = Mozart.Model.create
+  modelName: "Store"
+
+App.Store.attributes
+  "name": "string"
+
+App.Customer = Mozart.Model.create
+  modelName: "Customer"
+
+App.Customer.attributes
+  "name": "string"
+
+App.Store.hasMany App.Customer, 'customers'
+App.Customer.belongsTo App.Store, 'store'
+
+</pre>
+<h4>Multiple one-to-many, List of Items from a set of related models</h4>
+{{view "App.AddressPickerControl"}}
+
+{{#view displayBinding="App.addressController.currentCity" styleHtml="float:left;margin-left:10px;"}}
+  You Have Selected: {{bind "App.addressController.currentCity.name"}}
+{{/view}}

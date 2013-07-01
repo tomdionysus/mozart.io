@@ -1,0 +1,5 @@
+{
+  "aeroPress6": "M&eacute;langez l&rsquo;eau et le caf&eacute; &aacute; l&rsquo;aide de l&rsquo;agitateur pendant environ {NUM, plural, one {# seconde} other {# secondes}}.",
+  "wishlistProducts": "(I don't speak french) Your wishlist contains {NUM_PRODUCTS, plural, one {1 product} other {# products in {NUM_CATEGORIES, plural, one {1 category} other {# categories}}}}"
+}
+

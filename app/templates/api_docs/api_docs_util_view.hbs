@@ -1,0 +1,54 @@
+<h1>Mozart.Util</h1>
+<p>Util contains a number of utility helper methods for the framework.</p>
+<h2>Class Methods</h2>
+	<h3>getType(object)</h3>
+	<p>Return a string (Object, Function, Array, String, Boolean) representing the type of the <code>object</code>.</p>
+	<h3>isObject(object)</h3>
+	<p>Return <code>true</code> if <code>object</code> is an Object.</p>
+	<h3>isFunction(object)</h3>
+	<p>Return <code>true</code> if <code>object</code> is a Function.</p>
+	<h3>isArray(object) </h3>
+	<p>Return <code>true</code> if <code>object</code> is a Array.</p>
+	<h3>isString(object)</h3>
+	<p>Return <code>true</code> if <code>object</code> is a String.</p>
+	<h3>isBoolean(object) </h3>
+	<p>Return <code>true</code> if <code>object</code> is a Boolean.</p>
+	<h3>log(type, message, params...)</h3>
+	<p>Log a message of <code>type</code> .</p>
+	<h3>showLog(type)</h3>
+	<p>Pass all future logs of <code>type</code> to <code>console.log</code>.</p>
+	<h3>hideLog(type)</h3>
+	<p>Stop passing logs of <code>type</code> to <code>console.log</code>.</p>
+	<h3>error(message, params...)</h3>
+	<p>Throw an <code>Error</code> exception with the given message and parameters</p>
+	<h3>clone(obj)</h3>
+	<p>Clone the given object with jQuery.extend.</p>
+	<h3>getPath(context, path)</h3>
+	<p>Call <code>_getPath</code> with the given context and path and throw an <code>Error</code> if the return is <code>undefined</code>.</p>
+	<h3>_getPath(context [, path])</h3>
+	<p>Parse return the value of the path in <code>path</code>, given the context <code>context</code>. If path is not supplied, use <code>Mozart.root</code>.</p>
+	<h3>getId()</h3>
+	<p>Return a unique integer id.</p>
+	<h3>parsePath(path)</h3>
+	<p>Split the given <code>path</code> by period characters (.) and return an array where the first element is the path without the last attribute, and the second element is the last attribute in the path. e.g.</p>
+	<pre>[one, two] = Mozart.Util.parsePath("App.oneController.prop")
+one == "App.oneController"
+two == "prop"</pre>
+	<h3>toMap(itemArray [, idfield]</h3>
+	<p>Return a map of ids to items built from the array <code>itemArray</code>, using the <code>id</code> property of each object as the id. If <code>idField</code> is supplied, use that field as the id field.</p>
+	<h3>sortBy(sortArray, fields)</h3>
+	<p>Sort the items in <code>sortArray</code> using the supplied order <code>fields</code>, of format "field1,field2,field3...".</p>
+	<h3>parseSort(str, state) </h3>
+	<p>Parse the string <code>state</code> into an array, with each element separated by a comma. Nested arrays can also be parsed, delimited by square brackets.</p>
+	<h3>toCapsCase(name) </h3>
+	<p>Return a CapsCase version of <code>name</code>.</p>
+	<h3>toSnakeCase(name) </h3>
+	<p>Return a snake_case version of <code>name</code>.</p>
+	<h3>sliceStringBefore(str, token)</h3>
+	<p>Return the portion of the string <code>str</code> before the token <code>token</code>, or the whole string if <code>token</code> is not found (case sensitive).</p>
+	<h3>sliceStringAfter(str, token)</h3>
+	<p>Return the portion of the string <code>str</code> after the token <code>token</code>, or the whole string if <code>token</code> is not found (case sensitive).</p>
+	<h3>stringEndsWith(str, token)</h3>
+	<p>Return true if the string <code>str</code> ends with exactly the characters in <code>token</code> (case sensitive).</p>
+	<h3>stringStartsWith(str, token)</h3>
+	<p>Return true if the string <code>str</code> starts with exactly the characters in <code>token</code> (case sensitive).</p>

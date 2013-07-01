@@ -1,0 +1,11 @@
+{{#view styleHtml="float:left;margin-left:10px;" tag="span"}}
+  {{view "App.SelectControl" collectionBinding="App.addressController.countries.all" valueBinding="App.addressController.currentCountry" model="App.Country" nullAllowed=true nullValue=false nullText="Select a Country..." sizeHtml="6"}}
+{{/view}}
+
+{{#view displayBinding="App.addressController.currentCountry" styleHtml="float:left;margin-left:10px;" tag="span"}}
+  {{view "App.SelectControl" collectionBinding="App.addressController.currentCountry.states.all" valueBinding="App.addressController.currentState" model="App.State" nullAllowed=true nullValue=false nullText="Select a State..." sizeHtml="6"}}
+{{/view}}
+
+{{#view displayBinding="App.addressController.currentState" styleHtml="float:left;margin-left:10px;" tag="span"}}
+  {{view "App.SelectControl" collectionBinding="App.addressController.currentState.cities.all" valueBinding="App.addressController.currentCity" model="App.City" nullAllowed=true nullValue=false nullText="Select a City..." sizeHtml="6"}}
+{{/view}}

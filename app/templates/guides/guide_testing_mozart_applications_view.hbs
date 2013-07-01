@@ -1,0 +1,197 @@
+<h1>Testing Mozart Applications</h1>
+<p>Mozart has been built from the ground up with testing in mind. This guide will focus on testing Mozart applications at two different levels - Unit Tests and Functional Tests.</p>
+
+<h2>Unit Testing in Mozart</h2>
+<p>Unit testing Mozart applications is actually very easy. For the most part, no special tools or techniques are required. If you've written unit tests in JavaScript before, using tools like Jasmine or QUnit, you should feel immediately at home writing unit tests for Mozart.</p>
+<p>The examples you find in this guide will all be written in Jasmine, but any similar JavaScript test tool will suffice, so use whatever you're comfortable with.</p>
+
+<h3>MztObject</h3>
+<p>The ease with which Mozart applications can be unit tested is owed almost entirely to one particular feature of the framework – the fact that everything, from models to views, between and beyond, extends one basic class: MztObject. MztObject provides a number of incredibly useful methods, such as <code>create</code>, that you can use to set up any component of your application, its dependencies if required, run tests against that component, and then discard it.</p>
+
+<h3>Models</h3>
+<p>Models are probably the simplest structure in a Mozart application. It's likely your models are nothing more than a list of fields, and possibly a URL to fetch content from. If you have added functionality to your models, then they make an easy starting point on your journey to add code coverage for your app.</p>
+<p>As an example, let's say we have a Product model. Our Product has a <code>price</code> attribute. Under certain circumstances though, we might offer a discount on this Product. So we've added an instance method, <code>getDiscountedPrice</code>, which takes the percentage discount and returns the discounted figure. Here's how we would write a test for such a method:</p>
+<pre>
+    describe 'the Product model', ->
+        it 'applies discounts correctly', ->
+            # Create a new Product instance
+            model = App.Product.createFromValues
+                title: 'iPhone'
+                price: 600
+            # Verify
+            expect(model.getDiscountedPrice(0)).toBe(600)
+            expect(model.getDiscountedPrice(10)).toBe(540)
+            # Cleanup
+            model.destroy()
+</pre>
+<p>What have we done here?</p>
+<ul>
+    <li>We created a new instance of the Product model using the <code>createFromValues</code> method</li>
+    <li>We ran some tests against the <code>getDiscountedPrice</code> method</li>
+    <li>We deleted the new instance</li>
+</ul>
+<p>The final step bears a little more explanation. If you're familiar with the principles of unit testing, you know that a test should not assume any particular starting point – it should create everything it needs, and for politeness, it should clean up whatever it creates. When you're running tests against a real database, this makes a lot of sense – it saves you from having to rewrite your tests any time the starting point changes or isn't what you expect.</p>
+<p>&quot;But our Product model isn't talking to a database – I just created it&quot; I hear you say. And you're right – your new Product isn't persisted anywhere. If you refresh the window, it will be gone. However, Mozart Models maintain their own internal store of the instances that have been created or loaded. So if you create a model using <code>createFromValues</code> and don't <code>destroy</code> it, it will still exist when your next test runs, which could lead to unpredictable behaviour. To be safe, and polite, make you sure call <code>destroy</code>.</p>
+
+<h3>Controllers</h3>
+<p>So you've successfully written your first Mozart test, congratulations. Now let's look at the next logical step in the chain – controllers.</p>
+<p>Like everything in Mozart, controllers are just an extension of MztObject. That means we can instantiate new controllers via the <code>create</code> method, and then run tests against them.</p>
+<p>For our example this time, let's imagine we're building an online store. We have a ShoppingCartController that we use to manage the shopping cart for the current visitor. They can add items to their cart as they move around the site, and they can remove them or change quantities. We've written methods on our controller to handle all these actions – let's write some tests for them.</p>
+<pre>
+    describe 'the ShoppingCart controller', ->
+        controller = null
+        product = null
+        beforeEach ->
+            product = App.Product.createFromValues()
+            controller = App.ShoppingCartController.create()
+        it 'lets you add products', ->
+            controller.addProduct(product)
+            expect(controller.getQuantity(product)).toBe(1)
+        it 'lets you remove products', ->
+            controller.addProduct(product)
+            expect(controller.getQuantity(product)).toBe(1)
+            controller.removeProduct(product)
+            expect(controller.getQuantity(product)).toBe(0)
+        afterEach ->
+            product.destroy()
+</pre>
+<p>What have we done here?</p>
+<ul>
+    <li>We created a blank product to use for our tests</li>
+    <li>We instantiated a new ShoppingCartController</li>
+    <li>We ran a few tests against that controller</li>
+    <li>We deleted the created product</li>
+</ul>
+<p>Controllers differ subtly from models in that there is no master store of instantiated controllers. So when the <code>controller</code> variable is reset before each test, the previous value is no longer referenced and is cleaned up automatically by the browser – we don't have to explicitly call <code>destroy</code> on it (as opposed to the model).</p>
+
+<h3>Views</h3>
+<p>Views are the final piece of our MVC puzzle. Testing views is very similar to testing controllers, with one key difference: <code>@element</code>.</p>
+<p>As you're probably aware, views provide the 'glue' between the actual HTML your users see and interact with, and the models and controllers hidden behind. In a typical Mozart application, your views will serve two major functions:</p>
+<ul>
+    <li>Handling UI events and sending notifications to controllers</li>
+    <li>Responding to events generated elsewhere by updating the HTML of the page</li>
+</ul>
+<p>In the first case, your unit test would be simple: you'd create an instance of the view via the <code>create</code> method, mock or spy on whatever part of the application you expect to be effected, and then call the relevant view method and verify the results. This doesn't require anything special compared to regular unit testing.</p>
+<p>The second case is a little bit different, in that your view is expecting an instance attribute, <code>element</code>, to point to the HTML element of the view. This is easily achieved by creating a new DIV (or whatever element you need), giving it whatever HTML structure you require to test the bare basics of your view, and attaching it directly to the <code>element</code> attribute. Your test scaffold might look something like this:</p>
+<pre>
+    describe 'the Admin bar'
+        view = null
+        div = null
+        beforeEach ->
+            html = []
+            html.push('&lt;div&gt;')
+            # Necessary HTML goes here
+            html.push('&lt;/div&gt;')
+            div = $(html.join('')).appendTo('body')
+            view = App.AdminBarView.create()
+            view.element = div
+        it 'does some things', ->
+            # Tests go here
+        afterEach ->
+            div.remove()
+</pre>
+<p>What have we done here?</p>
+<ul>
+    <li>We mocked the HTML structure generated by our Handlebars template</li>
+    <li>We created an element out of that mock structure</li>
+    <li>We created a view instance</li>
+    <li>We attached the mock element to the view instance</li>
+</ul>
+<p>Using this approach, you can build out the <code>div</code> with whatever structure/content you require to properly test your view's methods.</p>
+
+<h2>Functional Testing in Mozart</h2>
+<p>Unit tests are only one layer in the test pyramid and, while they're the largest, we all know that the best-written and tested methods are useless if wired together incorrectly. That's where functional testing comes in – it focuses on testing the associations within our application in a more comprehensive manner.</p>
+<p>Functional testing Mozart applications is an interesting challenge, for two main reasons: controller/model persistence and asynchronous rendering. We'll get to those in a moment, but first we'll cover the basics.</p>
+
+<h3>Basic Usage</h3>
+<p>Your application probably has a <code>start</code> method or something similar that is called once all the JavaScript is loaded on your page. In your test suite, rather than binding this to <code>document.ready</code> or something similar, you should invoke the method manually when you're ready to start testing.</p>
+<p>It's a good idea to add an event at the end of this method, so that, once the application is fully initialised, you can begin running your test suite. For example, say we added the line <code>$(document).trigger('App:initialised')</code> to the end of our <code>start</code> method. Now, in our test runner, we can do something like this:</p>
+<pre>
+    $(document).bind('Mozart:loaded', function(){
+
+        var jasmineEnv = jasmine.getEnv();
+        jasmineEnv.updateInterval = 1000;
+
+        var htmlReporter = new jasmine.HtmlReporter();
+
+        jasmineEnv.addReporter(htmlReporter);
+
+        jasmineEnv.specFilter = function(spec) {
+            return htmlReporter.specFilter(spec);
+        };
+
+        jasmineEnv.execute();
+    });
+</pre>
+<p>This way your test suite won't actually run until your application is ready. After that, you can just trigger events by calling methods or changing values on your controllers like you would in a unit test.</p>
+
+<h3>Persistent State</h3>
+<p>In a typical Mozart application, your controllers are defined once and then kept for the life of the application. This works fine for your users, but can pose problems for your tests if a controller maintains state from a previous test.</p>
+<p>There are different approaches you can take to this problem. You can re-instantiate your controllers between test executions, or you can make sure you do appropriate cleanup after each test.</p>
+<p>We would recommend the former solution, since the changes made to any particular controller might reach beyond themselves (via bindings) and lead to inconsistencies. If you opt for this approach, it probably makes sense to pull your controller initialisations out of your <code>app.coffee</code> and into a separate method that you can invoke as required.</p>
+
+<h3>Asynchronous Rendering</h3>
+<p>This is the final boss of functionally testing Mozart applications.</p>
+<p>In the interest of performance, Mozart uses asynchronous rendering. What that means is that, rather than responding to every single change that happens in your application, Mozart is smart enough to wait a fraction of a second and see if there are more incoming changes to a given component. If there are, it won't repeatedly redraw that component, but will instead wait until a 'stable' state is reached. This makes your application feel more responsive to your users, because things aren't flickering in and out of place, and expensive redraw operations are avoided.</p>
+<p>The downside to this approach is that it means changes triggered in code aren't immediately available for inspection. This is fine for a human, but not for an automatic test runner. To combat this, you need to use asynchronous testing. As above, we'll cover how to do this in Jasmine, but if you're using another testing framework you'll have to find its equivalents.</p>
+<p>Jasmine provides support for asynchronous testing through two key helpers - <code>waitsFor</code> and <code>runs</code>. The <code>waitsFor</code> helper takes a function as an argument, an error message and a timeout as arguments. Jasmine then repeatedly runs the function provided until:</p>
+<ul>
+    <li>The function returns true</li>
+    <li>The time limit is reached</li>
+</ul>
+<p>If the time limit is reached without the function returning true, the test will fail with the error message provided as the 2nd argument.</p>
+<p>The <code>runs</code> helper takes a function as its only argument, and is used for executing tests once the <code>waitsFor</code> helper is finished.</p>
+<p>Combining these two helpers, you can write tests that actually inspect the HTML of your application, trigger actions via it, and inspect results. An example will demonstrate:</p>
+<pre>
+    describe 'the product page', ->
+        it 'has an add to cart button', ->
+
+            waitsFor( ->
+                return $('.btn-addToCart').length
+            , 'The add to cart button did not appear.', 200)
+
+            runs( ->
+            $('.btn-addToCart').click()
+                expect(App.shoppingCartController.items.length).toBe(1)
+            )
+</pre>
+<p>Obviously this is quite unoptimised – the element reference could be cached between tests, and you could also combine the two methods into a single convenience function that takes a selector and a callback to run tests against. But the principle is hopefully clear: you define a condition (such as the presence of a particular HTML element), and then when that condition is satisfied, run a series of tests.</p>
+<p>You can also use these helpers in a <code>beforeEach</code> to get to a particularly starting point within your application. The callback to the <code>runs</code> block doesn't need to define any tests – it might just wait for a particular element and then click on it to move to another state within the application in anticipation of running more tests from that point.</p>
+
+<h3>Bindings</h3>
+<p>Bindings are arguably the most powerful feature of Mozart, but as the geek adage goes, with great power comes great responsibility. The chains created by bindings often aren't obvious when you're working with code that is being referenced elsewhere in the application. That makes them a potential source of bizarre bugs in your program. Changing the name of an instance variable on a controller might not break the controller, but might break a binding reference unless that binding is updated too. If you're going to create bindings, it's a good idea to create tests that go along with them – it will make your life a lot easier when debugging changes in your application's behaviour. Let's look at how we do that.</p>
+<p>Mozart supports creating bindings in many different ways, but for testing purposes, they all boil down to one of two scenarios:</p>
+<ul>
+    <li>A binding is used to make a particular value available elsewhere in the application</li>
+    <li>A binding is used to trigger a particular action when a value changes</li>
+</ul>
+<p>Both of these scenarios are tested in the same way. In the former, you trigger an update on one controller and inspect the value on another to make sure it changed. Something like:</p>
+<pre>
+    describe 'the UserController', ->
+        it 'makes the login state available to the ShoppingCartController', ->
+            # Trigger
+            App.userController.set('loggedIn', true)
+            # Verify
+            expect(App.shoppingCartController.get('loggedIn')).toBe(true)
+            # Cleanup
+            App.userController.set('loggedIn', false)
+</pre>
+<p>The latter scenario would require spying to ensure the expected method is called:</p>
+<pre>
+    describe 'the UserController', ->
+        it 'clears the shopping cart when the user logs out', ->
+            spyOn(App.shoppingCartController, 'emptyCart')
+            App.userController.logout()
+            expect(App.shoppingCartController.emptyCart).toHaveBeenCalled()
+</pre>
+<p>One of the challenges with testing bindings is that bindings are frequently created using absolute references, i.e. you'll have a controller that looks something like:</p>
+<pre>
+    class App.ShoppingCartController extends Mozart.Controller
+        loggedInBinding: 'App.userController.loggedIn'
+</pre>
+<p>The absolute reference used in the binding path can make writing unit tests challenging since the binding expects certain objects to exist in certain places. This is something you can achieve through sensible use of setup and tear down methods.</p>
+<p>After working through these examples, some of you may be questioning why you need to write tests for bindings at all. After all, bindings are part of the framework, so isn't it Mozart's responsibility to make sure they work as advertised? Doesn't writing tests for bindings violate the principle of testing behaviours, not implementation?</p>
+<p>These are valid objections, but since bindings form one of the most 'magical' parts of any Mozart application, we wanted to address how you would go about testing them. We also wanted to highlight our own experiences writing Mozart applications, and how crucial it was to write tests around our bindings – especially when it came to refactoring code.</p>
+
+<h2>In Conclusion</h2>
+<p>Hopefully these examples and explanations have convinced you that writing Mozart applications that are heavily testable is very achievable. There are definitely nuances to writing tests for Mozart applications that you need to bear in mind, but once you understand these, writing tests around them becomes second nature. We hope this guide inspires you to try Mozart if you haven't already, write tests for it if you haven't already, and brings you a better understanding of some of the magic of Mozart.</p>

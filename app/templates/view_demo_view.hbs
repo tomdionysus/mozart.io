@@ -1,0 +1,60 @@
+<h1>Views</h1>
+
+<h3>Introduction</h3>
+<p>Views are the primary grouping of elements and functionality in Mozart. A view generally represents a template and an associated code class. Views are always rendered into an element - the View prototype class allows you to change the tag of this element with the <strong>tag</strong> parameter, and defining a property with the name &quot;<em>name</em><strong>Html</strong>&quot; allows you to directly specifiy the attributes of the element. Views also allow declarative binding of properties, simply define a property with the name &quot;<em>name</em><strong>Binding</strong>&quot;, &quot;<em>name</em><strong>NotifyBinding</strong>&quot;, or &quot;<em>name</em><strong>ObserveBinding</strong>&quot; and define the bind point as the value. A bound property called &quot;<em>name</em>&quot; will be created on the view with the specified binding type and target. If you only need the view to get a value from another object once, use a &quot;<em>name</em><strong>Lookup</strong>&quot;, which will create a property <em>name</em> with the value in the lookup.<p>
+
+<p>Views may be:
+  <ul>
+    <li>Written inline using a Handlebars block</li>
+    <li>Called explicitly by specifying their class name</li>
+    <li>Named for easy access from their parent view</li>
+    <li>Passed parameters</li>
+  </ul>
+</p>
+
+<h3>Syntax</h3>
+<pre>&#123;&#123;view ["<em>ViewClassName</em>"] collectionObserveBinding="<em>PathToCollection</em>" [,<em>key=value...</em>]&#125;&#125;
+</pre>
+
+<p>or</p>
+
+<pre>&#123;&#123;#view ["<em>ViewClassName</em>"] collectionObserveBinding="<em>PathToCollection</em>" [,<em>key=value...</em>]&#125;&#125;
+...
+&#123;&#123;/view&#125;&#125;
+</pre>
+
+<h3>Examples</h3>
+
+<h4>An Anonymous Generic Inline View</h4>
+{{#view}}
+  Content of Inline View
+{{/view}}
+
+<h4>An Anonymous Inline View with parameters</h4>
+{{#view "App.InlineView" value="These are parameters on the parent view"}}
+  <span>{{value}}</span>
+{{/view}}
+
+<h4>An Anonymous Inline View with a named View Class</h4>
+{{#view "App.InlineView"}}
+  Content of Anonymous Inline View <button class="btn btn-secondary" {{action "doalert"}}>Click Me!</button>
+{{/view}}
+
+<h4>An Named Inline View with a named View Class</h4>
+{{#view "App.InlineView" name="testinlineview"}}
+  Content of Named Inline View <button class="btn btn-secondary" {{action "doalert"}}>Click Me!</button>
+{{/view}}
+
+<h4>A Called view</h4>
+{{view "App.CalledView" classHtml="ok!"}}
+
+<h4>A Called view with a bound parameter</h4>
+{{view "App.TextControl" valueBinding="secondcalledviewvalue" placeholder="Type Here to Change"}}
+{{view "App.CalledView" extraValueBinding="secondcalledviewvalue"}}
+
+<h4>A Named Called view </h4>
+{{view "App.CalledView" name="testcalledview"}}
+
+<h4>A View that takes its class from a property</h4>
+<p><em>On this view class App.ViewDemoView, viewToDraw = <strong>App.Calledview</strong></em></p>
+{{view viewToDraw}}

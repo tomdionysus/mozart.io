@@ -1,0 +1,42 @@
+<h1>Mozart.LocalStorage</h1>
+<p>The LocalStorage module patches and extends <a href="/apidocs/model">Mozart.Model</a> with a number of methods to provide persistence to browser local storage. Once a model is registered by calling its <code>localStorage()</code> method, the synchronisation happens automatically in the background when instances of that model have <code>save()</code> called - all records can be read with the <code>loadLocalStorageAll()</code> method, or individual records can be loaded given their server ids with the <code>loadLocalStorage(id)</code> method.</p>
+<p><strong>Note:</strong> The instance methods exist on <a href="/apidocs/model">Mozart.Model</a>. </p>
+<h2>Instance Methods</h2>
+	<h3>localStorage(options)</h3>
+	<p>Registers the model for local storage. <code>options</code> is a map of the following:</p>
+	<ul class="list">
+		<li><strong>prefix</strong> - The prefix used on local storage keys, defaults to <code>MozartLS</code>.</li>
+	</ul>
+	<h3>getLocalStoragePrefix()</h3>
+	<p>Return the local storage key prefix for this model.</p>
+	<h3>registerLocalStorageId(id,localStorageId)</h3>
+	<p>Associate the instance id <code>id</code> with the local storage id <code>localStorageId</code></p>
+	<h3>unRegisterLocalStorageId(id,localStorageId)</h3>
+	<p>Disassociate the instance id <code>id</code> from the local storage id <code>localStorageId</code></p>
+	<h3>getLocalStorageId(id)</h3>
+	<p>Return the local storage id for the instance id <code>id</code> or <code>undefined</code> if no local storage is associated.</p>
+	<h3>getLocalStorageClientId(localStorageId)</h3>
+	<p>Return the instance id for the <code>localStorageId</code>, or <code>undefined</code> if no instance id is associated. </p>
+	<h3>toLocalStorageObject(instance)</h3>
+	<p>Return a javascript map of the supplied <code>instance</code> attributes and values, with each foreign key translated to its appropriate local storage id.</p>
+	<h3>toLocalStorageClientObject(localStorageObject)</h3>
+	<p>Return a javascript map of the supplied <code>localStorageObject</code> attributes and values, with each foreign key translated to its appropriate client Id.</p>
+	<h3>loadAllLocalStorage()</h3>
+	<p>Load all records for this model from local storage.</p>
+	<h3>loadLocalStorage(instance)</h3>
+	<p>Load all data into <code>instance</code> from local storage.</p>
+	<h3>loadLocalStorageId(localStorageId)</h3>
+	<p>Load the record with the specified <code>localStorageId</code> into an instance. If an instance exists that is associated with the id load its data from local storage, otherwise create an instance with the data.</p>
+	<h3>createLocalStorage(instance)</h3>
+	<p>Persist the supplied <code>instance</code> in local storage.</p>
+	<h3>updateLocalStorage(instance) </h3>
+	<p>Update the supplied <code>instance</code> in local storage.</p>
+	<h3>destroyLocalStorage(instance)</h3>
+	<p>Destroy the supplied <code>instance</code> in local storage.</p></p>
+	<p><strong>Note:</strong> This call does not destroy the instance in the model store.</p>
+	<h3>destroyAllLocalStorage()</h3>
+	<p>Destroy all instances of this model in localstorage.</p>
+	<p><strong>Note:</strong> This call does not destroy the instances in the model store.</p>
+<h2>Private Methods</h2>
+	<h3>_processLocalStorageLoad(localStorageId, data, model)</h3>
+	<p>Create or update an instance of <code>model</code> from <code>data</code>, associating the client id with <code>localStorageId</code>.</p>

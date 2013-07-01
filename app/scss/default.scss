@@ -1,0 +1,83 @@
+/* =Definition lists
+-------------------------------------------------------------- */
+
+html {
+	overflow-y:scroll;
+}
+
+.dl-horizontal dt {
+	width: 8%;
+}
+.dl-horizontal dd {
+	width: 82%;
+}
+
+.tetris-board {
+	background-color: black;
+	position: relative;
+}
+
+.tetris-block {
+	position: absolute;
+}
+
+.tetris-block-red {
+	background-color: #FF0000;
+}
+.tetris-block-blue {
+	background-color: #0000FF;
+}
+.tetris-block-orange {
+	background-color: #FFCC00;
+}
+.tetris-block-yellow {
+	background-color: #FFFF00;
+}
+.tetris-block-magenta {
+	background-color: #FF00FF;
+}
+.tetris-block-cyan {
+	background-color: #00FFFF;
+}
+.tetris-block-green {
+	background-color: #00FF00;
+}
+.tetris-block-generic {
+	background-color: black;
+}
+
+.tetris-logo {
+	background-image: url('/img/tetris/logo.png');
+	position: absolute;
+	width:232px;
+	height:56px;
+	z-index:100;
+}
+
+.tetris-msg {
+	background-image: url('/img/tetris/spacetoplay.png');
+	position: absolute;
+	width:225px;
+	height:46px;
+	z-index:100;
+}
+
+.tetris-gameover {
+	background-image: url('/img/tetris/gameover.png');
+	position: absolute;
+	top:200px;
+	width:176px;
+	height:19px;
+	z-index:100;
+}
+
+[class^="button-"].small {	
+	padding: 5px 10px;
+}
+
+pre {
+	padding: 3px 6px;
+	background-color: #f7f7f9;
+	border: 1px solid #e1e1e8;
+	white-space: pre-wrap;
+}

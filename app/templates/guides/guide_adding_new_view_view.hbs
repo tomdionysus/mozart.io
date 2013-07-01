@@ -1,0 +1,49 @@
+<h1>Adding a New View &amp; Route</h1>
+<p>Creating a new view is one of the common tasks when developing a Mozart application. In this guide, we will create a new view and route for a 'Hello World' page.</p>
+
+<h3>Generate The View</h3>
+
+<p>You can use the grunt generator to quickly generate a new view class and template from the terminal:</p>
+<pre>grunt generate:view:hello_world</pre>
+<p>This creates two files:</p>
+<ul class="list">
+	<li><strong>app/views/hello_world_view.coffee</strong> - The new view class file</li>
+	<li><strong>app/templates/hello_world_view.hbs</strong> - The new view template file</li>
+</ul>
+
+<p>Let's take a look at the new view class .coffee file:</p>
+<pre>class App.HelloWorldView extends Mozart.View
+  templateName: 'app/templates/hello_world_view'
+</pre>
+<p>The generator has converted our snake case 'hello_world' into a class name <em>HelloWorldView</em> with the default <em>App</em> namespace.<p>
+
+<p>The new view template .hbs file:</p>
+<pre>&lt;!-- Implement the Template HTML Here --&gt;
+</pre>
+
+<h3>Set up the route</h3>
+<p>To add a route to the view, you will need to modify the <strong>app/config/app.coffee</strong> file and add the route to the default layout:</p>
+<pre>App.Application.set 'layout', Mozart.Layout.create
+  rootElement: '#main'
+  states: [
+    <em>...other routes...</em>
+
+    Mozart.Route.create
+      viewClass: App.HelloWorldView
+      path: "/hello_world"
+      title: -&gt; "Hello World!"
+
+    <em>...other routes...</em>
+  ]
+</pre>
+
+<h3>Add some content</h3>
+<p>Modify the <strong>app/templates/hello_world_view.hbs</strong> file to add some content:</p>
+<pre>&lt;h1&gt;Hello World!&lt;h1&gt;</pre>
+
+<h3>Check the route</h3>
+<p>Make sure the development server is running using <strong>grunt run</strong>  (See the <a href='/getting_started'>Getting Started</a> guide for more info), and browse to your new view page at <a href="http://localhost:8080/hello_world">http://localhost:8080/hello_world</a></p>
+
+<h3>Celebrate!</h3>
+<p>If everything is working OK, you're well on your way to creating awesome applications with Mozart. Buy yourself a beer :)</p>
+<p>If something has gone wrong, check you have followed each step in the guide carefully.</p>

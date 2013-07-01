@@ -1,0 +1,30 @@
+<h1>Ajax</h1>
+
+<h3>Introduction</h3>
+
+<p>Ajax can be applied to a Mozart.Model to add RESTful AJAX functionality, to sync with a backend system.</p>
+
+<h3>Syntax</h3>
+<p><pre>App.Store = Mozart.Model.create
+  "name": "string"
+
+App.Store.ajax
+  url: <em>"/path/to/your/resource"</em>
+</pre></p>
+
+<p>The AJAX layer makes a number of assumptions on the flavour of REST you are using:</p>
+<ul class="list">
+	<li>The following conventions are used:<ul>
+			<li>GET url - returns a JSON array of all objects, including ids.</li>
+			<li>GET url/:id - returns a JSON object including id for that id.</li>
+			<li>PUT url/:id - expects a JSON object including id with all attributes.</li>
+			<li>POST url - expects a JSON object without an id and creates the object, returns a JSON object with an id.</li>
+			<li>DELETE /url/:id - deletes the object with the given id.</li>
+		</ul>
+	</li>
+	<li>Server IDs may be numeric or alphanumeric, and neeed be unique only within their own collection.</li>
+</ul>
+
+<h3>Examples</h3>
+
+Please see the specs for examples of use.

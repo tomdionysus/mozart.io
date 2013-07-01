@@ -1,0 +1,70 @@
+<h1>Understanding Binding</h1>
+<p>Data binding in Mozart shares many similarities with <a href="http://emberjs.com">ember.js</a>. Any <a href="/apidocs/mzt_object">MztObject</a> will support declarative binding.</p>
+<h2>Concepts</h2>
+<h3>Binding</h3>
+<p>A bound property on an object is simply one in which its value is observing - or being observed by - the value of another property on different object. That means that when one property changes, the other will copy its value, depending on the type of binding that exists between the two properties. A property in this state is said to be 'bound'.</p>
+
+<h3>Declarative Binding</h3>
+<p>Bindings in Mozart are declared on objects as properties with a specific name suffix, like so:</p>
+<pre>class App.MyObject extends Mozart.MztObject
+  theCount: 'one sparkly vampire! ha ha ha!'
+
+App.myObject = App.MyObject.create()
+
+class App.MySecondObject extends Mozart.MztObject
+  slaveObserve<strong>Binding</strong>: 'App.myObject.theCount'
+
+App.mySecondObject = App.MySecondObject.create()
+</pre>
+<p>This creates an <em>Observe Binding</em> between the <em>theCount</em> and <em>slave</em> properties of <em>App.myObject</em> and <em>App.mySecondObject</em> respectively. Any change (using <code>set</code>, see below) in the value of <em>theCount</em> on <em>App.myObject</em> will be copied to the property <em>slave</em> on <em>App.mySecondObject</em>:</p>
+<pre>console.log App.mySecondObject.slave
+</pre>
+<pre>&gt; one sparkly vampire! ha ha ha!</pre>
+<pre>App.myObject.set 'theCount', 'two sparkly vampires! ha ha ha!'
+console.log App.mySecondObject.slave
+</pre>
+<pre>&gt; two sparkly vampires! ha ha ha!</pre>
+
+<h3>Lookups</h3>
+<p>Sometimes, you need the value of a property on a path without needing the values to update automatically. <strong>Lookup</strong> properties provide this functionality, getting the value only once, at instatiation.</p>
+<pre>class App.MyObject extends Mozart.MztObject
+  dodgyFanFiction: 'Fifty Shades of Mozart'
+
+App.myObject = App.MyObject.create()
+
+class App.MySecondObject extends Mozart.MztObject
+  slave<strong>Lookup</strong>: 'App.myObject.dodgyFanFiction'
+
+App.mySecondObject = App.MySecondObject.create()
+
+console.log App.mySecondObject.slave
+</pre>
+<pre>&gt; Fifty Shades of Mozart</pre>
+
+<h3>Binding types</h3>
+<ul class="list">
+	<li><strong>Sync Binding</strong>
+	<p>A Sync binding is a two way binding created by defining a property with the name <em>name<strong>Binding</strong></em> on an MztObject. The value of the <em>name</em> property will follow the value of the bound property, and the bound property will follow the value of <em>name</em> property.</p>
+	<li><strong>Observe Binding</strong>
+	<p>An Observe binding is a one way binding created by defining a property with the name <em>name<strong>ObserveBinding</strong></em> on an MztObject. The value of the <em>name</em> property will follow the value of the bound property.</p>
+	<li><strong>Notify Binding</strong>
+	<p>A Notify binding is a one way binding created by defining a property with the name <em>name<strong>NotifyBinding</strong></em> on an MztObject. The bound property will follow the value of <em>name</em> property.</p>
+</ul>
+
+<h3>Using set()</h3>
+<p>In order for bindings to work properly, you must use the <code>set</code> method on MztObject to change a property's value:</p>
+<pre>App.myObject.set 'theCount', 'NO sparkly vampires! ha ha ha!'</pre>
+
+<h2>Using Binding with Views</h2>
+<p><a href='/apidocs/view'>Mozart.View</a> objects are, like nearly everything in Mozart, descended from MztObject, and support declarative binding in the same way. When instatiating a view in a handlebars template, you simply add the property with the correct suffix.</p>
+
+<h4>Code</h4>
+<pre>&#123;{view "App.TextControl" valueBinding="searchtext" placeholder="Type Here..."}&#123;
+&#123;{view "App.TextControl" valueObserveBinding="searchtext" placeholder="This will be overwritten..."}&#123;
+&#123;{view "App.TextControl" valueNotifyBinding="searchtext" placeholder="This will overwrite everyone else..."}&#123;</pre></code>
+
+<h4>Output</h4>
+{{view "App.TextControl" valueBinding="searchtext" placeholder="Type Here..."}}
+{{view "App.TextControl" valueObserveBinding="searchtext" placeholder="This will be overwritten..."}}
+{{view "App.TextControl" valueNotifyBinding="searchtext" placeholder="This will overwrite everyone else..."}}
+

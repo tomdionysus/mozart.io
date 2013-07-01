@@ -1,0 +1,85 @@
+<h1>Generators</h1>
+
+<p class="lead">Use the built in generators, to easily build out your Mozart application.</p>
+
+<h3 name="usage">Usage</h3>
+<p>
+	<code>grunt generate:<em>&lt;type&gt;:&lt;name&gt;[:&lt;path&gt;]</em></code>
+</p>
+<p>
+	Our grunt generator is a great way to quickly create new views, controllers, models and controls for your Mozart application. 
+</p>
+<p>
+	The following example creates a new type of <a href="/guides/creating_controls">Mozart control</a> called 'googlemap', a reusable control which you can use throughout your application.
+</p>
+<img src="/img/demo/generate_control.png" />
+
+<h3>Custom Path</h3>
+<p>
+	The optional parameter for <code>[:path]</code>, is bound to the root directory for the generation type (eg <code>/app/views</code>).  
+</p>
+<p>
+	Here is an example of creating a new view called <em>sitemap</em> in a "navigation" folder (<code>/app/views/navigation</code>)  
+</p>
+<img src="/img/demo/generate_by_path.png" />
+
+<h3>Creating a view</h3>
+<p>
+	<a href="/guides/understanding_views">Mozart views</a> can be namespaced, and are represented by a class (application logic) and a template (display logic).
+</p>
+<p>
+	<p><span class="span2">Command</span> <code>grunt generate:view:<em>&lt;name&gt;</em></code></p>
+	<p><span class="span2">Namespace</span> <code>App.<em>&lt;name&gt;</em>View</code></p>
+	<p><span class="span2">Class</span> <code>/app/views/<em>&lt;name&gt;</em>_view.coffee</code></p>
+	<p><span class="span2">Template</span> <code>/app/templates/<em>&lt;name&gt;</em>_view.hbs</code></p>
+</p>
+
+<h3>Creating a controller</h3>
+<p>
+	<a href="/guides/top_controller_pattern">Mozart controllers</a> usually exist as a singleton that stores the state of the application, and holds the application state management.
+</p>
+<p>
+	<p><span class="span2">Command</span> <code>grunt generate:controller:<em>&lt;name&gt;</em></code></p>
+	<p><span class="span2">Namespace</span> <code>App.<em>&lt;name&gt;</em>Controller</code></p>
+	<p><span class="span2">Class</span> <code>/app/controllers/<em>&lt;name&gt;</em>_controller.coffee</code></p>
+</p>
+<h3>Creating a model</h3>
+<p>
+	<a href="/guides/model_demo">Mozart models</a> are fully-relational models with built in indexing.
+</p>
+<p>
+	<p><span class="span2">Command</span> <code>grunt generate:model:<em>&lt;name&gt;</em></code></p>
+	<p><span class="span2">Namespace</span> <code>App.<em>&lt;name&gt;</em></code></p>
+	<p><span class="span2">Class</span> <code>/app/models/<em>&lt;name&gt;</em>.coffee</code></p>
+</p>
+
+<h3>Creating a control</h3>
+<p>
+	<a href="/guides/creating_controls">Mozart controls</a> are essentially reusable sub-views, anologous to the common "Widget" found in other frameworks.
+</p>
+<p>
+	<p><span class="span2">Command</span> <code>grunt generate:control:<em>&lt;name&gt;</em></code></p>
+	<p><span class="span2">Namespace</span> <code>App.<em>&lt;name&gt;</em>Controls</code></p>
+	<p><span class="span2">Class</span> <code>/app/models/<em>&lt;name&gt;</em>_control.coffee</code></p>
+	<p><span class="span2">Template</span> <code>/app/templates/controls/<em>&lt;name&gt;</em>_control.hbs</code></p>
+</p>
+
+<h3>Creating a new template for a view</h3>
+<p>
+	Useful if you want to generate another <a href="/guides/understanding_views">Mozart view</a> template (without an associated class)
+</p>
+<p>
+	<p><span class="span2">Command</span> <code>grunt generate:templates/view:<em>&lt;name&gt;</em></code></p>
+	<p><span class="span2">Namespace</span> <code>App.<em>&lt;name&gt;</em>View</code></p>
+	<p><span class="span2">Template</span> <code>/app/templates/<em>&lt;name&gt;</em>_view.hbs</code></p>
+</p>
+
+<h3>Creating a new template for a control</h3>
+<p>
+	Useful if you want to generate another <a href="/guides/creating_controls">Mozart control</a> template (without an associated class)
+</p>
+<p>
+	<p><span class="span2">Command</span> <code>grunt generate:templates/control:<em>&lt;name&gt;</em></code></p>
+	<p><span class="span2">Namespace</span> <code>App.<em>&lt;name&gt;</em>Control</code></p>
+	<p><span class="span2">Template</span> <code>/app/templates/controls/<em>&lt;name&gt;</em>_control.hbs</code></p>
+</p>

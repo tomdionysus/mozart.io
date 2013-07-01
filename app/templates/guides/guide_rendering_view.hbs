@@ -1,0 +1,27 @@
+<h1>Understanding Rendering</h1>
+<p>Rendering in a clientside framework can be a complex issue. In Mozart, the resposibility for rendering is divided between the <a href="/apidocs/layout">Mozart.Layout</a> class, Handlebars, and the <a href="/apidocs/view">Mozart.View</a> class.</p>
+
+<h3>Concepts</h3>
+<p>A core philosophy in Mozart is that nothing should be rerendered unless absolutely necessary - rendering the views is an expensive operation that should happen infrequently, UI changes should be done with direct element manipulation whenever possible. In addition, all rendering should be carried out off-DOM for performance, as DOM manipulation should be kept to an absolute minimum</p>
+
+<h3>The Render Cycle</h3>
+<p>Each <a href="/apidocs/view">Mozart.View</a> maintains <em>two</em> DOM elements during rendering: One that is its actual current element in the DOM, and an off-DOM <em>prepared</em> element that contains the content that is just about to be rendered. The render process in Mozart has four distinct phases:</p>
+<ul class="list">
+	<li><strong>Prepare</strong>
+		<p>Each view targeted for rendering prepares its content by creating an off-DOM element, and rendering its template to it. Because Mozart uses Handlebars helpers to instantiate views within views, this may result in the creation and queueing of more views. <code>beforeRender</code> is called on each view immediately before <code>prepareElement</code>. This phase is complete when all views, including views created as a result of rendering other views, are prepared.</p>
+	</li>
+	<li><strong>Replace</strong>
+		<p>At this stage, each view has both a current element in the DOM that represents its old content, and an unconnected, off-DOM element containing its new content. The next phase walks the tree of the prepared views, replacing each element that represents a view with the new prepared element of corresponding view. This 'links' the rendered templates together, producing a tree or set of trees of nested elements, representing the view structure. The end result of this is a (usually) much smaller number of views whose elements represent the roots of the render tree.</p>
+	</li>
+	<li><strong>Swap</strong>
+		<p>Starting with the deepest view in the tree and working up, each view swaps its prepared element with its actual element in its parent view. This happens recursively up to the root views, who swap their elements into the actual DOM. <code>afterRender</code> is called on each view after all views have been swapped, it is at this point that the <code>element</code> property of the view is guaranteed to contain the real DOM element representing the view.</p></p>
+	</li>
+	<li><strong>Release</strong>
+		<p>Finally, all views that have not been rendered are released. This includes children of views that have been rerendered, these were queued for release during the <em>Prepare</em> phase above.
+		</p>
+	</li>
+</ul>
+<p><strong>Note:</strong> DOM Binding and related concepts have been ommited from the above flow for clarity. For further information, please see <a href="/guides/understanding_binding">Understanding Binding</a></p>
+
+<h3>The viewRenderQueue</h3>
+<p>Views being rendered in Mozart are queued in a <a href="/apidocs/layout">Mozart.Layout</a>. It is the viewRenderQueue that specifies the views to be rendered in the process above. You can programatically render a view either by calling its <code>redraw()</code> method, or by passing it to the layout's <code>queueRenderView(view)</code> Method.</p>

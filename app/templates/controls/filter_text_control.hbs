@@ -1,0 +1,12 @@
+{{#if label}}
+  <label class="control-label" for="{{controlId}}">{{label}}</label>
+{{/if}}
+<div class="controls">
+  <div class="input-append">
+    <input id="{{controlId}}" type="text" placeholder="{{placeholder}}" class="{{controlClassNames}}"/>
+    <a class="btn tip" {{action "clearFilter"}} title="Clear Filter"><i class="icon-ban-circle"></i></a>
+  </div>
+  {{#if help}}
+    <span class="help-inline">{{help}}</span>
+  {{/if}}
+</div>

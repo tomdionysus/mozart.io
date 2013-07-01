@@ -1,0 +1,28 @@
+<h1>Bindings</h1>
+
+<h3>Introduction</h3>
+<p>Bindings are one of the most powerful features of Mozart and have wide ranging uses. Essentially, bindings allow you to 'bind' a property of one object to another, so that the properties stay in sync. Bindings come in three varieties:
+  <ul class="list">
+    <li>Sync Binding (Default) - A change on either property will change the other.</li>
+    <li>Notify Binding - A change on the this property only will change the other.</li>
+    <li>Observe Binding - A change on the other property only will change this property.</li>
+  </ul>
+Properties of views can be bound just like normal values. This allows a view to change its behaviour based on an external event, by having one of its internal properties bound to external data when it is called, and performing some action based on the internal property's change event.
+</p>
+
+<h3>Examples</h3>
+
+<h4>A SyncBound Control (2 Way Binding)</h4>
+{{view "App.TextControl" valueBinding="App.storeController.searchtext" placeholder="Type Here..."}}
+
+<h4>An ObserveBound Control (1 Way Binding, Observe Only)</h4>
+{{view "App.TextControl" valueObserveBinding="App.storeController.searchtext"}}
+
+<h4>An NotifyBound Control (1 Way Binding, Notify Only)</h4>
+{{view "App.TextControl" valueNotifyBinding="App.storeController.searchtext"}}
+
+<h4>Bound p tag</h4>
+<strong><em>{{bind "App.storeController.searchtext" tag="p"}}</em></strong>
+
+<h4>Bound Button with Action</h4>
+<button class="btn btn-primary" {{action "doButtonAlert"}}>Button Text:{{bind "App.storeController.searchtext"}}</button>
