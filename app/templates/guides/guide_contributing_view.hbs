@@ -1,0 +1,51 @@
+
+<h1>How to contribute to Mozart</h1>
+
+<p>There are a few different ways you can support the development of Mozart:</p>
+
+<ul>
+	<li><a href='http://github.com/bigcommerce/mozart/issues'>Reporting bugs</a></li>
+	<li>Submitting pull requests</li>
+	<li>Writing or translating documentation</li>
+	<li>Extending the framework with plugins</li>
+	<li>Writing blog posts, sharing your knowledge and useful tips</li>
+	<li>Helping others on <a href="http://stackoverflow.com/questions/tagged/mozart-mvc">Stack Overflow</a></li>
+	<li>Reviewing and commenting on pull requests for <a href="http://github.com/bigcommerce/mozart">mozart</a>, <a href="http://github.com/bigcommerce/mozart-empty">mozart-empty</a>, and <a href="http://github.com/bigcommerce/mozart.io">mozart.io</a></li>
+</ul>
+
+<p>Improvements to the Mozart codebase, the mozart-empty base project, and documentation at mozart.io are very welcome. If you have an idea to improve the framework, have found and fixed and issue, or wish to improve the documentation and guides, please complete the following steps:</p>
+
+<h2>General</h2>
+<ul>
+	<li><strong>Use a topic branch</strong> - a branch with a descriptive name helps us organise and co-ordinate improvements.</li>
+	<li><strong>Flatten your commits</strong> - and use a descriptive commit message.</li>
+	<li><strong>Target the <em>master</em> branch</strong> with your PR.</li>
+</ul>
+
+<h2>mozart (Framework)</h2>
+<ol>
+	<li><strong>Fork the mozart repository</strong> - <a href="http://github.com/bigcommerce/mozart">github.com/bigcommerce/mozart</a>:master is the development branch. Previous versions are managed by tags, e.g. '0.1.8'</li>
+	<li><strong>Write Jasmine specs</strong> - you can run the Mozart test suite from the command line with
+<pre>grunt test
+</pre>
+	Pull requests wih their own specs are strongly preferred. BDD is one of the core values of the mozart ecosystem, and providing specs for your contributions will greatly assist the quality of the codebase overall, as well as improve uptake and awareness of your ideas.
+	</li>
+	<li><strong>Ensure all previous specs are green.</strong></li>
+	<li><strong>Add a one line description</strong> to the Changelog in <em>README.md</em>.</li>
+	<li><strong>Write documentation</strong> as a pull request to <a href="http://github.com/bigcommerce/mozart.io">mozart.io</a>.</li>
+</ol>
+
+<h2>mozart-empty (Empty Mozart project)</h2>
+<ol>
+	<li><strong>Fork the mozart repository</strong> - <a href="http://github.com/bigcommerce/mozart-empty">github.com/bigcommerce/mozart</a>:master is the development branch.</li>
+	<li><strong>Add a one line description</strong> to the Changelog in <em>README.md</em>.</li>
+</ol>
+
+<h2>mozart.io (Documentation)</h2>
+<ol>
+	<li><strong>Fork the mozart.io repository</strong> - <a href="http://github.com/bigcommerce/mozart.io">github.com/bigcommerce/mozart.io</a>:master is the development branch.</li>
+	<li><strong>Check the site locally</strong> - you can run mozart.io locally using
+<pre>grunt run
+</pre>
+	</li>
+</ol> 
