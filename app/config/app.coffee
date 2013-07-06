@@ -111,6 +111,13 @@ App.Application.set 'layout', Mozart.Layout.create(
     Mozart.Route.create
       viewClass: App.MozartPageView
       viewOptions:
+        contentClass: App.GuidesView
+      path: "/guides"
+      title: "Guides"
+
+    Mozart.Route.create
+      viewClass: App.MozartPageView
+      viewOptions:
         contentClass: App.GuideCoreConceptsView
       path: "/guides/core_concepts"
       title: "Guide - Core Concepts"
@@ -170,6 +177,13 @@ App.Application.set 'layout', Mozart.Layout.create(
         contentClass: App.GuideTestingMozartApplicationsView
       title: "Guide - Testing Mozart Applications"
       path: "/guides/testing_mozart_applications"
+
+    Mozart.Route.create
+      viewClass: App.MozartPageView
+      viewOptions:
+        contentClass: App.GuideGettingHelpView
+      title: "Guide - Getting Help"
+      path: "/guides/getting_help"
 
     # API Documentation
 
