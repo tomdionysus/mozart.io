@@ -185,6 +185,13 @@ App.Application.set 'layout', Mozart.Layout.create(
       title: "Guide - Getting Help"
       path: "/guides/getting_help"
 
+    Mozart.Route.create
+      viewClass: App.MozartPageView
+      viewOptions:
+        contentClass: App.GuideContributingView
+      title: "Guide - Contributing to Mozart"
+      path: "/guides/contributing_to_mozart"
+
     # API Documentation
 
     Mozart.Route.create
