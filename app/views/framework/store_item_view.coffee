@@ -1,5 +1,5 @@
 class App.StoreItemView extends Mozart.BoundView
-  templateName: 'app/templates/store_item_view'
+  templateName: 'app/templates/framework/store_item_view'
   tag: 'li'
 
   displayStore: (el, data, event) ->

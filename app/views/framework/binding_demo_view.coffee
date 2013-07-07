@@ -1,5 +1,5 @@
 class App.BindingDemoView extends Mozart.View
-  templateName: 'app/templates/binding_demo_view'
+  templateName: 'app/templates/framework/binding_demo_view'
 
   init: ->
     super

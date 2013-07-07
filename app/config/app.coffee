@@ -21,42 +21,7 @@ App.Application.set 'layout', Mozart.Layout.create(
         contentClass: App.GettingStartedView
       path: "/getting_started"
       title: "Getting Started"
-
-    Mozart.Route.create
-      viewClass: App.MozartPageView
-      viewOptions:
-        contentClass: App.ViewDemoView
-      path: "/view_demo"
-      title: "Views"
-
-    Mozart.Route.create
-      viewClass: App.MozartPageView
-      viewOptions:
-        contentClass: App.BindingDemoView
-      path: "/binding_demo"
-      title: "Bindings"
-
-    Mozart.Route.create
-      viewClass: App.MozartPageView
-      viewOptions:
-        contentClass: App.ActionDemoView
-      path: "/action_demo"
-      title: "Actions"
-
-    Mozart.Route.create
-      viewClass: App.MozartPageView
-      viewOptions:
-        contentClass: App.CollectionsDemoView
-      path: "/collection_demo"
-      title: "Collections"
-
-    Mozart.Route.create
-      viewClass: App.MozartPageView
-      viewOptions:
-        contentClass: App.ModelDemoView
-      path: "/model_demo"
-      title: "Models"
-
+  
     Mozart.Route.create
       viewClass: App.MozartPageView
       viewOptions:
@@ -67,23 +32,76 @@ App.Application.set 'layout', Mozart.Layout.create(
     Mozart.Route.create
       viewClass: App.MozartPageView
       viewOptions:
+        contentClass: App.ChangelogView
+      path: "/changelog"
+      title: "Changelog"
+
+  # Framework
+
+    Mozart.Route.create
+      viewClass: App.MozartPageView
+      viewOptions:
+        contentClass: App.FrameworkDemosView
+      path: "/framework"
+      title: "Framework"
+
+    Mozart.Route.create
+      viewClass: App.MozartPageView
+      viewOptions:
+        contentClass: App.ViewDemoView
+      path: "/view_demo"
+      title: "Framework - Views"
+
+    Mozart.Route.create
+      viewClass: App.MozartPageView
+      viewOptions:
+        contentClass: App.BindingDemoView
+      path: "/binding_demo"
+      title: "Framework - Bindings"
+
+    Mozart.Route.create
+      viewClass: App.MozartPageView
+      viewOptions:
+        contentClass: App.ActionDemoView
+      path: "/action_demo"
+      title: "Framework - Actions"
+
+    Mozart.Route.create
+      viewClass: App.MozartPageView
+      viewOptions:
+        contentClass: App.CollectionsDemoView
+      path: "/collection_demo"
+      title: "Framework - Collections"
+
+    Mozart.Route.create
+      viewClass: App.MozartPageView
+      viewOptions:
+        contentClass: App.ModelDemoView
+      path: "/model_demo"
+      title: "Framework - Models"
+
+    Mozart.Route.create
+      viewClass: App.MozartPageView
+      viewOptions:
         contentClass: App.AjaxDemoView
       path: "/ajax_demo"
-      title: "Ajax"
+      title: "Framework - Ajax"
 
     Mozart.Route.create
       viewClass: App.MozartPageView
       viewOptions:
         contentClass: App.I18NView
       path: "/i18n"
-      title: "i18n"
+      title: "Framework - i18n"
 
     Mozart.Route.create
       viewClass: App.MozartPageView
       viewOptions:
         contentClass: App.DomSupportView
       path: "/dom_support_demo"
-      title: "DOM Support"
+      title: "Framework - DOM Support"
+
+    # Demos
 
     Mozart.Route.create
       viewClass: App.MozartPageView
@@ -98,13 +116,6 @@ App.Application.set 'layout', Mozart.Layout.create(
         contentClass: App.TetrisView
       path: "/tetris_demo"
       title: "Mozart Tetris"
-     
-    Mozart.Route.create
-      viewClass: App.MozartPageView
-      viewOptions:
-        contentClass: App.ChangelogView
-      path: "/changelog"
-      title: "Changelog"
 
     # Guides
 
