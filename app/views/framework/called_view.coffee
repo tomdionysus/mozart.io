@@ -1,5 +1,5 @@
 class App.CalledView extends Mozart.View
-  templateName: 'app/templates/called_view'
+  templateName: 'app/templates/framework/called_view'
   classHtml: "testclassxcss"
 
   init: ->

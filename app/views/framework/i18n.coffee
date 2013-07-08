@@ -1,5 +1,5 @@
 class App.I18NView extends Mozart.View
-  templateName: 'app/templates/i18n'
+  templateName: 'app/templates/framework/i18n'
 
   init: ->
     super

@@ -1,5 +1,5 @@
 class App.ViewDemoView extends Mozart.View
-  templateName: 'app/templates/view_demo_view'
+  templateName: 'app/templates/framework/view_demo_view'
   viewToDraw: App.CalledView
 
   afterRender: ->

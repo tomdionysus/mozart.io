@@ -22,7 +22,6 @@ class App.StoreController extends Mozart.Controller
     @set('editVisible', true)
 
   editStore: (el, data, event) =>
-    console.log("store", data.store)
     @set('currentStore',data.store)
     @set('editingStore',data.store.copyTo())
     @set('addSaveButtonText','Save')

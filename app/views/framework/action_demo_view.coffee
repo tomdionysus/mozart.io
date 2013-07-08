@@ -1,5 +1,5 @@
 class App.ActionDemoView extends Mozart.View
-  templateName: 'app/templates/action_demo_view'
+  templateName: 'app/templates/framework/action_demo_view'
 
   mouseovervisible: false
 
