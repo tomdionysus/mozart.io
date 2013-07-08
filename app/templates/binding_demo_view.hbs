@@ -13,16 +13,32 @@ Properties of views can be bound just like normal values. This allows a view to 
 <h3>Examples</h3>
 
 <h4>A SyncBound Control (2 Way Binding)</h4>
+<pre>
+&#123;&#123;view "App.TextControl" valueBinding="App.storeController.searchtext" placeholder="Type Here..."&#125;&#125;
+</pre>
+
 {{view "App.TextControl" valueBinding="App.storeController.searchtext" placeholder="Type Here..."}}
 
 <h4>An ObserveBound Control (1 Way Binding, Observe Only)</h4>
+<pre>
+&#123;&#123;view "App.TextControl" valueObserveBinding="App.storeController.searchtext"&#125;&#125;
+</pre>
 {{view "App.TextControl" valueObserveBinding="App.storeController.searchtext"}}
 
 <h4>An NotifyBound Control (1 Way Binding, Notify Only)</h4>
+<pre>
+&#123;&#123;view "App.TextControl" valueNotifyBinding="App.storeController.searchtext"&#125;&#125;
+</pre>
 {{view "App.TextControl" valueNotifyBinding="App.storeController.searchtext"}}
 
 <h4>Bound p tag</h4>
+<pre>
+&lt;strong&gt;&lt;em&gt;&#123;&#123;bind "App.storeController.searchtext" tag="p"&#125;&#125;&lt;/em&gt;&lt;/strong&gt;
+</pre>
 <strong><em>{{bind "App.storeController.searchtext" tag="p"}}</em></strong>
 
 <h4>Bound Button with Action</h4>
+<pre>
+&lt;button class="btn btn-primary" &#123;&#123;action "doButtonAlert"&#125;&#125;&gt;Button Text:&#123;&#123;bind "App.storeController.searchtext"&#125;&#125;&lt;/button&gt;
+</pre>
 <button class="btn btn-primary" {{action "doButtonAlert"}}>Button Text:{{bind "App.storeController.searchtext"}}</button>
