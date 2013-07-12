@@ -185,6 +185,13 @@ App.Application.set 'layout', Mozart.Layout.create(
     Mozart.Route.create
       viewClass: App.MozartPageView
       viewOptions:
+        contentClass: App.GuideUnderstandingRelationsView
+      title: "Guide - Understanding Relations"
+      path: "/guides/understanding_relations"
+
+    Mozart.Route.create
+      viewClass: App.MozartPageView
+      viewOptions:
         contentClass: App.GuideTestingMozartApplicationsView
       title: "Guide - Testing Mozart Applications"
       path: "/guides/testing_mozart_applications"

@@ -1,0 +1,65 @@
+<h1>Understanding Relations</h1>
+<p>Models in Mozart can be connected using relations which implement a basic set of associations between the objects, just like a relational database. Relations in Mozart are implemented using a set of relation classes, and there are essentially two types of relation:</p>
+<ul>
+	<li>Relations that define a single related model instance, e.g. <strong>hasOne</strong>, <strong>belongsTo</strong></li>
+	<li>Relations that define collections of related model instances, e.g. <strong>hasMany</strong>, <strong>hasManyPoly</strong>, <strong>hasManyThrough</strong>,  <strong>hasManyThroughPoly</strong></li> 
+</ul>
+<p>Internally, all relations are handled using foreign keys, or 'link' model instances. A foreign key holds the <code>id</code> value of the related instance (<strong>hasOne</strong>, <strong>belongsTo</strong>, <strong>hasMany</strong>, and <strong>hasManyPoly</strong>); link model instances hold two foreign keys, one for each side of the relationship (<strong>hasManyThrough</strong> and <strong>hasManyThroughPoly</strong>). Link models are real models and are specified like any other model class.</p>
+<p>Next, we'll look at an example that defines one of each type:</p>
+<p><em>app/models/todo_item_model.coffee</em></p>
+<pre>
+Todo.Item = Mozart.Model.create
+  modelName: 'TodoItem'
+
+Todo.Item.attributes
+  'title': 'string'
+  'completed': 'boolean'
+  'category_id': 'foreign_key'
+</pre>
+<p><em>app/models/todo_category_model.coffee</em></p>
+<pre>
+Todo.Category = Mozart.Model.create
+  modelName: 'TodoCategory'
+
+Todo.Category.attributes
+  'title': 'string'
+</pre>
+<p><em>app/models/z_relationships.coffee</em></p>
+<pre>
+Todo.Category.hasMany Todo.Item, 'items', 'category_id'
+Todo.Item.belongsTo Todo.Category, 'category', 'category_id'
+</pre>
+<p>These relationship definitions create a method on each instance of each of the models to represent the relationships, <strong>items()</strong> and <strong>category()</strong> respectively:</p>
+<pre>
+instance = Todo.Category.createFromValues({title:'Holiday'})
+
+items = instance.items()
+
+new_item = items.createFromValues({title:'Find Passport',completed:false})
+</pre>
+<p>The <strong>items()</strong> method above will return a <strong>Mozart.OneToManyCollection</strong> for the 'Holiday' Todo.Category instance. The relation class has methods to list, create and remove instances of the related model - in this case, <strong>createFromValues</strong> will create a new Todo.Item instance 'Find Passport', with its foreign key 'category_id' set to the category id. Following on:</p>
+<pre>
+category = new_item.category()
+
+console.log category.get('title')
+> Holiday
+</pre>
+<p>Here, the <strong>category()</strong> method will return the <strong>Todo.Category</strong> 'Holiday' instance.</p>
+
+<h2>Relation types and classes</h2>
+<p>Single model instance relations:</p>
+<ul>
+	<li><strong>hasOne</strong> - get/set the associated model instance, or <code>null</code>.</li>
+	<li><strong>belongsTo</strong> - get/set the associated model instance, or <code>null</code>.</li>
+	<li><strong>belongsToPoly</strong> - get/set the associated model instance, or <code>null</code>.</li>
+</ul>
+<p>Multiple model instance (associated collection) relations:</p>
+<ul>
+	<li><strong>hasMany</strong> - method returns a <strong>Mozart.OneToManyCollection</strong> object for the instance.</li>
+	<li><strong>hasManyThrough</strong> - method returns a <strong>Mozart.ManyToManyCollection</strong> object for the instance.</li>
+	<li><strong>hasManyPoly</strong> - method returns a <strong>Mozart.OneToManyPolyCollection</strong> object for the instance.</li>
+	<li><strong>hasManyThroughPoly</strong> - method returns a <strong>Mozart.ManyToManyPolyCollection</strong> object for the instance.</li>
+</ul>
+
+<p>The methods available on each of the collection classes are specified in the <a href='/apidocs/relation_classes'>API Docs</a>.</p>
+
