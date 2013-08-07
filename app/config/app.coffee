@@ -55,7 +55,7 @@ App.Application.set 'layout', Mozart.Layout.create(
     Mozart.Route.create
       viewClass: App.MozartPageView
       viewOptions:
-        contentClass: App.BindingDemoView
+        contentClass: App.subscribeingDemoView
       path: "/binding_demo"
       title: "Framework - Bindings"
 
@@ -349,7 +349,7 @@ App.Application.ready = ->
     ]
   )
 
-  App.Application.layout.bind 'noroute', (hash) ->
+  App.Application.layout.subscribe 'noroute', (hash) ->
     Mozart.log("Route #{hash} not recognised")
 
   App.Application.layout.bindRoot()

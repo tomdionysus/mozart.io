@@ -4,7 +4,7 @@ class App.TextControl extends Mozart.Control
 
   init: ->
     super
-    @bind 'change:value', @updateInputValue
+    @subscribe 'change:value', @updateInputValue
       
   afterRender: =>
     @element[0].type = @typeHtml if @typeHtml?

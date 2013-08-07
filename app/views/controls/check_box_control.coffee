@@ -4,8 +4,8 @@ class App.CheckboxControl extends Mozart.Control
   init: ->
     super
     @modelClass = Mozart.getPath(@model) if @model?
-    @unbind 'change:value', @updateValue
-    @bind 'change:value', @updateValue
+    @unsubscribe 'change:value', @updateValue
+    @subscribe 'change:value', @updateValue
 
   afterRender: =>
     @controlEl = $("##{@id}-cbx")

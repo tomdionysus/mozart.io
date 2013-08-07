@@ -16,11 +16,11 @@
   {{view "App.TextControl" valueBinding="App.storeController.editingStore.name" label="Store Name"}}
   {{view "App.TextControl" valueBinding="App.storeController.editingStore.country" label="Country"}}
   {{view "App.TextControl" valueBinding="App.storeController.editingStore.currency" label="Currency"}}
-  <button class="button button-primary" {{action "saveStore" target="App.storeController"}}>{{bind "App.storeController.addSaveButtonText"}}</button>
-  <button class="btn btn-secondary" {{action "cancelStore" target="App.storeController"}}>Cancel</button>
+  <button class="button button-primary" {{action "App.storeController.saveStore"}}>{{bind "App.storeController.addSaveButtonText"}}</button>
+  <button class="btn btn-secondary" {{action "App.storeController.cancelStore"}}>Cancel</button>
 {{/view}}
-<button class="btn btn-secondary" {{action "newStore" target="App.storeController"}}>New</button>
-<button class="btn btn-secondary" {{action "resetDemo" target="App.storeController"}}>Reset Example Collections</button>
+<button class="btn btn-secondary" {{action "App.storeController.newStore"}}>New</button>
+<button class="btn btn-secondary" {{action "App.storeController.resetDemo"}}>Reset Example Collections</button>
 
 <h4>Collection with inline template and generic class</h4>
 {{#collection collectionBinding="App.storeController.stores"}}
@@ -31,8 +31,8 @@
 <h4>Collection with item view class</h4>
 {{#collection "App.StoreItemView" collectionObserveBinding="App.storeController.stores"}}
   <button class="btn btn-secondary" {{action "displayStore" store=content}}>Info</button> 
-  <button class="btn btn-secondary" {{action "editStore" store=content target="App.storeController"}}>Edit</button> 
-  <button class="btn btn-secondary" {{action "removeStore" store=content target="App.storeController"}}>Delete</button>
+  <button class="btn btn-secondary" {{action "App.storeController.editStore" store=content}}>Edit</button> 
+  <button class="btn btn-secondary" {{action "App.storeController.removeStore" store=content}}>Delete</button>
   {{content.name}} - {{content.country}} - {{content.currency}} 
 {{/collection}}
 

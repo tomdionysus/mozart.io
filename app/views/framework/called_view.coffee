@@ -4,4 +4,4 @@ class App.CalledView extends Mozart.View
 
   init: ->
     super
-    @bind 'change:extraValue', @redraw
+    @subscribe 'change:extraValue', @redraw

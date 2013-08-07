@@ -58,7 +58,7 @@ class App.StoreController extends Mozart.Controller
       country: 'Germany'
       currency: 'EUR'
 
-    App.Store.trigger('change')
+    App.Store.publish('change')
 
   save: ->
     alert("Save on Controller")

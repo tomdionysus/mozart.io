@@ -3,8 +3,8 @@ class App.CollectionPageControl extends Mozart.Control
 
   init: ->
     super
-    @bind 'change:pageCurrent', @redraw
-    @bind 'change:pageTotal', @redraw
+    @subscribe 'change:pageCurrent', @redraw
+    @subscribe 'change:pageTotal', @redraw
 
   beforeRender: =>
     @pages = []

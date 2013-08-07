@@ -17,11 +17,11 @@ class App.TetrisBoardView extends Mozart.View
 
   init: =>
     super
-    App.Application.domManager.bind("keyDown", @overallKeyDown)
-    @bind 'change:boardHeight', @reset
-    @bind 'change:boardWidth', @reset
-    @bind 'change:blockHeight', @reset
-    @bind 'change:blockWidth', @reset
+    App.Application.domManager.subscribe("keyDown", @overallKeyDown)
+    @subscribe 'change:boardHeight', @reset
+    @subscribe 'change:boardWidth', @reset
+    @subscribe 'change:blockHeight', @reset
+    @subscribe 'change:blockWidth', @reset
 
     @logo = $("<div>").addClass('tetris-logo')
     logoy = (@boardHeight*@blockHeight/4) - 28

@@ -10,7 +10,7 @@ class App.PageSelectControl extends Mozart.Control
   afterRender: =>
     unless @collectionView?
       @collectionView = @targetObj.childView(@for)
-      @bindToCollection()
+      @subscribeToCollection()
 
     @selectEl = @element.find("##{@id}-select")
     @pageChanged()
@@ -26,11 +26,11 @@ class App.PageSelectControl extends Mozart.Control
     @collectionView.set('pageCurrent',@selectEl.val()-1)
 
   release: =>
-    @unbindFromCollection()
+    @unsubscribeFromCollection()
     super
 
-  bindToCollection: =>
-    @collectionView.bind('change:pageTotal', @pageTotalChanged)
+  subscribeToCollection: =>
+    @collectionView.subscribe('change:pageTotal', @pageTotalChanged)
 
-  unbindFromCollection: =>
-    @collectionView.unbind('change:pageTotal', @pageTotalChanged)
+  unsubscribeFromCollection: =>
+    @collectionView.unsubscribe('change:pageTotal', @pageTotalChanged)

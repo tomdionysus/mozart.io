@@ -1,11 +1,11 @@
 <h1>Actions</h1>
 
 <h3>Introduction</h3>
-<p>Actions are used to capture user DOM events within HTML elements. Actions can be added to any element, although the <strong>a</strong> and <strong>button</strong> tags would be common. The parameter is the method on the current view to call - although the optional <strong>target</strong> parameter allows action to call a method on another object.
+<p>Actions are used to capture user DOM events within HTML elements. Actions can be added to any element, although the <strong>a</strong> and <strong>button</strong> tags would be common. The parameter is the path to the method to call.
 </p>
 
 <h3>Syntax</h3>
-<pre>&#123;&#123;action "<em>MethodName</em>" [events="<em>eventone,eventtwo...</em>"] [target="<em>PathToTarget</em>"] [,<em>key=value...</em>]&#125;&#125;
+<pre>&#123;&#123;action "<em>Path.to.method</em>" [events="<em>eventone,eventtwo...</em>"] [,<em>key=value...</em>]&#125;&#125;
 </pre>
 
 <h3>Examples</h3>
@@ -27,9 +27,9 @@
 {{/view}}
 
 <h4>Button with action on Controller</h4>
-<pre>&lt;button class="btn btn-primary" &#123;{action "save" target="App.storeController"}&#125;&gt;Click Me&lt;/button&gt;
+<pre>&lt;button class="btn btn-primary" &#123;{action "App.storeController.save"}&#125;&gt;Click Me&lt;/button&gt;
 </pre></code>
-<button class="btn btn-primary" {{action "save" target="App.storeController"}}>Click Me</button>
+<button class="btn btn-primary" {{action "App.storeController.save"}}>Click Me</button>
 
 <h4>Button with action and parameters</h4>
 <pre>&lt;button class="btn btn-primary" &#123;{action "displayText" text="Action with Parameters"}&#125;&gt;Click Me&lt;/button&gt;

@@ -3,7 +3,7 @@ class App.TetrisBlockView extends Mozart.View
 
   init: ->
     super
-    @bind('change:blockIndex', @afterRender)
+    @subscribe('change:blockIndex', @afterRender)
 
   afterRender: =>
     @setColor(@blockIndex)

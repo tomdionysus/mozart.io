@@ -11,8 +11,8 @@ class App.SelectControl extends Mozart.Control
 
     @modelClass = Mozart.getPath(@model) if @model?
 
-    @bind 'change:value', @updateValue
-    @bind 'change:content', @redraw
+    @subscribe 'change:value', @updateValue
+    @subscribe 'change:content', @redraw
 
   afterRender: =>
     @controlEl = $("#"+@controlId)

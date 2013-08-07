@@ -12,8 +12,8 @@ class App.AddressController extends Mozart.Controller
     @set('cities',App.Cities)
     @resetDemo()
 
-    @bind('change:currentCountry', @checkCurrentCountry)
-    @bind('change:currentState', @checkCurrentState)
+    @subscribe('change:currentCountry', @checkCurrentCountry)
+    @subscribe('change:currentState', @checkCurrentState)
 
   checkCurrentCountry: =>
     @set('currentState',false) if @currentCountry == false
