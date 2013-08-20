@@ -55,7 +55,7 @@ App.Application.set 'layout', Mozart.Layout.create(
     Mozart.Route.create
       viewClass: App.MozartPageView
       viewOptions:
-        contentClass: App.subscribeingDemoView
+        contentClass: App.BindingDemoView
       path: "/binding_demo"
       title: "Framework - Bindings"
 
