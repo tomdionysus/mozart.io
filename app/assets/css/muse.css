@@ -1096,7 +1096,7 @@ input[type="submit"], button {
 /*  Base
 --------------------------------------------------------------*/
 body {
-  color: #777777;
+  color: #222;
   background: white; }
 
 /*  Text Selection
@@ -1142,10 +1142,10 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 .branding {
   margin-bottom: 48px;
-  background-color: #9d3a6c;
-  background: -webkit-radial-gradient(center, ellipse cover, #9a5451 0%, #9d3a6c 100%);
-  background: -moz-radial-gradient(center, ellipse cover, #9a5451 0%, #9d3a6c 100%);
-  background: -ms-radial-gradient(center, ellipse cover, #9a5451 0%, #9d3a6c 100%);
+  background-color: #222;
+  background: -webkit-radial-gradient(center, ellipse cover, #111 0%, #444 100%);
+  background: -moz-radial-gradient(center, ellipse cover, #111 0%, #444 100%);
+  background: -ms-radial-gradient(center, ellipse cover, #111 0%, #444 100%);
   border-radius: 0 0 500px 2000px/0 0 15px 20px; }
 
 /*  Logo
@@ -1255,7 +1255,7 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 5px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25); }
   .branding .nav .dropdown > li {
-    border-top: 1px solid #dddddd; }
+    border-top: 1px solid #ccc; }
     .branding .nav .dropdown > li:hover {
       background: #eee;
       -webkit-transition: all 0.4s ease;
