@@ -1,0 +1,58 @@
+<h1>Understanding Events</h1>
+
+<p>Mozart has a powerful built-in publish/subscribe event system. Events are implemented on <strong>MztObject</strong>, and as such are available in all components of the framework.</p>
+
+<h2>General</h2>
+<p>The event system in Mozart is a classic pub/sub system, where events on an object can be subscribed to - a callback is supplied that is executed when the event is published. Parameters can be passed to the callback by both the subscribe method and the publish method, and multiple subscribers can exist for one event.</p>
+
+<h2>MztObject methods for events</h2>
+<p><strong>MztObject</strong> has the following methods:</p>
+<ul>
+	<li><strong>subscribe(<em>eventName</em>, <em>callback</em> [,<em>data</em>])</strong> - subscribe to an event with the specific name, callback and optional data.</li>
+	<li><strong>subscribeOnce(<em>eventName</em>, <em>callback</em> [,<em>data</em>])</strong> - subscribe to an event with the specific name, callback and optional data, and unsubscribe from that event after the first time it is published.</li>
+	<li><strong>publish(<em>eventName</em>, [,<em>data</em>])</strong> - publish the specified event and call all subscriber callbacks, with optional data.</li>
+	<li><strong>unsubscribe([<em>eventName</em>] [, <em>callback</em>] [,<em>data</em>])</strong> - Unsubscribe from a specific event and callback, all subscriptions for a specific event, or all subscriptions on the object.</li>
+</ul>
+
+<p>The method signature for the callback is as follows:</p>
+<p><strong>callback(<em>sourceMztObject</em>, <em>publishedData</em>, <em>subscribeData</em>)</strong></p>
+<ul>
+	<li><strong><em>sourceMztObject</em></strong> - is the <strong>MztObject</strong> on which the event was published.</li>
+	<li><strong><em>publishedData</em></strong> - is the <em>data</em> parameter supplied to the <strong>publish()</strong> method</li>
+	<li><strong><em>subscribeData</em></strong> - is the <em>data</em> parameter supplied to the <strong>subscribe()</strong> method</li>
+</ul>
+
+<p>Events don't have to be declared before use. Publishing an event with no subscribers does not raise an error.</p>
+
+<h2>Example of use</h2>
+<p>In the example below, we create a Building, which is a MztObject, an Occupant class, and two occupants. Both occupants subscribe to their building's <em>fireAlarm</em> event. When this event is published, both Occupant's <em>leaveOnAlarm</em> methods are called.<p>
+<pre>
+bcoffice = Mozart.MztObject.create()
+
+class Occupant extends Mozart.MztObject
+  init: =>
+    @building.subscribe('fireAlarm', @leaveOnAlarm) if @parent?
+
+  leaveOnAlarm: =>
+    console.log("#{name} is leaving the building")
+
+tom = Occupant.create
+  name: 'Tom'
+  building: bcoffice
+chris = Occupant.create
+  name: 'Chris'
+  building: bcoffice
+
+bcoffice.publish('fireAlarm')
+> Tom is leaving the building
+> Chris is leaving the building
+</pre>
+
+<h2>Legacy aliases pre Version 0.1.9</h2>
+<p>Prior to version <strong>0.1.9</strong>, these methods were known by the names shown below. In 0.1.9, these methods are marked as deprecated. They will still work, but will log a warning about their pending removal. From <strong>0.2.0</strong> onwards, these aliases will be removed.</p>
+<ul>
+	<li>subscribe-  <strong>bind</strong></li>
+	<li>subscribeOnce - <strong>one</strong></li>
+	<li>publish - <strong>trigger</strong></li>
+	<li>unsubscribe - <strong>unbind</strong></li>
+</ul>
