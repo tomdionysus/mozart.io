@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>Mozart</title>
+  <link rel='stylesheet' href='../assets/codo.css' type='text/css'>
+  <script src='../assets/codo.js'></script>
+  <script src='../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../README.md.html' title='Mozart'>Mozart</a>
+    &raquo;
+    <a href='../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <span class='title'>View</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../file_list.html'>Files</a>
+      <a id='method_list_link' href='../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        View
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;mozart&#47;view.coffee</td>
+        </tr>
+        <tr>
+          <td>Inherits:</td>
+          <td>
+            <a href='../classes/MztObject.html'>MztObject</a>
+          </td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>View is both the default View class and the base class for all Views in Mozart.</p>
+</div>
+<div class='tags'>
+</div>
+      <h2>Direct Known Subclasses</h2>
+      <p class='children'>
+                <a href='../classes/Collection.html'>Collection</a>,
+                <a href='../classes/BoundView.html'>BoundView</a>,
+                <a href='../classes/Control.html'>Control</a>,
+                <a href='../classes/DynamicView.html'>DynamicView</a>,
+                <a href='../classes/I18nView.html'>I18nView</a>,
+        <a href='../classes/SwitchView.html'>SwitchView</a>
+      </p>
+      <h2>Constant Summary</h2>
+      <h3 class='inherited'>
+        Constants inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#NOTIFY-constant'>NOTIFY</a>,
+                <a href='../classes/MztObject.html#OBSERVE-constant'>OBSERVE</a>,
+        <a href='../classes/MztObject.html#SYNC-constant'>SYNC</a>
+      </p>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#init-instance'>
+        - (void) <strong>init</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Initialise the View
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#prepareElement-instance'>
+        - (void) <strong>prepareElement</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Prepare the newElement by creating it
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#reassignElements-instance'>
+        - (void) <strong>reassignElements</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Reassign all child view elements, and find this view&#39;s element in its parent&#39;s newElement if it isn&#39;t a root view.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#findElementInPreparedContent-instance'>
+        - (void) <strong>findElementInPreparedContent</strong>(id)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Find the element with the specified id in the prepared content (newElement)
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#replaceElement-instance'>
+        - (void) <strong>replaceElement</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Call replaceElement on all child views and replace the current element in this view&#39;s parent with the prepared content (newElement) if this view is not a root view.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#beforeRender-instance'>
+        - (void) <strong>beforeRender</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Called before rendering, beforeRender should be overridden with a function containing any code required to run just before the view is rendered, if required.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#afterRender-instance'>
+        - (void) <strong>afterRender</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Called by postRender, afterRender should be overridden with a function containing any code required to run after the view is rendered, if required.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#postRender-instance'>
+        - (void) <strong>postRender</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      postRender is called by the layout after ALL views have been rendered.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#redraw-instance'>
+        - (void) <strong>redraw</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Redraw the current view by queueing it for rendering with the layout.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#addView-instance'>
+        - (void) <strong>addView</strong>(view)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Add an existing view to this view as a child.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#childView-instance'>
+        - (Mozart.View) <strong>childView</strong>(name)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Return a named child view given its name
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#namedChildViewExists-instance'>
+        - (boolean) <strong>namedChildViewExists</strong>(name)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Find if a named child view exists
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#releaseChildren-instance'>
+        - (void) <strong>releaseChildren</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Release all child views of this view by queueing them for removal with the layout.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#removeView-instance'>
+        - (void) <strong>removeView</strong>(view)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Remove a specified view from this view&#39;s children.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#hasAncestor-instance'>
+        - (boolean) <strong>hasAncestor</strong>(view)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Find if this view has the specified view as an ancestor.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#release-instance'>
+        - (void) <strong>release</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Release this view: remove all DOM bindings, remove it from its parent&#39;s children (if this view is not a layout level view), release all its children, remove its element from the DOM if this view is currently rendered, and calling releaseView on its layout.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#createElement-instance'>
+        - (DOMElement) <strong>createElement</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Create a DOM element for this view off-DOM with the current state of the display, id, tag and the set of *Html attributes, and return that element.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#getHtmlAttrsMap-instance'>
+        - (object) <strong>getHtmlAttrsMap</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Get all *Html attributes as a map.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#copyHtmlAttrsToElement-instance'>
+        - (jQueryElement) <strong>copyHtmlAttrsToElement</strong>(element)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Copy all *Html attributes and values to the specified element.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#registerDomBind-instance'>
+        - (void) <strong>registerDomBind</strong>(bindId, target)
+      </a>
+    </span>
+    <span class='desc'>
+      Register a DOM binding with the specified id and target (path)
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#createDomBinds-instance'>
+        - (void) <strong>createDomBinds</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Create all registered DOM bindings for this view by subscribing to changes on each path and setting the element text to the current value of the bound property.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#onDomBindChange-instance'>
+        - (void) <strong>onDomBindChange</strong>(triggerdata, binding)
+      </a>
+    </span>
+    <span class='desc'>
+      Called when the change event of a bound property is published, set the element text to the current value of the bound property.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#removeDomBinds-instance'>
+        - (void) <strong>removeDomBinds</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Remove all DOM bindings by unsubscribing from changes on each path
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#createAutoActions-instance'>
+        - (void) <strong>createAutoActions</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Create automatic actions by parsing all *Action attributes.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#createHtmlAttrBindings-instance'>
+        - (void) <strong>createHtmlAttrBindings</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Create HTML attribute bindings by subscribing to changes on each *Html property of this view instance with a callback to set the associated attribute on this view&#39;s element.
+    </span>
+  </li>
+</ul>
+      <h2>
+        <small>Inherited Method Summary</small>
+      </h2>
+      <h3 class='inherited'>
+        Methods inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#include-class'>.include</a>,
+                <a href='../classes/MztObject.html#extend-class'>.extend</a>,
+                <a href='../classes/MztObject.html#create-class'>.create</a>,
+                <a href='../classes/MztObject.html#constructor-instance'>#constructor</a>,
+                <a href='../classes/MztObject.html#toString-instance'>#toString</a>,
+                <a href='../classes/MztObject.html#get-instance'>#get</a>,
+                <a href='../classes/MztObject.html#set-instance'>#set</a>,
+                <a href='../classes/MztObject.html#subscribe-instance'>#subscribe</a>,
+                <a href='../classes/MztObject.html#subscribeOnce-instance'>#subscribeOnce</a>,
+                <a href='../classes/MztObject.html#publish-instance'>#publish</a>,
+                <a href='../classes/MztObject.html#unsubscribe-instance'>#unsubscribe</a>,
+        <a href='../classes/MztObject.html#release-instance'>#release</a>
+      </p>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='init-instance'>
+      - (void) <strong>init</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Initialise the View</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='prepareElement-instance'>
+      - (void) <strong>prepareElement</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Prepare the newElement by creating it</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='reassignElements-instance'>
+      - (void) <strong>reassignElements</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Reassign all child view elements, and find this view&#39;s element in its parent&#39;s newElement
+if it isn&#39;t a root view.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='findElementInPreparedContent-instance'>
+      - (void) <strong>findElementInPreparedContent</strong>(id)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Find the element with the specified id in the prepared content (newElement)</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='replaceElement-instance'>
+      - (void) <strong>replaceElement</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Call replaceElement on all child views and replace the current element in this view&#39;s
+parent with the prepared content (newElement) if this view is not a root view.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='beforeRender-instance'>
+      - (void) <strong>beforeRender</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Called before rendering, beforeRender should be overridden with a function containing
+any code required to run just before the view is rendered, if required.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='afterRender-instance'>
+      - (void) <strong>afterRender</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Called by postRender, afterRender should be overridden with a function containing
+any code required to run after the view is rendered, if required.
+afterRender is called after all views in the current render queue, including this 
+view&#39;s children, have been rendered</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='postRender-instance'>
+      - (void) <strong>postRender</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>postRender is called by the layout after ALL views have been rendered.</p><p>Do not override postRender. Override afterRender in your View class to run view code
+after rendering.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='redraw-instance'>
+      - (void) <strong>redraw</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Redraw the current view by queueing it for rendering with the layout.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='addView-instance'>
+      - (void) <strong>addView</strong>(view)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Add an existing view to this view as a child.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>view</span>
+      <span class='type'>
+        (<tt>Mozart.View</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The view to add as a child</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='childView-instance'>
+      - (Mozart.View) <strong>childView</strong>(name)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Return a named child view given its name</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>name</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The name of the named child view</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Mozart.View</tt>)
+      &mdash;
+      <span class='desc'>The view with the specified name, or NULL if not found.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='namedChildViewExists-instance'>
+      - (boolean) <strong>namedChildViewExists</strong>(name)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Find if a named child view exists</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>name</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The name of the child view</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>boolean</tt>)
+      &mdash;
+      <span class='desc'>Return true if this view has a child view with the supplied name</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='releaseChildren-instance'>
+      - (void) <strong>releaseChildren</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Release all child views of this view by queueing them for removal with the layout.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='removeView-instance'>
+      - (void) <strong>removeView</strong>(view)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Remove a specified view from this view&#39;s children.
+This does not release the child view.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>view</span>
+      <span class='type'>
+        (<tt>Mozart.View</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The view to remove from this view&#39;s children.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='hasAncestor-instance'>
+      - (boolean) <strong>hasAncestor</strong>(view)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Find if this view has the specified view as an ancestor. This will search all
+views up to the containing layout.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>view</span>
+      <span class='type'>
+        (<tt>Mozart.View</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The ancestor view to check for</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>boolean</tt>)
+      &mdash;
+      <span class='desc'>Return true if this view has the specified ancestor. </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='release-instance'>
+      - (void) <strong>release</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Release this view: remove all DOM bindings, remove it from its parent&#39;s
+children (if this view is not a layout level view), release all its children, remove 
+its element from the DOM if this view is currently rendered, and calling releaseView 
+on its layout.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='createElement-instance'>
+      - (DOMElement) <strong>createElement</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Create a DOM element for this view off-DOM with the current state of
+the display, id, tag and the set of *Html attributes, and return that
+element.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>DOMElement</tt>)
+      &mdash;
+      <span class='desc'>The new element</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='getHtmlAttrsMap-instance'>
+      - (object) <strong>getHtmlAttrsMap</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Get all *Html attributes as a map. This will return an object with the attribute
+names, stripped of the HTML suffix, and their values.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>object</tt>)
+      &mdash;
+      <span class='desc'>A map of attribute names and values.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='copyHtmlAttrsToElement-instance'>
+      - (jQueryElement) <strong>copyHtmlAttrsToElement</strong>(element)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Copy all *Html attributes and values to the specified element.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>element</span>
+      <span class='type'>
+        (<tt>jQueryElement</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The element to set attributes on</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>jQueryElement</tt>)
+      &mdash;
+      <span class='desc'>The specified element</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='registerDomBind-instance'>
+      - (void) <strong>registerDomBind</strong>(bindId, target)
+    </p>
+    <div class='docstring'>
+  <p>Register a DOM binding with the specified id and target (path)</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>bindId</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The id of the binding</span>
+    </li>
+    <li>
+      <span class='name'>target</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The application path to bind to</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='createDomBinds-instance'>
+      - (void) <strong>createDomBinds</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Create all registered DOM bindings for this view by subscribing to changes on each path
+and setting the element text to the current value of the bound property.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='onDomBindChange-instance'>
+      - (void) <strong>onDomBindChange</strong>(triggerdata, binding)
+    </p>
+    <div class='docstring'>
+  <p>Called when the change event of a bound property is published, set the element text to 
+the current value of the bound property.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>triggerdata</span>
+      <span class='type'>
+        (<tt>void</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The data from the publish call, unused by this function</span>
+    </li>
+    <li>
+      <span class='name'>binding</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The binding as registered</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='removeDomBinds-instance'>
+      - (void) <strong>removeDomBinds</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Remove all DOM bindings by unsubscribing from changes on each path</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='createAutoActions-instance'>
+      - (void) <strong>createAutoActions</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Create automatic actions by parsing all *Action attributes.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='createHtmlAttrBindings-instance'>
+      - (void) <strong>createHtmlAttrBindings</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Create HTML attribute bindings by subscribing to changes on each *Html property of
+this view instance with a callback to set the associated attribute on this view&#39;s
+element.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Fri Sep 20 2013 15:30:14 GMT+1000 (EST)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.9.0
+  (Node.js v0.10.0).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

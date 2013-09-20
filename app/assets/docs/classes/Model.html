@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>Mozart</title>
+  <link rel='stylesheet' href='../assets/codo.css' type='text/css'>
+  <script src='../assets/codo.js'></script>
+  <script src='../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../README.md.html' title='Mozart'>Mozart</a>
+    &raquo;
+    <a href='../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <span class='title'>Model</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../file_list.html'>Files</a>
+      <a id='method_list_link' href='../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        Model
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;mozart&#47;model.coffee</td>
+        </tr>
+        <tr>
+          <td>Inherits:</td>
+          <td>
+            <a href='../classes/MztObject.html'>MztObject</a>
+          </td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>Model is the Mozart class that represents a data model and its store.
+Models in Mozart are instances of Mozart.Model, not descendants, and records
+in that datamodel are instances of Mozart.Instance, not the Mozart.Model they relate to.</p><p>Mozart Models and relations are conceptually similar to actual database tables, in that
+The Model is the table, Instances are rows, and all relations are handled by foreign key
+attributes and their values.</p><p>For more information, see <a href="http://www.mozart.io/model_demo">http://www.mozart.io/model_demo</a></p>
+</div>
+<div class='tags'>
+</div>
+      <h2>Constant Summary</h2>
+      <h3 class='inherited'>
+        Constants inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#NOTIFY-constant'>NOTIFY</a>,
+                <a href='../classes/MztObject.html#OBSERVE-constant'>OBSERVE</a>,
+        <a href='../classes/MztObject.html#SYNC-constant'>SYNC</a>
+      </p>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#toString-instance'>
+        - (void) <strong>toString</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#init-instance'>
+        - (void) <strong>init</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Initialise the Model, checking modelName and setting up the instanceClass.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#reset-instance'>
+        - (void) <strong>reset</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Reset the model by releasing all instances and clearing all indexes.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#attributes-instance'>
+        - (void) <strong>attributes</strong>(attrs)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Add attributes to the Model
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#hasAttribute-instance'>
+        - (boolean) <strong>hasAttribute</strong>(attrName)
+      </a>
+    </span>
+    <span class='desc'>
+      Find if the model has the specified attribute or foreign key
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#hasRelation-instance'>
+        - (boolean) <strong>hasRelation</strong>(relationName)
+      </a>
+    </span>
+    <span class='desc'>
+      Find if the model has the specified relation
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#foreignKeys-instance'>
+        - (void) <strong>foreignKeys</strong>(foreignKeys)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Add foreign keys to the Model, indexing them if DataIndexForeignKeys is true
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#polyForeignKeys-instance'>
+        - (void) <strong>polyForeignKeys</strong>(foreignKeys)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Add polymorphic foreign keys to the Model, indexing them if DataIndexForeignKeys is true
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#belongsTo-instance'>
+        - (void) <strong>belongsTo</strong>(model, attribute, fkname)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      belongsTo - General use belongsTo relation.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#hasOne-instance'>
+        - (void) <strong>hasOne</strong>(model, attribute, fkname)
+      </a>
+    </span>
+    <span class='desc'>
+      hasOne - General use hasOne relation.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#belongsToPoly-instance'>
+        - (void) <strong>belongsToPoly</strong>(models, attribute, fkname, fktypename)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      belongsToPoly - Polymorphic belongsTo.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#hasMany-instance'>
+        - (void) <strong>hasMany</strong>(model, attribute, fkname)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      hasMany - A general use hasMany relation where the foreign key exists on the other model and points to this the declaring model - hasMany is the opposite side of a belongsTo relation If attribute or fkname are not supplied, the relation will be the snake case of the other model modelName and the foreign key will be this model&#39;s snake case modelName suffixed with _id
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#hasManyPoly-instance'>
+        - (void) <strong>hasManyPoly</strong>(model, attribute, thatFkAttr, thatTypeAttr)
+      </a>
+    </span>
+    <span class='desc'>
+      hasManyPoly - A polymorphic hasMany relation where the foreign key and type exist on the other model and points to this the declaring model when the type field is this model name.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#hasManyThrough-instance'>
+        - (void) <strong>hasManyThrough</strong>(model, attribute, linkModel, thisFkAttr, thatFkAttr)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      hasManyThrough is a general use many to many relation using a linktable where the foreign keys on both sides exist on an intermediate link model.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#hasManyThroughPoly-instance'>
+        - (void) <strong>hasManyThroughPoly</strong>(model, attribute, linkModel, thisFkAttr, thatFkAttr, thatTypeAttr)
+      </a>
+    </span>
+    <span class='desc'>
+      hasManyThroughPoly is a polymorphic many-to-many relation where both foreign keys and the type exist on a linkmodel.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#hasManyThroughPolyReverse-instance'>
+        - (void) <strong>hasManyThroughPolyReverse</strong>(model, attribute, linkModel, thisFkAttr, thatFkAttr, thatTypeAttr)
+      </a>
+    </span>
+    <span class='desc'>
+      hasManyThroughPolyReverse is a polymorphic many-to-many relation where both foreign keys and the type exist on a linkmodel.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#all-instance'>
+        - (array) <strong>all</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Get all Instances in the Model as an array
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#allAsMap-instance'>
+        - (object) <strong>allAsMap</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Get all Instances in the Model as a map of id =&gt; Instance
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#count-instance'>
+        - (integer) <strong>count</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Get the total count of Instances in the Model datastore.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#findById-instance'>
+        - (Mozart.Instance) <strong>findById</strong>(id)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Get the Instance with the specified id
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#findAll-instance'>
+        - (void) <strong>findAll</strong>(ids)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#select-instance'>
+        - (array) <strong>select</strong>(callback)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Get an array of Instances, one for each Instance in a query defined by the supplied callback.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#selectIds-instance'>
+        - (array) <strong>selectIds</strong>(callback)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      selectIds() returns an array of record ids, one for each record in a query defined by the supplied callback.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#selectAsMap-instance'>
+        - (object) <strong>selectAsMap</strong>(callback)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      selectAsMap is the same as selectIds() except it returns an object instead of an array, with the id as the key and the record as the value
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#findByAttribute-instance'>
+        - (array) <strong>findByAttribute</strong>(attribute, value)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Get all instances where attribute is equal to a value as an array, using indexes if available
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#findByAttributes-instance'>
+        - (array) <strong>findByAttributes</strong>(query)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Get all instances where a set of attributes are equal to a set of values as an array, using indexes if available
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#exists-instance'>
+        - (boolean) <strong>exists</strong>(id)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Find if an Instance with the specified id exists
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#initInstance-instance'>
+        - (Mozart.Instance) <strong>initInstance</strong>(data)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Instantiate but do not save an Instance of this model with the supplied attributes and values.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#createFromValues-instance'>
+        - (Mozart.Instance) <strong>createFromValues</strong>(values)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Create and save an Instance of this model with the supplied attributes and values.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#loadInstance-instance'>
+        - (void) <strong>loadInstance</strong>(instance, options = {})
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Load the supplied instance from an external datastore (ajax, localstorage) by publishing a load event on this model, which external datastores subscribe to when registered.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#createInstance-instance'>
+        - (Mozart.Instance) <strong>createInstance</strong>(instance, options = {})
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Create an existing instance by adding it to the model data store and indexing it, and saving it to an external datastore if configured by publishing a create event on this model, which external datastores subscribe to when registered.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#updateInstance-instance'>
+        - (void) <strong>updateInstance</strong>(instance, options = {})
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Update an existing instance by publishing an update event on this model, which external datastores subscribe to when registered.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#destroyInstance-instance'>
+        - (void) <strong>destroyInstance</strong>(instance, options = {})
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Destroy an existing instance by publishing an destroy event on this model, which external datastores subscribe to when registered.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#toSnakeCase-instance'>
+        - (string) <strong>toSnakeCase</strong>(name)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      toSnakeCase translates CapsCase or camelCase to snake_case Example: toSnakeCase(&#39;People&#39;) = &#39;people&#39; toSnakeCase(&#39;PeopleTags&#39;) = &#39;people_tags&#39; toSnakeCase(&#39;methodName &#39;) = &#39;method_name&#39;
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#index-instance'>
+        - (void) <strong>index</strong>(attrName, type = 'map', options)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Create an index on the specified attribute of the specified type and options.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#hasIndex-instance'>
+        - (boolean) <strong>hasIndex</strong>(attrName)
+      </a>
+    </span>
+    <span class='desc'>
+      Find if the Model has an index on the specified attribute
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#getIndexFor-instance'>
+        - (object) <strong>getIndexFor</strong>(attrName, value)
+      </a>
+    </span>
+    <span class='desc'>
+      Get the index id map for the specified attribute and value.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#updateIndex-instance'>
+        - (void) <strong>updateIndex</strong>(attrName, record, oldValue, newValue)
+      </a>
+    </span>
+    <span class='desc'>
+      Update an index with a given attribute name when an Instance has changed.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#addToIndexes-instance'>
+        - (void) <strong>addToIndexes</strong>(record)
+      </a>
+    </span>
+    <span class='desc'>
+      Add a specified Instance to all defined indexes
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#removeFromIndexes-instance'>
+        - (void) <strong>removeFromIndexes</strong>(record)
+      </a>
+    </span>
+    <span class='desc'>
+      Remove a specified Instance from all defined indexes
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#rebuildIndex-instance'>
+        - (void) <strong>rebuildIndex</strong>(attrName)
+      </a>
+    </span>
+    <span class='desc'>
+      Rebuild an index with a given attribute name
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#dropIndex-instance'>
+        - (void) <strong>dropIndex</strong>(attrName)
+      </a>
+    </span>
+    <span class='desc'>
+      Drop an index with a given attribute name
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#rebuildAllIndexes-instance'>
+        - (void) <strong>rebuildAllIndexes</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Rebuild all defined indexes
+    </span>
+  </li>
+</ul>
+      <h2>
+        <small>Inherited Method Summary</small>
+      </h2>
+      <h3 class='inherited'>
+        Methods inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#include-class'>.include</a>,
+                <a href='../classes/MztObject.html#extend-class'>.extend</a>,
+                <a href='../classes/MztObject.html#create-class'>.create</a>,
+                <a href='../classes/MztObject.html#constructor-instance'>#constructor</a>,
+                <a href='../classes/MztObject.html#toString-instance'>#toString</a>,
+                <a href='../classes/MztObject.html#get-instance'>#get</a>,
+                <a href='../classes/MztObject.html#set-instance'>#set</a>,
+                <a href='../classes/MztObject.html#subscribe-instance'>#subscribe</a>,
+                <a href='../classes/MztObject.html#subscribeOnce-instance'>#subscribeOnce</a>,
+                <a href='../classes/MztObject.html#publish-instance'>#publish</a>,
+                <a href='../classes/MztObject.html#unsubscribe-instance'>#unsubscribe</a>,
+        <a href='../classes/MztObject.html#release-instance'>#release</a>
+      </p>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='toString-instance'>
+      - (void) <strong>toString</strong>()
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='init-instance'>
+      - (void) <strong>init</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Initialise the Model, checking modelName and setting up the instanceClass.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='reset-instance'>
+      - (void) <strong>reset</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Reset the model by releasing all instances and clearing all indexes.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='attributes-instance'>
+      - (void) <strong>attributes</strong>(attrs)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Add attributes to the Model</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>attrs</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>A map of attribute names to types </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='hasAttribute-instance'>
+      - (boolean) <strong>hasAttribute</strong>(attrName)
+    </p>
+    <div class='docstring'>
+  <p>Find if the model has the specified attribute or foreign key</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>attrName</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The name of the attribute to check for</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>boolean</tt>)
+      &mdash;
+      <span class='desc'>Return true if the attribute exists.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='hasRelation-instance'>
+      - (boolean) <strong>hasRelation</strong>(relationName)
+    </p>
+    <div class='docstring'>
+  <p>Find if the model has the specified relation</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>relationName</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The name of the relation to check for</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>boolean</tt>)
+      &mdash;
+      <span class='desc'>Return true if the relation exists.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='foreignKeys-instance'>
+      - (void) <strong>foreignKeys</strong>(foreignKeys)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Add foreign keys to the Model, indexing them if DataIndexForeignKeys is true</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>foreignKeys</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>A map of foreign keys names to models</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='polyForeignKeys-instance'>
+      - (void) <strong>polyForeignKeys</strong>(foreignKeys)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Add polymorphic foreign keys to the Model, indexing them if DataIndexForeignKeys 
+is true</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>foreignKeys</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>A map of foreign keys names to models</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='belongsTo-instance'>
+      - (void) <strong>belongsTo</strong>(model, attribute, fkname)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>belongsTo - General use belongsTo relation. The foreign key exists on 
+this, the declaring model and points to the other model.
+Note: belongsTo is the opposite side of a hasOne or a hasMany relation
+If attribute or fkname are not supplied, the relation will be the snake case
+of the other model modelName and the foreign key will be this model&#39;s snake case name 
+suffixed with _id.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>model</span>
+      <span class='type'>
+        (<tt><a href='../classes/Model.html'>Model</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The other model</span>
+    </li>
+    <li>
+      <span class='name'>attribute</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The relation name - the method on each instance to get the relation object</span>
+    </li>
+    <li>
+      <span class='name'>fkname</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key attribute name</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='hasOne-instance'>
+      - (void) <strong>hasOne</strong>(model, attribute, fkname)
+    </p>
+    <div class='docstring'>
+  <p>hasOne - General use hasOne relation. The foreign key exists on the supplied
+model and points to this the declaring model. Only a single record in the other
+model is allow to point each record in this model
+- hasOne is an opposite side of a belongsTo relation
+If attribute or fkname are not supplied, the relation will be the snake case
+of the other model modelName and the foreign key will be this model&#39;s snake case modelName 
+suffixed with _id.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>model</span>
+      <span class='type'>
+        (<tt><a href='../classes/Model.html'>Model</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The other model</span>
+    </li>
+    <li>
+      <span class='name'>attribute</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The relation name - the method on each instance to get the relation object</span>
+    </li>
+    <li>
+      <span class='name'>fkname</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key attribute name on the other model</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='belongsToPoly-instance'>
+      - (void) <strong>belongsToPoly</strong>(models, attribute, fkname, fktypename)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>belongsToPoly - Polymorphic belongsTo. The foreign key and type exist on
+this the declaring model and point to the other model when the
+type field contains this model name.
+- belongsToPoly is the opposite side of a hasManyPoly relation.
+If attribute, fkname or fktypename are not supplied, the relation will be the snake 
+case of the other model modelName and the foreign key and type will be that suffixed 
+with _id and _type</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>model</span>
+      <span class='type'>
+        (<tt><a href='../classes/Model.html'>Model</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The other model</span>
+    </li>
+    <li>
+      <span class='name'>attribute</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The relation name - the method on each instance to get the relation object</span>
+    </li>
+    <li>
+      <span class='name'>fkname</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key attribute name on this model</span>
+    </li>
+    <li>
+      <span class='name'>fktypename</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key type attribute name on this model</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='hasMany-instance'>
+      - (void) <strong>hasMany</strong>(model, attribute, fkname)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>hasMany - A general use hasMany relation where the foreign key
+exists on the other model and points to this the declaring model
+- hasMany is the opposite side of a belongsTo relation
+If attribute or fkname are not supplied, the relation will be the snake 
+case of the other model modelName and the foreign key will be this model&#39;s snake case 
+modelName suffixed with _id </p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>model</span>
+      <span class='type'>
+        (<tt><a href='../classes/Model.html'>Model</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The other model</span>
+    </li>
+    <li>
+      <span class='name'>attribute</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The relation name - the method on each instance to get the relation object</span>
+    </li>
+    <li>
+      <span class='name'>fkname</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key attribute name on the other model</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='hasManyPoly-instance'>
+      - (void) <strong>hasManyPoly</strong>(model, attribute, thatFkAttr, thatTypeAttr)
+    </p>
+    <div class='docstring'>
+  <p>hasManyPoly - A polymorphic hasMany relation where the foreign key and type
+exist on the other model and points to this the declaring model when 
+the type field is this model name.
+- hasManyPoly is the opposite side of a belongsToPoly relation 
+If attribute, thatFkAttr or thatTypeAttr are not supplied, the relation will be the 
+snake  case of the other model modelName and the foreign key and type will be this 
+model&#39;s snake case modelName suffixed with _id and _type</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>model</span>
+      <span class='type'>
+        (<tt><a href='../classes/Model.html'>Model</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The other model</span>
+    </li>
+    <li>
+      <span class='name'>attribute</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The relation name - the method on each instance to get the relation object</span>
+    </li>
+    <li>
+      <span class='name'>thatFkAttr</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key attribute name on this model</span>
+    </li>
+    <li>
+      <span class='name'>thatTypeAttr</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key type attribute name on this model</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='hasManyThrough-instance'>
+      - (void) <strong>hasManyThrough</strong>(model, attribute, linkModel, thisFkAttr, thatFkAttr)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>hasManyThrough is a general use many to many relation using a linktable
+where the foreign keys on both sides exist on an intermediate link model.</p><p>If attribute, thisFkAttr or thatFkAttr are not supplied, the relation will be the snake 
+case of the other model modelName, thisFkAttr will be this model&#39;s snake case 
+modelName suffixed with _id and thatFkAttr will be the other model&#39;s snake case 
+modelName suffixed with _id </p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>model</span>
+      <span class='type'>
+        (<tt><a href='../classes/Model.html'>Model</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The other model</span>
+    </li>
+    <li>
+      <span class='name'>attribute</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The relation name - the method on each instance to get the relation object</span>
+    </li>
+    <li>
+      <span class='name'>linkModel</span>
+      <span class='type'>
+        (<tt><a href='../classes/Model.html'>Model</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The link model</span>
+    </li>
+    <li>
+      <span class='name'>thisFkAttr</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key attribute name for this model on the link model</span>
+    </li>
+    <li>
+      <span class='name'>thatFkAttr</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key attribute name for the other model on the link model</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='hasManyThroughPoly-instance'>
+      - (void) <strong>hasManyThroughPoly</strong>(model, attribute, linkModel, thisFkAttr, thatFkAttr, thatTypeAttr)
+    </p>
+    <div class='docstring'>
+  <p>hasManyThroughPoly is a polymorphic many-to-many relation where both foreign 
+keys and the type exist on a linkmodel.
+- hasManyThroughPoly is the opposite side of a hasManyThroughPolyReverse relation
+If attribute, thatFkAttr, thatTypeAttr or thatTypeAttr are not supplied, the relation 
+will be the snake case of the other model modelName, thisFkAttr will be this model&#39;s 
+snake case modelName suffixed with id, thatFkAttr and thatTypeAttr will be the other 
+model&#39;s snake_case with _id and _type.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>model</span>
+      <span class='type'>
+        (<tt><a href='../classes/Model.html'>Model</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The other model</span>
+    </li>
+    <li>
+      <span class='name'>attribute</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The relation name - the method on each instance to get the relation object</span>
+    </li>
+    <li>
+      <span class='name'>thisFkAttr</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key attribute name for this model on the link model</span>
+    </li>
+    <li>
+      <span class='name'>thatFkAttr</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key attribute name for the other model on the link model</span>
+    </li>
+    <li>
+      <span class='name'>thatTypeAttr</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key type attribute name for the other model on the link model</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='hasManyThroughPolyReverse-instance'>
+      - (void) <strong>hasManyThroughPolyReverse</strong>(model, attribute, linkModel, thisFkAttr, thatFkAttr, thatTypeAttr)
+    </p>
+    <div class='docstring'>
+  <p>hasManyThroughPolyReverse is a polymorphic many-to-many relation where both foreign 
+keys and the type exist on a linkmodel.
+- hasManyThroughPolyReverse is the opposite side of a hasManyThroughPoly relation
+If attribute, thatFkAttr, thatTypeAttr or thatTypeAttr are not supplied, the relation 
+will be the snake case of the other model modelName, thisFkAttr will be this model&#39;s 
+snake case modelName suffixed with id, thatFkAttr and thatTypeAttr will be the other 
+model&#39;s snake_case with _id and _type.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>model</span>
+      <span class='type'>
+        (<tt><a href='../classes/Model.html'>Model</a></tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The other model</span>
+    </li>
+    <li>
+      <span class='name'>attribute</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The relation name - the method on each instance to get the relation object</span>
+    </li>
+    <li>
+      <span class='name'>thisFkAttr</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key attribute name for this model on the link model</span>
+    </li>
+    <li>
+      <span class='name'>thatFkAttr</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key attribute name for the other model on the link model</span>
+    </li>
+    <li>
+      <span class='name'>thatTypeAttr</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The foreign key type attribute name for the other model on the link model</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='all-instance'>
+      - (array) <strong>all</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Get all Instances in the Model as an array</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>array</tt>)
+      &mdash;
+      <span class='desc'>Returns an array of all model Instances in this Model</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='allAsMap-instance'>
+      - (object) <strong>allAsMap</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Get all Instances in the Model as a map of id =&gt; Instance</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>object</tt>)
+      &mdash;
+      <span class='desc'>Returns a map of all ids to Instances in this Model</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='count-instance'>
+      - (integer) <strong>count</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Get the total count of Instances in the Model datastore.</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>integer</tt>)
+      &mdash;
+      <span class='desc'>Return the total count of Instances in the Model datastore.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='findById-instance'>
+      - (Mozart.Instance) <strong>findById</strong>(id)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Get the Instance with the specified id</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>id</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The Instance id to find</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Mozart.Instance</tt>)
+      &mdash;
+      <span class='desc'>The Instance with the specified id, or NULL.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='findAll-instance'>
+      - (void) <strong>findAll</strong>(ids)
+      (bound)
+    </p>
+    <div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='select-instance'>
+      - (array) <strong>select</strong>(callback)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Get an array of Instances, one for each Instance in a query defined by the supplied 
+callback. The callback will be called for each instance in the datastore, with the
+Instance being passed as the first parameter, and should return true or false to select
+that instance:</p><p>Caveat: Do not modify the objects passed in the callback, this will confuse the iterator. If you need to modify a set of Instances, get them using select, then iterate them and modify.</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      
+    </h4>
+    <pre><code class='coffee'>isIdOdd(instance) -&gt; 
+  return (instance.id mod 2 == 0)
+
+oddPeople = App.People.select(@isIdOdd)</code></pre>
+  </div>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The function to filter the Instances, which should return true to select the instance passed.</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>array</tt>)
+      &mdash;
+      <span class='desc'>An array of selected instances </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='selectIds-instance'>
+      - (array) <strong>selectIds</strong>(callback)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>selectIds() returns an array of record ids, one for each record in
+a query defined by the supplied callback. The callback function has
+the same definition and constraints as select() above.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The function to filter the Instances, which should return true to select the instance passed.</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>array</tt>)
+      &mdash;
+      <span class='desc'>An array of selected instances </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='selectAsMap-instance'>
+      - (object) <strong>selectAsMap</strong>(callback)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>selectAsMap is the same as selectIds() except it returns an
+object instead of an array, with the id as the key and the record 
+as the value </p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The function to filter the Instances, which should return true to select the instance passed.</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>object</tt>)
+      &mdash;
+      <span class='desc'>An map of the selected id -&gt; Instance pairs</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='findByAttribute-instance'>
+      - (array) <strong>findByAttribute</strong>(attribute, value)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Get all instances where attribute is equal to a value as an array, using
+indexes if available</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>attribute</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The attribute in which to search</span>
+    </li>
+    <li>
+      <span class='name'>value</span>
+      <span class='type'>
+        (<tt>variant</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The value to search for</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>array</tt>)
+      &mdash;
+      <span class='desc'>An array of Instances found</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='findByAttributes-instance'>
+      - (array) <strong>findByAttributes</strong>(query)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Get all instances where a set of attributes are equal to a set of values as an array, 
+using indexes if available</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>attribute</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>A map of attributes -&gt; values to search for.</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>array</tt>)
+      &mdash;
+      <span class='desc'>An array of Instances found</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='exists-instance'>
+      - (boolean) <strong>exists</strong>(id)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Find if an Instance with the specified id exists</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>id</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The id to search for</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>boolean</tt>)
+      &mdash;
+      <span class='desc'>Returns true if the Instance exists</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='initInstance-instance'>
+      - (Mozart.Instance) <strong>initInstance</strong>(data)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Instantiate but do not save an Instance of this model with the supplied attributes and 
+values. The returned instance is not yet in the Model data store and cannot be used with 
+indexes.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>A map of attributes -&gt; values to initialise the new Instance with.</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Mozart.Instance</tt>)
+      &mdash;
+      <span class='desc'>The new instance</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='createFromValues-instance'>
+      - (Mozart.Instance) <strong>createFromValues</strong>(values)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Create and save an Instance of this model with the supplied attributes and 
+values.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>A map of attributes -&gt; values to initialise the new Instance with.</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Mozart.Instance</tt>)
+      &mdash;
+      <span class='desc'>The new instance </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='loadInstance-instance'>
+      - (void) <strong>loadInstance</strong>(instance, options = {})
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Load the supplied instance from an external datastore (ajax, localstorage) by publishing
+a load event on this model, which external datastores subscribe to when registered.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The instance to load</span>
+    </li>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The options to pass to the load callback</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='createInstance-instance'>
+      - (Mozart.Instance) <strong>createInstance</strong>(instance, options = {})
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Create an existing instance by adding it to the model data store and indexing it, and
+saving it to an external datastore if configured by publishing a create event on this 
+model, which external datastores subscribe to when registered.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The instance to create</span>
+    </li>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The options to pass to the load callback</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Mozart.Instance</tt>)
+      &mdash;
+      <span class='desc'>The instance that has been created</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='updateInstance-instance'>
+      - (void) <strong>updateInstance</strong>(instance, options = {})
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Update an existing instance by publishing an update event on this model, which 
+external datastores subscribe to when registered.</p><p>Please note this method does not modify the Instance, it just notifies any
+configured external datastore that the model has been saved.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The instance to update</span>
+    </li>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The options to pass to the update callback</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='destroyInstance-instance'>
+      - (void) <strong>destroyInstance</strong>(instance, options = {})
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Destroy an existing instance by publishing an destroy event on this model, which 
+external datastores subscribe to when registered.</p><p>Please note this method does not release the Instance, it just removes it from
+the model data store and indexes and notifies any configured external datastore 
+that the model has been destroyed. </p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The instance to destory</span>
+    </li>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The options to pass to the destroy callback</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='toSnakeCase-instance'>
+      - (string) <strong>toSnakeCase</strong>(name)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>toSnakeCase translates CapsCase or camelCase to snake_case
+Example:
+toSnakeCase(&#39;People&#39;) = &#39;people&#39;
+toSnakeCase(&#39;PeopleTags&#39;) = &#39;people_tags&#39;
+toSnakeCase(&#39;methodName &#39;) = &#39;method_name&#39;</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>name</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The original name</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>string</tt>)
+      &mdash;
+      <span class='desc'>The snake_case name</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='index-instance'>
+      - (void) <strong>index</strong>(attrName, type = 'map', options)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Create an index on the specified attribute of the specified type and options.
+If the index already exists, rebuild it.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>attrName</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The attribute to index</span>
+    </li>
+    <li>
+      <span class='name'>type</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The type of the index, default is &#39;map&#39;</span>
+    </li>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The index options if required</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='hasIndex-instance'>
+      - (boolean) <strong>hasIndex</strong>(attrName)
+    </p>
+    <div class='docstring'>
+  <p>Find if the Model has an index on the specified attribute</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>attrName</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The attribute of the index</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>boolean</tt>)
+      &mdash;
+      <span class='desc'>Return true if an index exists on the attribute</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='getIndexFor-instance'>
+      - (object) <strong>getIndexFor</strong>(attrName, value)
+    </p>
+    <div class='docstring'>
+  <p>Get the index id map for the specified attribute and value.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>attrName</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The attribute of the index</span>
+    </li>
+    <li>
+      <span class='name'>value</span>
+      <span class='type'>
+        (<tt>variant</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The value of the attribute</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>object</tt>)
+      &mdash;
+      <span class='desc'>A map of id -&gt; Instance where attribute is equal to value</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='updateIndex-instance'>
+      - (void) <strong>updateIndex</strong>(attrName, record, oldValue, newValue)
+    </p>
+    <div class='docstring'>
+  <p>Update an index with a given attribute name when an Instance has changed.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>attrName</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The attribute of the index</span>
+    </li>
+    <li>
+      <span class='name'>record</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The Instance that has changed</span>
+    </li>
+    <li>
+      <span class='name'>oldValue</span>
+      <span class='type'>
+        (<tt>variant</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The previous value of the attribute in the Instance</span>
+    </li>
+    <li>
+      <span class='name'>newValue</span>
+      <span class='type'>
+        (<tt>variant</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The new value of the attribute in the Instance</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='addToIndexes-instance'>
+      - (void) <strong>addToIndexes</strong>(record)
+    </p>
+    <div class='docstring'>
+  <p>Add a specified Instance to all defined indexes</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>record</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The Instance to be added</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='removeFromIndexes-instance'>
+      - (void) <strong>removeFromIndexes</strong>(record)
+    </p>
+    <div class='docstring'>
+  <p>Remove a specified Instance from all defined indexes</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>record</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The Instance to be removed</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='rebuildIndex-instance'>
+      - (void) <strong>rebuildIndex</strong>(attrName)
+    </p>
+    <div class='docstring'>
+  <p>Rebuild an index with a given attribute name</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>attrName</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The attribute of the index to rebuild</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='dropIndex-instance'>
+      - (void) <strong>dropIndex</strong>(attrName)
+    </p>
+    <div class='docstring'>
+  <p>Drop an index with a given attribute name</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>attrName</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The attribute of the index to drop</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='rebuildAllIndexes-instance'>
+      - (void) <strong>rebuildAllIndexes</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Rebuild all defined indexes</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Fri Sep 20 2013 15:30:14 GMT+1000 (EST)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.9.0
+  (Node.js v0.10.0).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

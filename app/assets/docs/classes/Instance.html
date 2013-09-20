@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>Mozart</title>
+  <link rel='stylesheet' href='../assets/codo.css' type='text/css'>
+  <script src='../assets/codo.js'></script>
+  <script src='../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../README.md.html' title='Mozart'>Mozart</a>
+    &raquo;
+    <a href='../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <span class='title'>Instance</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../file_list.html'>Files</a>
+      <a id='method_list_link' href='../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        Instance
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;mozart&#47;model-instance.coffee</td>
+        </tr>
+        <tr>
+          <td>Inherits:</td>
+          <td>
+            <a href='../classes/MztObject.html'>MztObject</a>
+          </td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>Instance represents a single item in a Model. It is conceptually equivalent to a database
+row.</p><p>Instances should not be created directly - use the initInstance or createFromValues methods
+on the model itself</p>
+</div>
+<div class='tags'>
+</div>
+      <h2>Direct Known Subclasses</h2>
+      <p class='children'>
+        <a href='../classes/ModelInstance.html'>ModelInstance</a>
+      </p>
+      <h2>Constant Summary</h2>
+      <dl class='constants'>
+        <dt id='MODELFIELDS-constant'>
+          MODELFIELDS
+          =
+          <div class='tags'>
+</div>
+        </dt>
+        <dd>
+          <pre><code class='coffee'>['id']</code></pre>
+        </dd>
+      </dl>
+      <h3 class='inherited'>
+        Constants inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#NOTIFY-constant'>NOTIFY</a>,
+                <a href='../classes/MztObject.html#OBSERVE-constant'>OBSERVE</a>,
+        <a href='../classes/MztObject.html#SYNC-constant'>SYNC</a>
+      </p>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#init-instance'>
+        - (void) <strong>init</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Initialise the instance, saving the Model name onto _type.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#load-instance'>
+        - (void) <strong>load</strong>(options)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      If a backend store (ajax, localstorage) is defined, load the instance from that backend store by calling the loadInstance method with the specified options on the Model.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#save-instance'>
+        - (void) <strong>save</strong>(options)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      If a backend store (ajax, localstorage) is defined save the instance to that store by calling either createInstance or updateInstance on the Model with the specified options, depending on whether the instance exists in the model.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#destroy-instance'>
+        - (void) <strong>destroy</strong>(options)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Destroy the instance in one of the backend stores (ajax, localstorage) passing the specified options by calling the destroyInstance method on the Model.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#get-instance'>
+        - (void) <strong>get</strong>(key)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Get the value of the specified attribute on this instance.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#set-instance'>
+        - (void) <strong>set</strong>(key, value)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Set the value of the specified attribute on this instance, updating the Model index if defined.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#copyTo-instance'>
+        - (void) <strong>copyTo</strong>(object)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Copy all defined attribute values to the supplied object and return it.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#copyFrom-instance'>
+        - (boolean) <strong>copyFrom</strong>(object)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Copy all defined attribute values from the supplied object and return a boolean specifying whether any attribute values have now changed.
+    </span>
+  </li>
+</ul>
+      <h2>
+        <small>Inherited Method Summary</small>
+      </h2>
+      <h3 class='inherited'>
+        Methods inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#include-class'>.include</a>,
+                <a href='../classes/MztObject.html#extend-class'>.extend</a>,
+                <a href='../classes/MztObject.html#create-class'>.create</a>,
+                <a href='../classes/MztObject.html#constructor-instance'>#constructor</a>,
+                <a href='../classes/MztObject.html#toString-instance'>#toString</a>,
+                <a href='../classes/MztObject.html#get-instance'>#get</a>,
+                <a href='../classes/MztObject.html#set-instance'>#set</a>,
+                <a href='../classes/MztObject.html#subscribe-instance'>#subscribe</a>,
+                <a href='../classes/MztObject.html#subscribeOnce-instance'>#subscribeOnce</a>,
+                <a href='../classes/MztObject.html#publish-instance'>#publish</a>,
+                <a href='../classes/MztObject.html#unsubscribe-instance'>#unsubscribe</a>,
+        <a href='../classes/MztObject.html#release-instance'>#release</a>
+      </p>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='init-instance'>
+      - (void) <strong>init</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Initialise the instance, saving the Model name onto _type.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='load-instance'>
+      - (void) <strong>load</strong>(options)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>If a backend store (ajax, localstorage) is defined, load the instance from that 
+backend store by calling the loadInstance method with the specified options on 
+the Model.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The options to pass to the Model loadInstance method.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='save-instance'>
+      - (void) <strong>save</strong>(options)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>If a backend store (ajax, localstorage) is defined save the instance to that
+store by calling either createInstance or updateInstance on the Model with the 
+specified options, depending on whether the instance exists in the model.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The options to pass to the relevant Model method.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='destroy-instance'>
+      - (void) <strong>destroy</strong>(options)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Destroy the instance in one of the backend stores (ajax, localstorage) passing
+the specified options by calling the destroyInstance method on the Model. </p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The options to pass to the Model destroyInstance method.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='get-instance'>
+      - (void) <strong>get</strong>(key)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Get the value of the specified attribute on this instance.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>key</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The name of the attribute.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='set-instance'>
+      - (void) <strong>set</strong>(key, value)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Set the value of the specified attribute on this instance, updating the Model index if defined.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>key</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The name of the attribute.</span>
+    </li>
+    <li>
+      <span class='name'>value</span>
+      <span class='type'>
+        (<tt>variant</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The new value of the attribute.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='copyTo-instance'>
+      - (void) <strong>copyTo</strong>(object)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Copy all defined attribute values to the supplied object and return it.
+If object is not supplied, copyTo will create a new MztObject, copy to it, and return it.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>object</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(Optional) The object to copy the attributes and values to.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='copyFrom-instance'>
+      - (boolean) <strong>copyFrom</strong>(object)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Copy all defined attribute values from the supplied object and return a boolean specifying
+whether any attribute values have now changed.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>object</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The object to copy values from</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>boolean</tt>)
+      &mdash;
+      <span class='desc'>Return true if any attribute values on this instance have now changed</span>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Fri Sep 20 2013 15:30:14 GMT+1000 (EST)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.9.0
+  (Node.js v0.10.0).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

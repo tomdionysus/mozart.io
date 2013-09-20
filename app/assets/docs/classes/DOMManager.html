@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>Mozart</title>
+  <link rel='stylesheet' href='../assets/codo.css' type='text/css'>
+  <script src='../assets/codo.js'></script>
+  <script src='../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../README.md.html' title='Mozart'>Mozart</a>
+    &raquo;
+    <a href='../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <span class='title'>DOMManager</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../file_list.html'>Files</a>
+      <a id='method_list_link' href='../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        DOMManager
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;mozart&#47;dom-manager.coffee</td>
+        </tr>
+        <tr>
+          <td>Inherits:</td>
+          <td>
+            <a href='../classes/MztObject.html'>MztObject</a>
+          </td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>DOMManager manages DOM interactions for the whole Mozart application. There should
+be a maxiumum of one DOMManager per Mozart application.</p><p>It is responsible for routing DOM events to interested views, handling the action
+handlebars helper and the abstract clickInside/clickOutside events.</p>
+</div>
+<div class='tags'>
+</div>
+      <h2>Constant Summary</h2>
+      <h3 class='inherited'>
+        Constants inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#NOTIFY-constant'>NOTIFY</a>,
+                <a href='../classes/MztObject.html#OBSERVE-constant'>OBSERVE</a>,
+        <a href='../classes/MztObject.html#SYNC-constant'>SYNC</a>
+      </p>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#init-instance'>
+        - (void) <strong>init</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      Initialise the DOMManager, checking and finding the rootElement and binding to all configured DOM events in viewEventMap, all view events, and all view actions on that element.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#find-instance'>
+        - (Mozart.View) <strong>find</strong>(id)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Find a view or a control with the specified element id Find is intended to assist debug from the browser console.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#checkClickInside-instance'>
+        - (void) <strong>checkClickInside</strong>(event)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      For a given event, iterate interested views in all layouts and call clickInside on those views
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#checkClickOutside-instance'>
+        - (void) <strong>checkClickOutside</strong>(event)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      For a given event, iterate interested views in all layouts and call clickOutside on those views
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#release-instance'>
+        - (void) <strong>release</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Release the DOMManager, unbinding from all DOM events on the rootElement
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#onApplicationEvent-instance'>
+        - (void) <strong>onApplicationEvent</strong>(event)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Publish an application level event on this DOMManager
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#onViewEvent-instance'>
+        - (void) <strong>onViewEvent</strong>(event)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Process a DOMEvent by routing it to the containing view and calling the appropriate hander on that view if defined
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#onControlEvent-instance'>
+        - (void) <strong>onControlEvent</strong>(event)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Process a DOMEvent by routing it to the control and calling the appropriate action hander on the containing view onControlEvent will warn if the action handler does not exist.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#getControlOptionsValues-instance'>
+        - (object) <strong>getControlOptionsValues</strong>(view, options)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Get a set of options for an action in a control, getting the values of *Lookup properties.
+    </span>
+  </li>
+</ul>
+      <h2>
+        <small>Inherited Method Summary</small>
+      </h2>
+      <h3 class='inherited'>
+        Methods inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#include-class'>.include</a>,
+                <a href='../classes/MztObject.html#extend-class'>.extend</a>,
+                <a href='../classes/MztObject.html#create-class'>.create</a>,
+                <a href='../classes/MztObject.html#constructor-instance'>#constructor</a>,
+                <a href='../classes/MztObject.html#toString-instance'>#toString</a>,
+                <a href='../classes/MztObject.html#get-instance'>#get</a>,
+                <a href='../classes/MztObject.html#set-instance'>#set</a>,
+                <a href='../classes/MztObject.html#subscribe-instance'>#subscribe</a>,
+                <a href='../classes/MztObject.html#subscribeOnce-instance'>#subscribeOnce</a>,
+                <a href='../classes/MztObject.html#publish-instance'>#publish</a>,
+                <a href='../classes/MztObject.html#unsubscribe-instance'>#unsubscribe</a>,
+        <a href='../classes/MztObject.html#release-instance'>#release</a>
+      </p>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='init-instance'>
+      - (void) <strong>init</strong>()
+    </p>
+    <div class='docstring'>
+  <p>Initialise the DOMManager, checking and finding the rootElement and binding to
+all configured DOM events in viewEventMap, all view events, and all view actions
+on that element.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='find-instance'>
+      - (Mozart.View) <strong>find</strong>(id)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Find a view or a control with the specified element id</p><p>Find is intended to assist debug from the browser console.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>id</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>the DOM element id of the view or control</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Mozart.View</tt>)
+      &mdash;
+      <span class='desc'>The view or control </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='checkClickInside-instance'>
+      - (void) <strong>checkClickInside</strong>(event)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>For a given event, iterate interested views in all layouts and call
+clickInside on those views</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>event</span>
+      <span class='type'>
+        (<tt>DOMEvent</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The DOM event to process</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='checkClickOutside-instance'>
+      - (void) <strong>checkClickOutside</strong>(event)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>For a given event, iterate interested views in all layouts and call
+clickOutside on those views</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>event</span>
+      <span class='type'>
+        (<tt>DOMEvent</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The DOM event to process</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='release-instance'>
+      - (void) <strong>release</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Release the DOMManager, unbinding from all DOM events on the rootElement</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='onApplicationEvent-instance'>
+      - (void) <strong>onApplicationEvent</strong>(event)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Publish an application level event on this DOMManager</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>event</span>
+      <span class='type'>
+        (<tt>DOMEvent</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The DOM event to process</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='onViewEvent-instance'>
+      - (void) <strong>onViewEvent</strong>(event)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Process a DOMEvent by routing it to the containing view and
+calling the appropriate hander on that view if defined</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>event</span>
+      <span class='type'>
+        (<tt>DOMEvent</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The DOM event to process</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='onControlEvent-instance'>
+      - (void) <strong>onControlEvent</strong>(event)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Process a DOMEvent by routing it to the control and
+calling the appropriate action hander on the containing view
+onControlEvent will warn if the action handler does not exist.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>event</span>
+      <span class='type'>
+        (<tt>DOMEvent</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The DOM event to process</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='getControlOptionsValues-instance'>
+      - (object) <strong>getControlOptionsValues</strong>(view, options)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Get a set of options for an action in a control, getting the values of *Lookup properties.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>view</span>
+      <span class='type'>
+        (<tt>Mozart.View</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The View which is the context for the &#39;*Lookup&#39; resolution</span>
+    </li>
+    <li>
+      <span class='name'>options</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The map of attributes and paths which are copied or resolved.</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>object</tt>)
+      &mdash;
+      <span class='desc'>The resolved set of options, with Lookup values processed. </span>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Fri Sep 20 2013 15:30:14 GMT+1000 (EST)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.9.0
+  (Node.js v0.10.0).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

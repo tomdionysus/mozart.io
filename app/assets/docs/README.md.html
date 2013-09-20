@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>Mozart</title>
+  <link rel='stylesheet' href='assets/codo.css' type='text/css'>
+  <script src='assets/codo.js'></script>
+  <script src='assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path=''></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='README.md.html' title='Mozart'>Mozart</a>
+    &raquo;
+    <a href='class_index.html' title='Index'>Index</a>
+    &raquo;
+    <span class='title'>README.md</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='class_list.html'>Classes</a>
+      <a id='file_list_link' href='file_list.html'>Files</a>
+      <a id='method_list_link' href='method_list.html'>Methods</a>
+      <a id='extra_list_link' href='extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <nav class='toc'>
+        <p class='title'>
+          <a class='hide_toc' href='#'>
+            <strong>Table of Contents</strong>
+          </a>
+          <small>
+            (<a class='float_toc' href='#'>left</a>)
+          </small>
+        </p>
+      </nav>
+      <div id='filecontents'>
+        <h1>Mozart - A Clientside Framework in CoffeeScript</h1><p><em>Current Stable Version: 0.2.0, 1 September 2013</em></p><p><em>Development Version: 0.2.1, 1 October 2013</em></p><p><a href="http://travis-ci.org/bigcommerce/mozart"><img src="https://secure.travis-ci.org/bigcommerce/mozart.png?branch=master" alt="Build Status"></a></p><p>Please see <a href="http://mozart.io">http://mozart.io</a> for documentation, examples etc.</p><h1>Testing, Building, Packaging</h1><p><code>grunt test</code> will build and test Mozart
+<code>grunt build</code> will build Mozart into ./mozart.js
+<code>grunt package</code> will build and minify Mozart into ./mozart.min.js and write the current version to ./VERSION</p><h1>CoDo Documentation</h1><p><code>./node_modules/codo/bin/codo src/mozart</code> will generate the CoDo documentation in ./doc</p><h1>Changelog</h1>
+<h2>0.2.1</h2>
+<ul>
+<li>Added <code>Mozart.Service</code> class </li>
+<li>Added <code>displayWhenEmpty</code> to collection</li>
+<li>Added <code>idField</code> to collection</li>
+<li>Added <code>position</code> object to views rendered with a collection</li>
+<li>Added <code>findBy&lt;fieldname&gt;</code>, <code>getBy&lt;fieldname&gt;</code> methods on indexed fields</li>
+<li>Added warning when Layout cannot bind to rootElement</li>
+<li>Added Codo Docs to all classes</li>
+</ul>
+<h2>0.2.0</h2>
+<ul>
+<li>Added <em>attr</em>Html[Observe|Notify]Binding capability on views</li>
+</ul>
+<h2>0.1.9</h2>
+<ul>
+<li>Declarative View Actions (/name/Action)</li>
+<li>Handlebars {{action}} &#39;target&#39; attribute now deprecated, use full path</li>
+<li>bind/one/unbind/trigger deprecated, use subscribe/subscribeOne/unsubscribe/publish</li>
+</ul>
+<h2>0.1.8</h2>
+<ul>
+<li>HTTP CORS Support</li>
+<li>Binding, Routing Bugfixes</li>
+</ul>
+<h2>0.1.7</h2>
+<ul>
+<li>Introduced transferrable bindings to correct problems with new binding implementation</li>
+<li>Extra specs and tests for greater code coverage</li>
+</ul>
+<h2>0.1.6</h2>
+<ul>
+<li>HTTP Abstraction Layer</li>
+<li>i18n Bugfixes, Lookup properties allowed</li>
+<li>Firefox popstate fixes</li>
+<li>Fixed Double-route bug when using Browser History routing</li>
+<li>Plugin Framework</li>
+</ul>
+<h2>0.1.5</h2>
+<ul>
+<li>Rewrote MztObject binding</li>
+<li>Refactored for node 0.10.0 support</li>
+</ul>
+<h2>0.1.4</h2>
+<ul>
+<li>Updated Mozart Build Chain to use Grunt v0.4.0</li>
+</ul>
+<h2>0.1.3</h2>
+<ul>
+<li>Moved to Browser History based routing, Hash routing is an optional mode</li>
+</ul>
+<h2>0.1.2</h2>
+<ul>
+<li>i18n now conforms to RFC4646</li>
+<li>DOM Manager reworked to support more events</li>
+<li>More descriptive exceptions and warnings</li>
+<li>Minor bug fixes</li>
+</ul>
+<h2>0.1.1</h2>
+<ul>
+<li>Added *Lookup properties to MztObject, action helper</li>
+<li>View handlebars helper can now take a property as the viewclass (partials)</li>
+<li>Added CoDo Document Generation</li>
+</ul>
+<h2>0.1.0</h2>
+<ul>
+<li>Added localStorage support</li>
+</ul>
+<h2>0.0.9</h2>
+<ul>
+<li>Renamed to Mozart</li>
+</ul>
+<h2>0.0.8</h2>
+<ul>
+<li>Major fixes to IE compatibility. Now works in IE8+.</li>
+</ul>
+<h2>0.0.7</h2>
+<ul>
+<li>Switched to Grunt from Brunch</li>
+<li>Views are now deferred for release, and released off-DOM</li>
+<li>Mozart Framework now uses CommonJS</li>
+<li>Global Keybindings in DOMManager</li>
+</ul>
+<h2>0.0.6</h2>
+<ul>
+<li>Added messageFormat Internationalization support</li>
+</ul>
+<h2>0.0.5</h2>
+<ul>
+<li>Added basic AJAX layer</li>
+</ul>
+<h2>0.0.4</h2>
+<ul>
+<li>Added mobile ToDo App demo, added mobile generators, fixed IE incompatibiliy bug</li>
+</ul>
+<h2>0.0.3</h2>
+<ul>
+<li>Renamed from RazorMVC, including all namespaces</li>
+</ul>
+<h2>0.0.2</h2>
+<ul>
+<li>New, faster off-DOM render engine</li>
+</ul>
+
+      </div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Fri Sep 20 2013 15:30:14 GMT+1000 (EST)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.9.0
+  (Node.js v0.10.0).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

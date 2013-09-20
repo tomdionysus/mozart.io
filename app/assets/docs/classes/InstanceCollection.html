@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>Mozart</title>
+  <link rel='stylesheet' href='../assets/codo.css' type='text/css'>
+  <script src='../assets/codo.js'></script>
+  <script src='../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../README.md.html' title='Mozart'>Mozart</a>
+    &raquo;
+    <a href='../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <span class='title'>InstanceCollection</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../file_list.html'>Files</a>
+      <a id='method_list_link' href='../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        InstanceCollection
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;mozart&#47;model-instancecollection.coffee</td>
+        </tr>
+        <tr>
+          <td>Inherits:</td>
+          <td>
+            <a href='../classes/MztObject.html'>MztObject</a>
+          </td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>InstanceCollection is the abstract base class for all relation objects.</p><p>For more information, see <a href="http://www.mozart.io/guides/understanding_relations">http://www.mozart.io/guides/understanding_relations</a></p>
+</div>
+<div class='tags'>
+</div>
+      <h2>Direct Known Subclasses</h2>
+      <p class='children'>
+                <a href='../classes/ManyToManyCollection.html'>ManyToManyCollection</a>,
+                <a href='../classes/ManyToManyPolyCollection.html'>ManyToManyPolyCollection</a>,
+                <a href='../classes/ManyToManyPolyReverseCollection.html'>ManyToManyPolyReverseCollection</a>,
+                <a href='../classes/OneToManyCollection.html'>OneToManyCollection</a>,
+        <a href='../classes/OneToManyPolyCollection.html'>OneToManyPolyCollection</a>
+      </p>
+      <h2>Constant Summary</h2>
+      <h3 class='inherited'>
+        Constants inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#NOTIFY-constant'>NOTIFY</a>,
+                <a href='../classes/MztObject.html#OBSERVE-constant'>OBSERVE</a>,
+        <a href='../classes/MztObject.html#SYNC-constant'>SYNC</a>
+      </p>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#count-instance'>
+        - (integer) <strong>count</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      The number of items in the collection
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#allAsMap-instance'>
+        - (object) <strong>allAsMap</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      All the items in the collection as a map of id -&gt; item
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#all-instance'>
+        - (array) <strong>all</strong>()
+      </a>
+    </span>
+    <span class='desc'>
+      All the items in the collection as an array
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#subscribeEvents-instance'>
+        - (void) <strong>subscribeEvents</strong>(models)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Subscribe to create, update and destroy events on the supplied models
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#unsubscribeEvents-instance'>
+        - (void) <strong>unsubscribeEvents</strong>(models)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Unsubscribe to create, update and destroy events on the supplied models
+    </span>
+  </li>
+</ul>
+      <h2>
+        <small>Inherited Method Summary</small>
+      </h2>
+      <h3 class='inherited'>
+        Methods inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#include-class'>.include</a>,
+                <a href='../classes/MztObject.html#extend-class'>.extend</a>,
+                <a href='../classes/MztObject.html#create-class'>.create</a>,
+                <a href='../classes/MztObject.html#constructor-instance'>#constructor</a>,
+                <a href='../classes/MztObject.html#toString-instance'>#toString</a>,
+                <a href='../classes/MztObject.html#get-instance'>#get</a>,
+                <a href='../classes/MztObject.html#set-instance'>#set</a>,
+                <a href='../classes/MztObject.html#subscribe-instance'>#subscribe</a>,
+                <a href='../classes/MztObject.html#subscribeOnce-instance'>#subscribeOnce</a>,
+                <a href='../classes/MztObject.html#publish-instance'>#publish</a>,
+                <a href='../classes/MztObject.html#unsubscribe-instance'>#unsubscribe</a>,
+        <a href='../classes/MztObject.html#release-instance'>#release</a>
+      </p>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='count-instance'>
+      - (integer) <strong>count</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>The number of items in the collection</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>integer</tt>)
+      &mdash;
+      <span class='desc'>Returns the number of items in the collection</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='allAsMap-instance'>
+      - (object) <strong>allAsMap</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>All the items in the collection as a map of id -&gt; item</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>object</tt>)
+      &mdash;
+      <span class='desc'>Returns a map of id -&gt; item for all items</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='all-instance'>
+      - (array) <strong>all</strong>()
+    </p>
+    <div class='docstring'>
+  <p>All the items in the collection as an array</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>array</tt>)
+      &mdash;
+      <span class='desc'>All items in the collection</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='subscribeEvents-instance'>
+      - (void) <strong>subscribeEvents</strong>(models)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Subscribe to create, update and destroy events on the supplied models</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>models</span>
+      <span class='type'>
+        (<tt>array</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The array of models to subscribe to events on</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='unsubscribeEvents-instance'>
+      - (void) <strong>unsubscribeEvents</strong>(models)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Unsubscribe to create, update and destroy events on the supplied models</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>models</span>
+      <span class='type'>
+        (<tt>array</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The array of models to unsubscribe from events on</span>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Fri Sep 20 2013 15:30:14 GMT+1000 (EST)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.9.0
+  (Node.js v0.10.0).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>Mozart</title>
+  <link rel='stylesheet' href='../assets/codo.css' type='text/css'>
+  <script src='../assets/codo.js'></script>
+  <script src='../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../README.md.html' title='Mozart'>Mozart</a>
+    &raquo;
+    <a href='../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <span class='title'>Control</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../file_list.html'>Files</a>
+      <a id='method_list_link' href='../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        Control
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;mozart&#47;control.coffee</td>
+        </tr>
+        <tr>
+          <td>Inherits:</td>
+          <td>
+            <a href='../classes/View.html'>View</a>
+          </td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>Control is a the base class for reusable Mozart controls.</p>
+</div>
+<div class='tags'>
+</div>
+      <h2>Constant Summary</h2>
+      <h3 class='inherited'>
+        Constants inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#NOTIFY-constant'>NOTIFY</a>,
+                <a href='../classes/MztObject.html#OBSERVE-constant'>OBSERVE</a>,
+        <a href='../classes/MztObject.html#SYNC-constant'>SYNC</a>
+      </p>
+      <h2>
+        <small>Inherited Method Summary</small>
+      </h2>
+      <h3 class='inherited'>
+        Methods inherited from
+        <a href='../classes/View.html'>View</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/View.html#init-instance'>#init</a>,
+                <a href='../classes/View.html#prepareElement-instance'>#prepareElement</a>,
+                <a href='../classes/View.html#reassignElements-instance'>#reassignElements</a>,
+                <a href='../classes/View.html#findElementInPreparedContent-instance'>#findElementInPreparedContent</a>,
+                <a href='../classes/View.html#replaceElement-instance'>#replaceElement</a>,
+                <a href='../classes/View.html#beforeRender-instance'>#beforeRender</a>,
+                <a href='../classes/View.html#afterRender-instance'>#afterRender</a>,
+                <a href='../classes/View.html#postRender-instance'>#postRender</a>,
+                <a href='../classes/View.html#redraw-instance'>#redraw</a>,
+                <a href='../classes/View.html#addView-instance'>#addView</a>,
+                <a href='../classes/View.html#childView-instance'>#childView</a>,
+                <a href='../classes/View.html#namedChildViewExists-instance'>#namedChildViewExists</a>,
+                <a href='../classes/View.html#releaseChildren-instance'>#releaseChildren</a>,
+                <a href='../classes/View.html#removeView-instance'>#removeView</a>,
+                <a href='../classes/View.html#hasAncestor-instance'>#hasAncestor</a>,
+                <a href='../classes/View.html#release-instance'>#release</a>,
+                <a href='../classes/View.html#createElement-instance'>#createElement</a>,
+                <a href='../classes/View.html#getHtmlAttrsMap-instance'>#getHtmlAttrsMap</a>,
+                <a href='../classes/View.html#copyHtmlAttrsToElement-instance'>#copyHtmlAttrsToElement</a>,
+                <a href='../classes/View.html#registerDomBind-instance'>#registerDomBind</a>,
+                <a href='../classes/View.html#createDomBinds-instance'>#createDomBinds</a>,
+                <a href='../classes/View.html#onDomBindChange-instance'>#onDomBindChange</a>,
+                <a href='../classes/View.html#removeDomBinds-instance'>#removeDomBinds</a>,
+                <a href='../classes/View.html#createAutoActions-instance'>#createAutoActions</a>,
+        <a href='../classes/View.html#createHtmlAttrBindings-instance'>#createHtmlAttrBindings</a>
+      </p>
+      <h3 class='inherited'>
+        Methods inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#include-class'>.include</a>,
+                <a href='../classes/MztObject.html#extend-class'>.extend</a>,
+                <a href='../classes/MztObject.html#create-class'>.create</a>,
+                <a href='../classes/MztObject.html#constructor-instance'>#constructor</a>,
+                <a href='../classes/MztObject.html#toString-instance'>#toString</a>,
+                <a href='../classes/MztObject.html#get-instance'>#get</a>,
+                <a href='../classes/MztObject.html#set-instance'>#set</a>,
+                <a href='../classes/MztObject.html#subscribe-instance'>#subscribe</a>,
+                <a href='../classes/MztObject.html#subscribeOnce-instance'>#subscribeOnce</a>,
+                <a href='../classes/MztObject.html#publish-instance'>#publish</a>,
+                <a href='../classes/MztObject.html#unsubscribe-instance'>#unsubscribe</a>,
+        <a href='../classes/MztObject.html#release-instance'>#release</a>
+      </p>
+    </div>
+    <div id='footer'>
+  Generated on
+  Fri Sep 20 2013 15:30:14 GMT+1000 (EST)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.9.0
+  (Node.js v0.10.0).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>

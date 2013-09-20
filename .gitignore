@@ -6,9 +6,6 @@ npm_debug.log
 build
 public
 
-# Generated Docs
-docs
-
 # SASS
 .sass-cache/
 

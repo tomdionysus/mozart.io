@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>Mozart</title>
+  <link rel='stylesheet' href='../assets/codo.css' type='text/css'>
+  <script src='../assets/codo.js'></script>
+  <script src='../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../README.md.html' title='Mozart'>Mozart</a>
+    &raquo;
+    <a href='../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <span class='title'>OneToManyPolyCollection</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../file_list.html'>Files</a>
+      <a id='method_list_link' href='../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        OneToManyPolyCollection
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;mozart&#47;model-onetomanypolycollection.coffee</td>
+        </tr>
+        <tr>
+          <td>Inherits:</td>
+          <td>
+            <a href='../classes/InstanceCollection.html'>InstanceCollection</a>
+          </td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>OneToManyPolyCollection is a relation class representing a scope of model instances in a 
+polymorphic one-to-many (hasManyPoly) relation. Instances of this class are returned by 
+relation methods created by the hasManyPoly method on Mozart.Model</p><p>Please note that relation class do not actually contain lists of Instances. The relation
+class instance provides a set of scoped queries for the relation from the point of 
+view of the Instance that created it, having much the same interface as Mozart.Model
+allowing its use in collections, etc.</p><p>For more information, see <a href="http://www.mozart.io/guides/understanding_relations">http://www.mozart.io/guides/understanding_relations</a></p>
+</div>
+<div class='tags'>
+</div>
+      <h2>Constant Summary</h2>
+      <h3 class='inherited'>
+        Constants inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#NOTIFY-constant'>NOTIFY</a>,
+                <a href='../classes/MztObject.html#OBSERVE-constant'>OBSERVE</a>,
+        <a href='../classes/MztObject.html#SYNC-constant'>SYNC</a>
+      </p>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#all-instance'>
+        - (array) <strong>all</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Return all instances of the related model by querying the model where the foreign key and type is equal to this relation owner&#39;s id and model type
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#createFromValues-instance'>
+        - (Mozart.Instance) <strong>createFromValues</strong>(values)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Create and save an instance of the other model with the supplied attribute values and add it to the relation.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#add-instance'>
+        - (void) <strong>add</strong>(instance)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Add an instance to the relation by setting its related foreign key and type to this relation owner&#39;s id and model type
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#remove-instance'>
+        - (void) <strong>remove</strong>(instance)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Remove an instance from the relation by clearing its associated foreign key and model type
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#contains-instance'>
+        - (boolean) <strong>contains</strong>(instance)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Query if the specified instance of the other model is in this relation by checking if its related foreign key and type are equal to this relation owner&#39;s id and model type
+    </span>
+  </li>
+</ul>
+      <h2>
+        <small>Inherited Method Summary</small>
+      </h2>
+      <h3 class='inherited'>
+        Methods inherited from
+        <a href='../classes/InstanceCollection.html'>InstanceCollection</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/InstanceCollection.html#count-instance'>#count</a>,
+                <a href='../classes/InstanceCollection.html#allAsMap-instance'>#allAsMap</a>,
+                <a href='../classes/InstanceCollection.html#all-instance'>#all</a>,
+                <a href='../classes/InstanceCollection.html#subscribeEvents-instance'>#subscribeEvents</a>,
+        <a href='../classes/InstanceCollection.html#unsubscribeEvents-instance'>#unsubscribeEvents</a>
+      </p>
+      <h3 class='inherited'>
+        Methods inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#include-class'>.include</a>,
+                <a href='../classes/MztObject.html#extend-class'>.extend</a>,
+                <a href='../classes/MztObject.html#create-class'>.create</a>,
+                <a href='../classes/MztObject.html#constructor-instance'>#constructor</a>,
+                <a href='../classes/MztObject.html#toString-instance'>#toString</a>,
+                <a href='../classes/MztObject.html#get-instance'>#get</a>,
+                <a href='../classes/MztObject.html#set-instance'>#set</a>,
+                <a href='../classes/MztObject.html#subscribe-instance'>#subscribe</a>,
+                <a href='../classes/MztObject.html#subscribeOnce-instance'>#subscribeOnce</a>,
+                <a href='../classes/MztObject.html#publish-instance'>#publish</a>,
+                <a href='../classes/MztObject.html#unsubscribe-instance'>#unsubscribe</a>,
+        <a href='../classes/MztObject.html#release-instance'>#release</a>
+      </p>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='all-instance'>
+      - (array) <strong>all</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Return all instances of the related model by querying the model where the foreign
+key and type is equal to this relation owner&#39;s id and model type</p>
+</div>
+<div class='tags'>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>array</tt>)
+      &mdash;
+      <span class='desc'>An array of all related Mozart.Instance instances </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='createFromValues-instance'>
+      - (Mozart.Instance) <strong>createFromValues</strong>(values)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Create and save an instance of the other model with the supplied attribute
+values and add it to the relation.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>values</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>A map of attributes and values to create the new instance with</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>Mozart.Instance</tt>)
+      &mdash;
+      <span class='desc'>The new other model instance </span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='add-instance'>
+      - (void) <strong>add</strong>(instance)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Add an instance to the relation by setting its related foreign key and type to this 
+relation owner&#39;s id and model type</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The instance to add to the relation</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='remove-instance'>
+      - (void) <strong>remove</strong>(instance)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Remove an instance from the relation by clearing its associated foreign key
+and model type</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The instance to remove from the relation</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='contains-instance'>
+      - (boolean) <strong>contains</strong>(instance)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Query if the specified instance of the other model is in this relation by
+checking if its related foreign key and type are equal to this relation owner&#39;s 
+id and model type </p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The instance to search for in the relation</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>boolean</tt>)
+      &mdash;
+      <span class='desc'>Returns true if the instance exists in the relation</span>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Fri Sep 20 2013 15:30:14 GMT+1000 (EST)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.9.0
+  (Node.js v0.10.0).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>
