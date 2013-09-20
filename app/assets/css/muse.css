@@ -1096,7 +1096,7 @@ input[type="submit"], button {
 /*  Base
 --------------------------------------------------------------*/
 body {
-  color: #777777;
+  color: #222;
   background: white; }
 
 /*  Text Selection
@@ -1142,10 +1142,10 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 .branding {
   margin-bottom: 48px;
-  background-color: #9d3a6c;
-  background: -webkit-radial-gradient(center, ellipse cover, #9a5451 0%, #9d3a6c 100%);
-  background: -moz-radial-gradient(center, ellipse cover, #9a5451 0%, #9d3a6c 100%);
-  background: -ms-radial-gradient(center, ellipse cover, #9a5451 0%, #9d3a6c 100%);
+  background-color: #222;
+  background: -webkit-radial-gradient(center, ellipse cover, #111 0%, #444 100%);
+  background: -moz-radial-gradient(center, ellipse cover, #111 0%, #444 100%);
+  background: -ms-radial-gradient(center, ellipse cover, #111 0%, #444 100%);
   border-radius: 0 0 500px 2000px/0 0 15px 20px; }
 
 /*  Logo
@@ -1166,7 +1166,8 @@ h1, h2, h3, h4, h5, h6 {
 /*  Hero
 --------------------------------------------------------------*/
 .hero {
-  border-top: 1px solid rgba(0, 0, 0, 0.1); }
+  /*border-top: 1px solid rgba(0, 0, 0, 0.1); */
+}
   @media (min-width: 320px) {
     .hero {
       margin-bottom: 0; } }
@@ -1253,19 +1254,36 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 12px;
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25); }
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25); 
+  border: 1px solid #ccc;
+}
   .branding .nav .dropdown > li {
-    border-top: 1px solid #dddddd; }
+    border-top: 1px solid #ccc; }
     .branding .nav .dropdown > li:hover {
-      background: #eee;
       -webkit-transition: all 0.4s ease;
       -moz-transition: all 0.4s ease;
       transition: all 0.4s ease; }
     .branding .nav .dropdown > li:first-child {
       border-top: none; }
   .branding .nav .dropdown a {
+    color: #222;
     display: block;
-    padding: 6px 12px; }
+    padding: 6px 12px; 
+  }
+  .branding .nav .dropdown li:first-child a {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .branding .nav .dropdown li:last-child a {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+
+  .branding .nav .dropdown a:focus,
+  .branding .nav .dropdown a:hover,
+  .branding .nav .dropdown a:active{
+    background: #eee;
+  }
 
 /*	Nav Collapse
 --------------------------------------------------------------*/
