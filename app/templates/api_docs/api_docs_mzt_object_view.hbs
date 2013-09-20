@@ -1,33 +1,54 @@
 <h1>Mozart.MztObject</h1>
 <p>This is the ancestor class of all Mozart objects and classes. MztObjects support declarative binding, mixins, and events.</p>
+
 <h2>Class Methods</h2>
+
 	<h3>include(object)</h3>
 	<p>Adds all properties and functions in the supplied <code>object</code> map to this object. include returns <code>this</code>.</p>
+
 	<h3>extend(object)</h3>
 	<p>Adds all properties and functions in the supplied <code>object</code> map to this object's prototype. extend returns <code>this</code></p>
+
 	<h3>create(properties)</h3>
 	<p>Create is the preferred constructor for objects, setting up a new instance with the supplied <code>properties</code>, declared bindings and calling the class <code>init()</code> method.</p>
+	
 <h2>Properties</h2>
+
 	<h3>released</h3>
 	<p>Released will be true if the object has been released with the <code>release()</code> method.
+
 <h2>Constructor/Destructor</h2>
+
 	<h3>init(properties)</h3>
 	<p>Init should be overridden in a class that extends MztObject to provide constructor functionality if required. Implementations should call <code>super</code> to ensure the ancestor chain is called.</p>
 	<p><strong>Note:</strong> You should use the class-level <code>create()</code> method to instantiate MztObjects.<p>
+
 	<h3>release()</h3>
-	<p>Does an aggressive teardown on the object by unbinding all declared and manual binds, deleting all non-function properties and setting the <code>released</code> property to true.</p>
+	<p>Does an aggressive teardown on the object by unbinding all declared and manual binds, unsubscribing from all events, deleting all non-function properties and setting the <code>released</code> property to true.</p>
+
 <h2>Instance Methods</h2>
+
 	<h3>get(key)</h3>
 	<p>Get returns the value of the property with the corresponding key name, or undefined if it does not exist.</p>
+
 	<h3>set(key,value)</h3>
 	<p>Sets the value of the property with the corresponding key name to the supplied value, triggering all binding and event logic. Set also triggers the object's <code>change</code> and <code>change:<em>key</em></code> events.</p>
+
 	<h3>createDeclaredBinds()</h3>
-	<p>Creates all declared binds on this object, by scanning it's properties for names ending in <code>Binding</code>, <code>ObserveBinding</code> and <code>NotifyBinding</code>. It will create the appropriate property and binding for each.</p>
-	<h3>bind(event, callback)</h3>
-	<p>Bind the supplied callback to the given event. The callback will be called when the event is supplied to <code>trigger</code>.</p>
-	<h3>one(event, callback)</h3>
-	<p>Bind the supplied callback to the given event, and unbind it after the first time it is triggered - this is used to bind to an event only once, the first time it is triggered after the one() call.</p>
-	<h3>trigger(event [, parameters...])</h3>
-	<p>Trigger the specified event with the supplied parameters. All bound callbacks will be called for the specified event.</p>
-	<h3>unbind([event] [, callback])</h3>
+	<p>Creates all declared binds on this object, by scanning its properties for names ending in <code>Binding</code>, <code>ObserveBinding</code> and <code>NotifyBinding</code>. It will create the appropriate property and binding for each.</p>
+
+	<h3>subscribe(event, callback [, data])</h3>
+	<p><em>Alias: <strong>bind</strong> (0.1.8 and below)</em></p>
+	<p>Subscribe to the specified event using the supplied callback and optional data. The callback will be called when the event is supplied to <code>publish</code>.</p>
+
+	<h3>subscribeOne(event, callback)</h3>
+	<p><em>Alias: <strong>one</strong> (0.1.8 and below)</em></p>
+	<p>Subscribe to the specified event using the supplied callback and optional data, and unsubscribe it after the first time it is published - this is used to subscribe to an event only once, the first time it is published after the subscribeOne() call.</p>
+
+	<h3>publish(event [, parameters...])</h3>
+	<p><em>Alias: <strong>trigger</strong> (0.1.8 and below)</em></p>
+	<p>Publish the specified event with the supplied parameters. All subscribed callbacks will be called for the specified event.</p>
+
+	<h3>unsubscribe([event] [, callback])</h3>
+	<p><em>Alias: <strong>unbind</strong> (0.1.8 and below)</em></p>
 	<p>Unbinds the specified callback function from the specified event, or unbinds all callbacks from the event if the callback is not supplied, or unbinds all callbacks from all events if called with no parameters.</p>
