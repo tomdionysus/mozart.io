@@ -11,3 +11,6 @@ public
 
 # Zipped Mozart Empty
 app/assets/mozart-empty.tar.bz2
+
+# OS Droppings
+.DS_Store
