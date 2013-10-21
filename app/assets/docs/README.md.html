@@ -2,7 +2,7 @@
 <html>
   <head>
   <meta charset='UTF-8'>
-  <title>Mozart</title>
+  <title>CoffeeScript API Documentation</title>
   <link rel='stylesheet' href='assets/codo.css' type='text/css'>
   <script src='assets/codo.js'></script>
   <script src='assets/search_data.js'></script>
@@ -115,18 +115,22 @@
         </p>
       </nav>
       <div id='filecontents'>
-        <h1>Mozart - A Clientside Framework in CoffeeScript</h1><p><em>Current Stable Version: 0.2.0, 1 September 2013</em></p><p><em>Development Version: 0.2.1, 1 October 2013</em></p><p><a href="http://travis-ci.org/bigcommerce/mozart"><img src="https://secure.travis-ci.org/bigcommerce/mozart.png?branch=master" alt="Build Status"></a></p><p>Please see <a href="http://mozart.io">http://mozart.io</a> for documentation, examples etc.</p><h1>Testing, Building, Packaging</h1><p><code>grunt test</code> will build and test Mozart
+        <h1>Mozart - A Clientside Framework in CoffeeScript</h1><p><em>Current Stable Version: 0.3.0, 21 October 2013</em></p><p><em>Development Version: 0.4.0, November 2013</em></p><p><a href="http://travis-ci.org/bigcommerce/mozart"><img src="https://secure.travis-ci.org/bigcommerce/mozart.png?branch=master" alt="Build Status"></a></p><p>Please see <a href="http://mozart.io">http://mozart.io</a> for documentation, examples etc.</p><h1>Testing, Building, Packaging</h1><p><code>grunt test</code> will build and test Mozart
 <code>grunt build</code> will build Mozart into ./mozart.js
 <code>grunt package</code> will build and minify Mozart into ./mozart.min.js and write the current version to ./VERSION</p><h1>CoDo Documentation</h1><p><code>./node_modules/codo/bin/codo src/mozart</code> will generate the CoDo documentation in ./doc</p><h1>Changelog</h1>
-<h2>0.2.1</h2>
+<h2>0.4.0</h2>
+<h2>0.3.0</h2>
 <ul>
-<li>Added <code>Mozart.Service</code> class </li>
+<li>Mozart Now follows semantic versioning</li>
+<li>Added <code>Mozart.Resource</code> class </li>
 <li>Added <code>displayWhenEmpty</code> to collection</li>
 <li>Added <code>idField</code> to collection</li>
 <li>Added <code>position</code> object to views rendered with a collection</li>
+<li>Added <code>hide</code> property to views</li>
 <li>Added <code>findBy&lt;fieldname&gt;</code>, <code>getBy&lt;fieldname&gt;</code> methods on indexed fields</li>
 <li>Added warning when Layout cannot bind to rootElement</li>
 <li>Added Codo Docs to all classes</li>
+<li>Added extended options capability to verbs on<code>Mozart.HTTP</code></li>
 </ul>
 <h2>0.2.0</h2>
 <ul>
@@ -226,7 +230,7 @@
     </div>
     <div id='footer'>
   Generated on
-  Fri Sep 20 2013 15:30:14 GMT+1000 (EST)
+  Mon Oct 21 2013 17:02:49 GMT+1100 (EST)
   by
   <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
   v1.9.0

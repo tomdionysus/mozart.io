@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>CoffeeScript API Documentation</title>
+  <link rel='stylesheet' href='../assets/codo.css' type='text/css'>
+  <script src='../assets/codo.js'></script>
+  <script src='../assets/search_data.js'></script>
+</head>
+  <body>
+    <div id='base' data-path='../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../README.md.html' title='Mozart'>Mozart</a>
+    &raquo;
+    <a href='../class_index.html' title='Index'>Index</a>
+    &raquo;
+    <span class='title'>Resource</span>
+    <nav>
+      <ul>
+        <li class='noframes'>
+          (<a class='noframes' href='#'>no frames</a>)
+        </li>
+      </ul>
+    </nav>
+    <div id='search'>
+      <a id='class_list_link' href='../class_list.html'>Classes</a>
+      <a id='file_list_link' href='../file_list.html'>Files</a>
+      <a id='method_list_link' href='../method_list.html'>Methods</a>
+      <a id='extra_list_link' href='../extra_list.html'>Extras</a>
+    </div>
+  </div>
+  <iframe id='search_frame'></iframe>
+  <div id='fuzzySearch'>
+    <input type='text'>
+    <ol></ol>
+  </div>
+  <div id='help'>
+    <p>
+      Quickly fuzzy find classes, mixins, methods, file:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-T</span>
+        Open fuzzy finder dialog
+      </li>
+    </ul>
+    <p>
+      In frame mode you can toggle the list naviation frame on the left side:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-L</span>
+        Toggle list view
+      </li>
+    </ul>
+    <p>
+      You can focus a list in frame mode or toggle a tab in frameless mode:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-C</span>
+        Class list
+      </li>
+      <li>
+        <span>Ctrl-I</span>
+        Mixin list
+      </li>
+      <li>
+        <span>Ctrl-F</span>
+        File list
+      </li>
+      <li>
+        <span>Ctrl-M</span>
+        Method list
+      </li>
+      <li>
+        <span>Ctrl-E</span>
+        Extras list
+      </li>
+    </ul>
+    <p>
+      You can focus and blur the search input:
+    </p>
+    <ul>
+      <li>
+        <span>Ctrl-S</span>
+        Focus search input
+      </li>
+      <li>
+        <span>Esc</span>
+        Blur search input
+      </li>
+    </ul>
+    <p>
+      In frameless mode you can close the list tab:
+    </p>
+    <ul>
+      <li>
+        <span>Esc</span>
+        Close list tab
+      </li>
+    </ul>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        Class:
+        Resource
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>src&#47;mozart&#47;resource.coffee</td>
+        </tr>
+        <tr>
+          <td>Inherits:</td>
+          <td>
+            <a href='../classes/MztObject.html'>MztObject</a>
+          </td>
+        </tr>
+      </table>
+      <h2>Overview</h2>
+      <div class='docstring'>
+  <p>Resource is the base class for Mozart Resources, and are used when working with REST resources 
+that don&#39;t have a 1-to-1 mapping with individual models, and where complex loading and saving 
+logic exists, by encapsulating the required AJAX and mapping code.</p><p>Resources should be implemented by extending Resource.</p>
+  <div class='examples'>
+    <h3>Examples:</h3>
+    <h4>
+      Example Cats Resource
+    </h4>
+    <pre><code class='coffee'>class App.CatsResource extends Mozart.Resource
+
+  resource: &quot;&#47;cats&quot;
+  model: Cohort.Cat
+  serverIdField: &#39;id&#39;
+  clientApiField: &#39;api_id&#39;
+
+  mapServerData: (data) -&gt;
+    api_id: data[@serverIdField]
+    name: data.name
+
+  mapClientData: (instance) -&gt;
+    name: instance.name</code></pre>
+    <h4>
+      Mapping API foreign keys
+    </h4>
+    <pre><code class='coffee'>
+  mapServerData: (data) -&gt;
+    api_id: data.id
+    name: data.name
+    house_id: @getForeignKey(App.House, data.house_id, &#39;api_id&#39;, &#39;id&#39;)
+
+  mapClientData: (instance) -&gt;
+    name: instance.name
+    house_id: @getForeignKey(App.House, instance.house_id, &#39;id&#39;, &#39;api_id&#39;)</code></pre>
+  </div>
+</div>
+<div class='tags'>
+</div>
+      <h2>Constant Summary</h2>
+      <h3 class='inherited'>
+        Constants inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#NOTIFY-constant'>NOTIFY</a>,
+                <a href='../classes/MztObject.html#OBSERVE-constant'>OBSERVE</a>,
+        <a href='../classes/MztObject.html#SYNC-constant'>SYNC</a>
+      </p>
+      <h2>Instance Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#init-instance'>
+        - (void) <strong>init</strong>()
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Initialise the resource, checking for existence of required defaults and methods.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#loadAll-instance'>
+        - (void) <strong>loadAll</strong>(callback, error_callback)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Load all records from the resource into the model, creating or updating as required, using GET.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#loadAllSuccess-instance'>
+        - (void) <strong>loadAllSuccess</strong>(data)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      loadAllSuccess is called when the AJAX request from loadAll succeeds.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#load-instance'>
+        - (void) <strong>load</strong>(serverId, callback, error_callback)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Load the record with the specified serverId from the resource into the model using GET.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#loadSuccess-instance'>
+        - (void) <strong>loadSuccess</strong>(data)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      loadSuccess is called when the AJAX request from load succeeds.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#createOrUpdateFrom-instance'>
+        - (void) <strong>createOrUpdateFrom</strong>(data)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      If the server object supplied has a corresponding instance, find and update that instance, or create an instance with the server data.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#create-instance'>
+        - (void) <strong>create</strong>(instance, callback, error_callback)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Create a resource record from the specified instance by issuing a POST.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#createSuccess-instance'>
+        - (void) <strong>createSuccess</strong>(data, instance)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      createSuccess is called when the AJAX request from create succeeds.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#update-instance'>
+        - (void) <strong>update</strong>(instance, callback, error_callback)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Update a resource record from the specified instance by issuing a PUT.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#updateSuccess-instance'>
+        - (void) <strong>updateSuccess</strong>(data, instance)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      updateSuccess is called when the AJAX request from update succeeds.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#destroy-instance'>
+        - (void) <strong>destroy</strong>(instance, callback, error_callback)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      Destroy the resource record of the specified instance by issuing a DELETE.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#destroySuccess-instance'>
+        - (void) <strong>destroySuccess</strong>(data, instance)
+      </a>
+    </span>
+    <span class='bound note title'>Bound</span>
+    <span class='desc'>
+      destroySuccess is called when the AJAX request from destroy succeeds.
+    </span>
+  </li>
+  <li>
+    <span class='signature'>
+      <a href='#getForeignKey-instance'>
+        - (variant) <strong>getForeignKey</strong>(model, client_id, clientIdField, serverIdField)
+      </a>
+    </span>
+    <span class='desc'>
+      A helper method to lookup client or server ids on another model, used to map foreign keys in mapClientData and mapServerData
+    </span>
+  </li>
+</ul>
+      <h2>
+        <small>Inherited Method Summary</small>
+      </h2>
+      <h3 class='inherited'>
+        Methods inherited from
+        <a href='../classes/MztObject.html'>MztObject</a>
+      </h3>
+      <p class='inherited'>
+                <a href='../classes/MztObject.html#include-class'>.include</a>,
+                <a href='../classes/MztObject.html#extend-class'>.extend</a>,
+                <a href='../classes/MztObject.html#create-class'>.create</a>,
+                <a href='../classes/MztObject.html#constructor-instance'>#constructor</a>,
+                <a href='../classes/MztObject.html#toString-instance'>#toString</a>,
+                <a href='../classes/MztObject.html#get-instance'>#get</a>,
+                <a href='../classes/MztObject.html#set-instance'>#set</a>,
+                <a href='../classes/MztObject.html#subscribe-instance'>#subscribe</a>,
+                <a href='../classes/MztObject.html#subscribeOnce-instance'>#subscribeOnce</a>,
+                <a href='../classes/MztObject.html#publish-instance'>#publish</a>,
+                <a href='../classes/MztObject.html#unsubscribe-instance'>#unsubscribe</a>,
+        <a href='../classes/MztObject.html#release-instance'>#release</a>
+      </p>
+      <h2>Instance Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='init-instance'>
+      - (void) <strong>init</strong>()
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Initialise the resource, checking for existence of required defaults and methods.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='loadAll-instance'>
+      - (void) <strong>loadAll</strong>(callback, error_callback)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Load all records from the resource into the model, creating or updating as required, using GET.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The success callback</span>
+    </li>
+    <li>
+      <span class='name'>error_callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The error callback</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='loadAllSuccess-instance'>
+      - (void) <strong>loadAllSuccess</strong>(data)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>loadAllSuccess is called when the AJAX request from loadAll succeeds.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>array</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>An array of server objects to create or update.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='load-instance'>
+      - (void) <strong>load</strong>(serverId, callback, error_callback)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Load the record with the specified serverId from the resource into the model using GET.
+Like loadAll, load will create or update the instance as required.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>serverId</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The server Id or resource identifier</span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The success callback</span>
+    </li>
+    <li>
+      <span class='name'>error_callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The error callback</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='loadSuccess-instance'>
+      - (void) <strong>loadSuccess</strong>(data)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>loadSuccess is called when the AJAX request from load succeeds.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The data returned by the request</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='createOrUpdateFrom-instance'>
+      - (void) <strong>createOrUpdateFrom</strong>(data)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>If the server object supplied has a corresponding instance, find
+and update that instance, or create an instance with the server data.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>A server object to create or update.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='create-instance'>
+      - (void) <strong>create</strong>(instance, callback, error_callback)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Create a resource record from the specified instance by issuing a POST.
+The instance will have its clientApiField update with the server identifier on success.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The instance to create in the POST.</span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The success callback</span>
+    </li>
+    <li>
+      <span class='name'>error_callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The error callback</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='createSuccess-instance'>
+      - (void) <strong>createSuccess</strong>(data, instance)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>createSuccess is called when the AJAX request from create succeeds.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The data returned by the request</span>
+    </li>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>ozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The original instance that was POSTed.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='update-instance'>
+      - (void) <strong>update</strong>(instance, callback, error_callback)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Update a resource record from the specified instance by issuing a PUT.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The instance to update in the PUT.</span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The success callback</span>
+    </li>
+    <li>
+      <span class='name'>error_callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The error callback</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='updateSuccess-instance'>
+      - (void) <strong>updateSuccess</strong>(data, instance)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>updateSuccess is called when the AJAX request from update succeeds.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The data returned by the request</span>
+    </li>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>ozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The original instance that was POSTed.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='destroy-instance'>
+      - (void) <strong>destroy</strong>(instance, callback, error_callback)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>Destroy the resource record of the specified instance by issuing a DELETE.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The instance to destroy in the DELETE.</span>
+    </li>
+    <li>
+      <span class='name'>callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The success callback</span>
+    </li>
+    <li>
+      <span class='name'>error_callback</span>
+      <span class='type'>
+        (<tt>function</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>(optional) The error callback</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='destroySuccess-instance'>
+      - (void) <strong>destroySuccess</strong>(data, instance)
+      (bound)
+    </p>
+    <div class='docstring'>
+  <p>destroySuccess is called when the AJAX request from destroy succeeds.</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>data</span>
+      <span class='type'>
+        (<tt>object</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The data returned by the request</span>
+    </li>
+    <li>
+      <span class='name'>instance</span>
+      <span class='type'>
+        (<tt>Mozart.Instance</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The original instance that was POSTed.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+  <div class='method_details'>
+    <p class='signature' id='getForeignKey-instance'>
+      - (variant) <strong>getForeignKey</strong>(model, client_id, clientIdField, serverIdField)
+    </p>
+    <div class='docstring'>
+  <p>A helper method to lookup client or server ids on another model, used
+to map foreign keys in mapClientData and mapServerData</p>
+</div>
+<div class='tags'>
+  <h3>Parameters:</h3>
+  <ul class='param'>
+    <li>
+      <span class='name'>model</span>
+      <span class='type'>
+        (<tt>Mozart.Model</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The model on which to perform the lookup</span>
+    </li>
+    <li>
+      <span class='name'>client_id</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The value to lookup on the client</span>
+    </li>
+    <li>
+      <span class='name'>clientIdField</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The field in which to look up the client_id</span>
+    </li>
+    <li>
+      <span class='name'>serverIdField</span>
+      <span class='type'>
+        (<tt>string</tt>)
+      </span>
+      &mdash;
+      <span class='desc'>The field to return</span>
+    </li>
+  </ul>
+  <h3>Returns:</h3>
+  <ul class='return'>
+    <li>
+      <span class='type'></span>
+      (<tt>variant</tt>)
+      &mdash;
+      <span class='desc'>The value of the serverIdField in the found instance, or null.</span>
+    </li>
+  </ul>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  Generated on
+  Mon Oct 21 2013 17:02:49 GMT+1100 (EST)
+  by
+  <a href='https://github.com/netzpirat/codo' title='CoffeeScript API documentation generator'>Codo</a>
+  v1.9.0
+  (Node.js v0.10.0).
+  &#10034;
+  Press Ctrl-h to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/#!/netzpirat'>@netzpirat</a>
+  &#10034;
+  <a href='https://mksoft.ch'>mksoft.ch</a>
+</div>
+  </body>
+</html>
