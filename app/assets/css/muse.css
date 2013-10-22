@@ -374,13 +374,15 @@ table {
 \*============================================================*/
 /*  Clear Floats
 --------------------------------------------------------------*/
-.cf:before, .width-fixed:before, .row:before, .page:before, .col:before, .sidebar:before, .content:before, [class*="col-"]:before, .media:before, .nav:before, [class^="nav-"]:before, .islet:before,
+.cf:before, .width-fixed:before, .row:before, .page:before, .page-footer:before,
+.col:before, .sidebar:before, .content:before, [class*="col-"]:before, .media:before, .nav:before, [class^="nav-"]:before, .islet:before,
 .island:before,
 .continent:before, [role="banner"]:before, [role="contentinfo"]:before,
 .cf:after,
 .width-fixed:after,
 .row:after,
 .page:after,
+.page-footer:after,
 .col:after,
 .sidebar:after,
 .content:after,
@@ -1130,6 +1132,9 @@ h1, h2, h3, h4, h5, h6 {
 .page {
   padding-bottom: 48px; }
 
+.page-footer {
+  width: 100%; clear: both;}
+
 .sidebar {
   padding-right: 24px; }
   .sidebar > :first-child {
@@ -1147,6 +1152,23 @@ h1, h2, h3, h4, h5, h6 {
   background: -moz-radial-gradient(center, ellipse cover, #111 0%, #444 100%);
   background: -ms-radial-gradient(center, ellipse cover, #111 0%, #444 100%);
   border-radius: 0 0 500px 2000px/0 0 15px 20px; }
+
+.footer-branding {
+  font-size: 14px;
+  text-align: center;
+  height: 27px;
+  line-height: 27px;
+  margin: 50px 0 20px 0;
+}
+.footer-branding a {
+  background: transparent url(img/bc_logo.png) 0 0 no-repeat;
+  display: inline-block;
+  height: 27px;
+  margin: 0 10px;
+  text-align: left;
+  text-indent: -9999em;
+  width: 120px;
+}
 
 /*  Logo
 --------------------------------------------------------------*/
