@@ -29,13 +29,6 @@ App.Application.set 'layout', Mozart.Layout.create(
       path: "/generators_demo"
       title: "Generators"
 
-    Mozart.Route.create
-      viewClass: App.MozartPageView
-      viewOptions:
-        contentClass: App.ChangelogView
-      path: "/changelog"
-      title: "Changelog"
-
   # Framework
 
     Mozart.Route.create
